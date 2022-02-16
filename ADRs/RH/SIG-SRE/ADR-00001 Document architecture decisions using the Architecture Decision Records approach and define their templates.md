@@ -15,8 +15,6 @@ We need to capture our architecture decisions for all of Red Hat’s SIG-SRE and
 
 ## Goals
 
-* &lt;_Clearly list the goals which this work will try to achieve_>
-* &lt;_The goals should be achievable, not visionary statements_>
 * Capture key decisions
 * Let the team rely on these decisions
 * Capture decision context so we can revisit when context changes
@@ -25,7 +23,6 @@ We need to capture our architecture decisions for all of Red Hat’s SIG-SRE and
 
 ## Non-goals
 
-* Does not solve world hunger
 * Does not aim at achieving perfection from the get go
 
 
@@ -37,7 +34,7 @@ We need to capture our architecture decisions for all of Red Hat’s SIG-SRE and
 ## Proposed Architecture
 
 * Embrace a well formed template for each Architecture Decision
-    * [Template] Architecture Decision Record 
+    * [[Template] Architecture Decision Record](ADR-00000%20Template.md)
 * Store each Architecture Decision Record (ADR) in [Operate First’s SRE repository](https://github.com/operate-first/sre/tree/main/ADRs/RH/SIG-SRE).
 * Each Architecture Decision Record is named “ADR-nnnnn Some title”
     * nnnnn is a quasi monotonic number assigned at ADR creation time
@@ -59,7 +56,6 @@ Expected life cycle for each ADR will be as follows:
 
 ## Challenges
 
-* &lt;_Call out any challenges here, e.g. upskilling needed, specific resources needed, very aggressive timelines if known, etc_>
 * Each existing decisions should be identified and recaptured as Architecture Decision Records (ADR)
 * Since ADRs are numbered at creation time, it is possible that an ADR with a higher number is in effect before an ADR with a lower number. Shouldn't be a problem as long as they don’t contradict (nor supersede) one another.
 
@@ -71,7 +67,7 @@ Expected life cycle for each ADR will be as follows:
 
 ## Dependencies
 
-* [Template] Architecture Decision Record
+* [[Template] Architecture Decision Record](ADR-00000%20Template.md)
 * Architecture Decision Records directory
 * Some materials on the concept of ADR
     * [https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html) 

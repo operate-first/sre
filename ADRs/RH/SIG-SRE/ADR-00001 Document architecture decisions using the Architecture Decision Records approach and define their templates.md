@@ -40,9 +40,21 @@ We need to capture our architecture decisions for all of Red Hat’s SIG-SRE and
     * [Template] Architecture Decision Record 
 * Store each Architecture Decision Record (ADR) in [Operate First’s SRE repository](https://github.com/operate-first/sre/tree/main/ADRs/RH/SIG-SRE).
 * Each Architecture Decision Record is named “ADR-nnnnn Some title”
-    * Nnnnn is a quasi monotonic number assigned at ADR creation time
-* ADR are immutable once their status moves to accepted
+    * nnnnn is a quasi monotonic number assigned at ADR creation time
+* ADRs are immutable once their status moves to accepted
 * ADRs can supersede preceding ADRs: this is how a decision is changed.
+* No ADR once moved past Draft can be ‘deleted’ or ‘removed’.
+* Drafts can be developed as pull requests or using gdocs. However once they reach Proposed, they must become PRs against the ADR repository.
+
+### ADR Status Fields
+
+Expected life cycle for each ADR will be as follows:
+1. **Draft**: An ADR in Draft indicates its a concept under consideration, being scoped, being written up. No action is expected from anyone other than the author, and there are no time pressures towards moving from the draft state.
+2. **Proposed**: ADRs can move to the proposed state once a sponsor has signed up, and the ADR can then start to be socialized within the team / with PMs and with RFCs / RFEs can be scoped in.
+3. **Reviewing**: Once moved to Reviewing state, the ADR must be brought to the SIG-SRE weekly call for consideration based on feedback already received. An ADR from this stage can either be moved back to the Proposed state, if gaps are identified or conversations need to be closed, or is Accepted / Rejected. And actions as follow-up should be executed.
+4. **Accepted**: Once an ADR is ‘accepted’, it must be moved into read-only mode and no further changes are allowed.
+5. **Rejected**: From the reviewing state, it's possible to move ADRs to a rejected state if they do not align with goals, or if stakeholders have fundamental concerns.
+6. **Superseded**: ADRs once they move to Accepted state can no longer be changed, since goals and execution is established. Changes would be implemented by replacement ADRs with the previous ADR being moved to ‘superseded’ state, and a comment being added into the ADR metadata itself indicating which ADR now supersedes this specific one. The general pattern to follow is the IETF RFC flow.
 
 
 ## Challenges
@@ -80,21 +92,6 @@ We need to capture our architecture decisions for all of Red Hat’s SIG-SRE and
 
 * Ad-hoc decision recording that might be hard to find
 * Non-decisions slowing down the team progress
-
-
-## ADR Status Fields
-
-Expected life cycle for each ADR will be as follows: 
-1. **Draft**: An ADR in Draft indicates its a concept under consideration, being scoped, being written up. No action is expected from anyone other than the author, and there are no time pressures towards moving from the draft state.
-2. **Proposed**: ADRs can move to the proposed state once a sponsor has signed up, and the ADR can then start to be socialized within the team / with PMs and with RFCs / RFEs can be scoped in.
-3. **Reviewing**: Once moved to Reviewing state, the ADR must be brought to the SIG-SRE weekly call for consideration based on feedback already received. An ADR from this stage can either be moved back to the Proposed state, if gaps are identified or conversations need to be closed, or is Accepted / Rejected. And actions as follow-up should be executed.
-4. **Accepted**: Once an ADR is ‘accepted’, it must be moved into read-only mode and no further changes are allowed.
-5. **Rejected**: From the reviewing state, it's possible to move ADRs to a rejected state if they do not align with goals, or if stakeholders have fundamental concerns.
-6. **Superseded**: ADRs once they move to Accepted state can no longer be changed, since goals and execution is established. Changes would be implemented by replacement ADRs with the previous ADR being moved to ‘superseded’ state, and a comment being added into the ADR metadata itself indicating which ADR now supersedes this specific one. The general pattern to follow is the IETF RFC flow.
-
-Additional rules:
-1. No ADR once moved past Draft can be ‘deleted’ or ‘removed’.
-2. Drafts can be developed as pull requests or using gdocs. However once they reach Proposed, they must become PRs against the ADR repository.
 
 
 ## Review Status

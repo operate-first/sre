@@ -15,48 +15,52 @@ Authors:
 
 ## Goals
 
-* &lt;_Clearly list the goals which this work will try to achieve_>
-* &lt;_The goals should be achievable, not visionary statements_>
+* &lt;_Clearly list the goals which this work will try to achieve._>
+* &lt;_The goals should be achievable, not visionary statements._>
 
 
 ## Non-goals
 
-* &lt;_If any of the Goals might be interpreted too broadly, here's where you limit their scope_>
+* &lt;_If any of the goals might be interpreted too broadly, here's where you limit their scope._>
 
 
 ## Current Architecture
 
-&lt;_If something is already solving the problem (even partially), here's where you mention it_>
+* &lt;_If something is already solving the problem (even partially), here's where you mention it._>
 
 
 ## Proposed Architecture
 
-.
+* &lt;_Explain the full overview of the proposed solution.>
+* &lt;_Make it concise and simple; put diagrams; be concrete, avoid using vague generalizations._>
 
 
 ## Challenges
 
-* &lt;_Call out any challenges here, e.g. upskilling needed, specific resources needed, very aggressive timelines if known, etc_>
+* &lt;_Call out any challenges here, e.g. upskilling needed, specific resources needed, very aggressive timelines if known, etc._>
 
 
 ## Alternatives Considered
 
-* .
+* &lt;_Were any other approaches to solving the issue considered? If yes, describe them here._>
+* &lt;_Focus on the differences in outcomes (both positive and negative) between the proposed architecture and the alternatives._>
 
 
 ## Dependencies
 
-* .
+* &lt;_Does this proposal depend on other things also being in place? List them._>
 
 
 ## Stakeholders
 
-* .
+* &lt;_Who needs to sign off on this proposal for it to be implementable?_>
+* &lt;_Who should be informed, since they would be impacted?_>
 
 
 ## Consequences if Not Completed
 
-* .
+* &lt;_What happens if this proposal is not accepted and implemented?_>
+* &lt;_Start with immediate consequences, don't base your argument on what you think might happen 5 years from now._
 
 
 ## Review Status

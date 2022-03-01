@@ -10,7 +10,7 @@ Authors:
 
 ## Problem Statement
 
-&lt;_Why does this ADR exist? What issue is it trying to solve?_>
+&lt;_Why does this ADR exist? What decision are you trying to reach?_>
 
 
 ## Goals
@@ -31,7 +31,7 @@ Authors:
 
 ## Proposed Architecture
 
-* &lt;_Explain the full overview of the proposed solution.>
+* &lt;_Present a high level overview of the proposed solution.>
 * &lt;_Make it concise and simple; put diagrams; be concrete, avoid using vague generalizations._>
 
 
@@ -54,16 +54,11 @@ Authors:
 ## Stakeholders
 
 * &lt;_Who needs to sign off on this proposal for it to be implementable?_>
-* &lt;_Who should be informed, since they would be impacted?_>
+  * &lt;_Since SIG-SRE ADRs impact how the SIG operates, the default set of stakeholders would consist of relevant SIG-SRE members (plus external stakeholders, if any).>
 
 
 ## Consequences if Not Completed
 
 * &lt;_What happens if this proposal is not accepted and implemented?_>
 * &lt;_Start with immediate consequences, don't base your argument on what you think might happen 5 years from now._
-
-
-## Review Status
-
-.
 

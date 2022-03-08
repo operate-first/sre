@@ -2,16 +2,16 @@
 
 ## Phase 1: The ‘Crawl’ Phase
 
-### Overview
+### Crawl Phase Overview
 
 You’re starting from zero, with a net new team.
 You may only have a small SRE team, or an SRE function within your development team.
 You and your team are technically capable of surviving.
 You are probably providing a ‘white glove’ experience to your users at this stage.
 
-### Characteristics
+### Crawl Phase Characteristics
 
-#### People and Culture
+#### People and Culture
 
 You have a strong SRE voice in your team, someone who advocates for reliability features.
 They establish people focused mantras like "It's OK to fail", "Hope is not a strategy" and "Trust by default & extend on it".
@@ -48,7 +48,7 @@ It doesn’t have to be 24/7. It doesn’t have to be automated.
 But there must be someone responsible to respond when things go bad.
 Setting expectations at this early stage with a reduced SLO means you can tailor the schedule to more reasonable times for your team.
 
-Following on from this, you have an escalation process. A way to be notified of problems. 
+Following on from this, you have an escalation process. A way to be notified of problems.
 It should be possible to raise a problem with the SRE team and the people that build the service, like engineers, QE, writers.
 This can be a mailing list, slack channel, issue system, whatever.
 Formalise it and share it.
@@ -67,47 +67,46 @@ This can lead to scaling problems, both for the service and the team.
 It isn't necessary to formally measure how much time is spent on keeping things running vs. feature development or automation.
 That can come later, however you are familiar with the concept of Toil.
 
-
 ## Phase 2: The ‘Walk’ Phase (WIP)
 
-### Overview
+### Walk Phase Overview
 
 Your team is well established, has working processes and is familiar with SRE principles.
 A lot of those principles are baked into their processes & daily work.
-In this phase your team is building on the foundations of observability and starting to reflect on their learnings about the service. 
+In this phase your team is building on the foundations of observability and starting to reflect on their learnings about the service.
 Feedback loops, automation and 'shifting left' with different types of testing are the main theme of this phase.
 Your team is capable of scaling the service and number of users in a profitable way.
 
-### Characteristics
+### Walk Phase Characteristics
 
 * SLOs - SLOs have been iterated on, and you have more than 1 meaningful SLO. You understand and track error budgets
 * Observability
-    * Actionable Alerts
-    * Self healing
-        * Avoid SRE having sub-systems that automagically work around the inefficiencies of upstream - needs a good argument why it can’t be fixed upstream - pushing left
-    * Combination of internal (whitebox) and external (blackbox) monitoring - tied to SLOs
-    * Dashboards, logging (easily accessible)
+  * Actionable Alerts
+  * Self healing
+    * Avoid SRE having sub-systems that automagically work around the inefficiencies of upstream - needs a good argument why it can’t be fixed upstream - pushing left
+  * Combination of internal (whitebox) and external (blackbox) monitoring - tied to SLOs
+  * Dashboards, logging (easily accessible)
 * Chaos Testing (possible candidate for Phase 1, but what would that look like? Ad-hoc testing?)
 * Starting to get Exec support (improvment on 'buy-in')
 * Start measuring Toil more formally & management track it
-    * Develop relationship with the upstream (eng and sre, or sre & upstream product) for managing toil
+  * Develop relationship with the upstream (eng and sre, or sre & upstream product) for managing toil
 * Improving the architecture for lower cost to serve (Is there a prereq here - calculating & knowing the cost to serve)
 * DR & Incident Rehearsals (Identifying failure modes could be a prerequisite in phase 1)
 
 ## Phase 3: The 'Run' Phase (WIP)
 
-### Overview
+### Run Phase Overview
 
 Your team has found a balance between keeping things running and building reliability into the service.
 They have the ability to scale the service without having to increase team size.
 There is sufficient confidence in the service that your team looks at 'shifting right' with things like canary releases and production testing.
 Automation and observability are mature enough to start looking at concepts like AI Ops.
 
-### Characteristics
+### Run Phase Characteristics
 
 * Observability correlation beteween logs, metrics, alerts, events etc..
 * AI Ops
-    * Needs everything underneath it first (all the signals)
+  * Needs everything underneath it first (all the signals)
 * Chaos Engineering
 * SLOs - Well established SLO Review process
 * Exec engagement

@@ -31,7 +31,7 @@ Authors:
 
 ## Proposed Architecture
 
-* &lt;_Present a high level overview of the proposed solution.>
+* &lt;_Present a high level overview of the proposed solution._>
 * &lt;_Make it concise and simple; put diagrams; be concrete, avoid using vague generalizations._>
 
 
@@ -54,7 +54,7 @@ Authors:
 ## Stakeholders
 
 * &lt;_Who needs to sign off on this proposal for it to be implementable?_>
-  * &lt;_Since SIG-SRE ADRs impact how the SIG operates, the default set of stakeholders would consist of relevant SIG-SRE members (plus external stakeholders, if any).>
+  * &lt;_Since SIG-SRE ADRs impact how the SIG operates, the default set of stakeholders would consist of relevant SIG-SRE members (plus external stakeholders, if any)._>
 
 
 ## Consequences if Not Completed

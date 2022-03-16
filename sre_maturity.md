@@ -100,6 +100,7 @@ Your team is capable of scaling the service.
 ### Run Phase Overview
 
 Your team has found a balance between keeping things running and building reliability into the service.
+This is evident by having a roadmap and a planning process for reliability features.
 They have the ability to scale the service without having to increase team size.
 There is sufficient confidence in the service that your team looks at 'shifting right' with things like canary releases and production testing.
 Automation and observability are mature enough to start looking at concepts like AI Ops.

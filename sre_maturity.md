@@ -57,7 +57,8 @@ Formalise it and share it.
 If things go really bad, you have an Incident Management Process and do a Root Cause Analysis (RCA) (sometimes called a Post Mortem or Post Incident Review).
 You should be starting to build up a library of RCAs that can feed into doing more proactive things as you mature e.g. Incident rehearsals.
 Each RCA includes a 'blameless' post mortem session with the people involved while the incident is still fresh in their head.
-This post mortem feeds important reliability improvements back to the team.
+Each post mortem feeds *extremely valuable* reliability improvements back to the team.
+Your management team should ensure high priority of these actions & follow through on them.
 
 #### Room to improve
 

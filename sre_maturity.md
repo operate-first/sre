@@ -16,7 +16,8 @@ You are probably providing a ‘white glove’ experience to your users at this 
 You have a strong SRE voice in your team, someone who advocates for reliability features.
 They establish people focused mantras like "It's OK to fail", "Hope is not a strategy" and "Trust by default & extend on it".
 Communication is important in your team and you hire diverse people based on soft skills & leadership rather than specific technologies.
-
+You may also have folks from previous "disciplines". For example, sys admins, or experienced developers. Or, even some folks who have experience in "devops". They can bring great skills, experience and value.
+You are likely to see resistance to change when making this transition with existing team members, so retraining (or even unlearning) can help. However, there may be inevitable difficult personnel decisions to be made.
 At this phase, having buy-in from executive level leadership is essential.
 Without this it will be very difficult to get their support later, and eventually their engagement.
 

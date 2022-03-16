@@ -77,7 +77,7 @@ Your team is well established, has working processes and is familiar with SRE pr
 A lot of those principles are baked into their processes & daily work.
 In this phase your team is building on the foundations of observability and starting to reflect on their learnings about the service.
 Feedback loops, automation and 'shifting left' with different types of testing are the main theme of this phase.
-Your team is capable of scaling the service and number of users in a profitable way.
+Your team is capable of scaling the service.
 
 ### Walk Phase Characteristics
 

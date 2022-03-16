@@ -32,7 +32,7 @@ A common way to do this is via metrics exposed by your service.
 
 You have a simple Service Level Objective (SLO) for you service to start out with.
 It doesn't have to be completely representative of what users expect from your service, but it forms the building blocks of an SLO review process and improving on them in time.
-Starting with a lower SLO than where you want to get to sets expectations early.
+Starting with a lower SLO than where you want to get to sets expectations early. There's a graduation process with SLOs from "informing" to "enforcing". You can use SLOs to inform decisions in this early stage. As they get refined and wider awareness & support, you can think about enforcement of an error budget policy.
 
 #### “Admin” access to the service
 

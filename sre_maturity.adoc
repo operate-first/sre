@@ -119,7 +119,7 @@ In this phase you do ad-hoc security assessments, scans and pentesting.
 === Phase 2: The 'Walk' Phase
 
 * Adopting compliance frameworks (SOC-2, ISO 27001, PCI-DSS, HIPAA / HITRUST, FedRAMP / NIST 800-53) requires access policies that are defined by management and enforced technically
-* personnel background checks for individuals with privileged access to the environment. The more individuals with privileged access, the more background checks you have to run, which Red Hat does not do enterprise-wide today.
+* personnel background checks for individuals with privileged access to the environment. The more individuals with privileged access, the more background checks you have to run.
 * Scanning of source in CI systems (shift left)
 * Regular production scanning (shift right)
 * Doing 'security impact assessments' at the design phase of features and architecture decisions.

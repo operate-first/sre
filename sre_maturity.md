@@ -121,21 +121,31 @@ Chaos testing in production during the available time window while still meeting
 
 ### Security - Phase 1: The ‘Crawl’ Phase
 
-There is no need to get granular with authz policies to start with, but do start with production access restricted to a tightly scoped set of individuals.
+Security are the controls (administrative, technical, physical) that are put in place to manage risk of a company to an acceptable level.
+At this phase you are not granular with authz policies to start with, but do have production access restricted to a tightly scoped set of individuals.
 Granularity can come later with things like audited access, permissions escalation & tiered access as you mature the debugging experience of your service.
 You should trust your team and assume positive intent.
 
-In this phase you do ad-hoc security assessments, scans and pentesting.
+You have a mecahnismm for managing credentials & secrets, and deliverying them as configuration into your services.
+Additionally, you have a credential rotation policy that's based on time and individuals leaving your team.
+
+You are likely doing ad-hoc security activities such as assessments, vulnerability scans and pentesting.
+These ad-hoc tests inform larger release milestones rather than continious releasing.
 
 ### Security - Phase 2: The 'Walk' Phase
 
-*This section needs elaboration. Please help by adding content. Ref:[SIGSRE-84](https://issues.redhat.com/browse/SIGSRE-84)*
+In this phase you start to look at compliance.
+Compliance relates to all the activities implemented to make sure that security controls meet requirements from compliance certifications/attestations (i.e. ISO 27001:2013, HIPAA, SOC 2 Type 2, PCI DSS, etc.)
+Those compliance certifications/attestations are the tangible items you can give to your customers to provide assurances of your security posture.
 
-* Adopting compliance frameworks (SOC-2, ISO 27001, PCI-DSS, HIPAA / HITRUST, FedRAMP / NIST 800-53) requires access policies that are defined by management and enforced technically
-* personnel background checks for individuals with privileged access to the environment. The more individuals with privileged access, the more background checks you have to run.
-* Scanning of source in CI systems (shift left)
-* Regular production scanning (shift right)
-* Doing 'security impact assessments' at the design phase of features and architecture decisions.
+Regarding people, you implement background checks for individuals with privileged access to the environment.
+The more individuals with privileged access, the more background checks you have to run.
+Auditing access is a key feature in this phase.
+
+Security activities that were previously ad-hoc are now running regularly for each release, scanning your source & your production environment.
+Doing 'security impact assessments' at the design phase of service features and architecture decisions pushes you security awareness earlier in the process.
+This goes hand in hand with having a Common Vulnerabilities and Exposures (CVE) response process.
+All you dependecies are being scanned for vulneraiblities and you are responsive to vulnerability reports, able to push out fixes to production quickly in accordance with CVE severity.
 
 ### Security - Phase 3: The 'Run' Phase
 

@@ -55,7 +55,7 @@ Example critical alert:
     severity: critical
   annotations:
     summary: 'The backend service is stuck in a non-ready state'
-    description: 'The backend service {{ $labels.name }} in the {{ $labels.resource_namespace }} namespace, managed by operator {{ $labels.pod }} has been in a non-ready state for 10 minutes'
+    description: 'The backend service {{ $labels.name }} in the {{ $labels.namespace }} namespace, managed by operator {{ $labels.pod }} has been in a non-ready state for 10 minutes'
     sop_url: 'https://example.com/backend_service_stuck.asciidoc'
 ```
 

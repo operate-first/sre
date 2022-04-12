@@ -35,40 +35,6 @@ The content of the SOPs will be mirrored/synced between both repositories apart 
 
 SOPs from a private downstream repository that contain sensitive information, will have to be cleaned of all sensitive information before being pushed to the upstream public repository. Such information might be links to vault secrets or information about the managed service infrastructure etc. The pre-existing Structure of  the SOPs should also be looked at, to see if any information can be removed that is no longer necessary or can be moved to a different internal location, this will help reduce overhead when syncing.
 
-### Example implementation
-
-An example implementation has been prototyped below. It implemented an internal downstream version of a SOPs repo in Gitlab, as it comes with asciidoc functionality that github does not provide. Such functionality is asciidoc `includes`, RHOSAK are using the includes functionality to extrapolate sensitive or repetitive information from the SOPs themselves and have the information in a separate config file that can be used across the SOPs. They will then be able to make the actual SOP asciidoc file available upstream but the sensitive information will not be included as the include config file will not be available upstream. Please see below for example code. The upstream SOPs repo will be located in Github and be public to external users. It will not contain any include config file so no sensitive information will be rendered. The include path will be present so external users can add their own include config file with their own information if they choose to do so.
-
-#### Example asciidoc from a private sop that is using the includes functionality
-
-````asciidoc
-= What to do if the 'PodCrashingAlert' is firing
-
-. Step 1: Check for events and logs
-. Step 2: Delete the pod
-. Step 3: Reset the configuration
-
-If you're still having trouble, check out the generic link:troubleshooting.html[Troubleshooting] doc
-
-include::config.adoc[tag=contact-eng]
-````
-
-#### Example asciidoc includes config file
-
-````asciidoc
-//tag::contact-eng[]
-If all documented procedures have been followed and all avenues of troubleshooting have been exhausteed, contact engineering as per the https://docs.example.com/internal_contant_info[Internal Contact Info Document].
-//end::contact-eng[]
-````
-
-#### Example of the rendered private SOP
-
-TODO
-
-#### Example of rendered public SOP
-
-TODO
-
 ## Challenges
 
 * Existing managed services may have pre existing documentation in a private repo that want to adopt this model. They will have to migrate their current docs to the upstream public repository. These docs may have content already that would need to be stripped back or cleaned for the upstream repo.

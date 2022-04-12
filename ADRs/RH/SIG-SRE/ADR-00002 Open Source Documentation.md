@@ -20,7 +20,7 @@ This document proposes a solution for maintaining an upstream version of the SOP
 
 * Implement a complete solution for a product or service
 
-## Current Architecture
+## Current Architectures
 
 A Standard Operating Procedure (SOP) is a document used by SREs in response to alerts and other events.
 An example of what a current SOP architecture looks like is the Red Hat OpenShift Streams for Apache Kafka (RHOSAK) managed service. The RHOSAK SOPs are located in a private repository, as the SOPs contain references to Red Hat specific internal information that is not suitable for consumption by external users. Such information includes links to Vault secrets, information about how RHOSAK specifically set up their stage and production environments and information on the infrastructure itself, for example what certain custom resources should look like. The flow of how information is contributed to the RHOSAK SOPs is for an engineer or SRE to submit PRs to the repo.

@@ -9,7 +9,7 @@ Draft.
 ## Problem Statement
 
 We want to build an upstream community around managed services. This means all aspects of the managed service including the ability to run and manage the service, which extends to operational knowledge & procedures. One such element is Standard Operating Procedures (SOPs). These SOPs include information like how to scale up the service as load increases as well as how to diagnose and fix specific issues based on alerting. However, currently these SOPs have been written from an internal perspective and are not immediately usable or consumable upstream.
-This document proposes a solution for maintaining an upstream version of the SOPs and having  a mechanism for consuming them downstream, as well as vice versa.
+This document proposes a solution for maintaining an upstream version of the SOPs and having a mechanism for consuming them downstream, as well as vice versa.
 
 ## Goals
 

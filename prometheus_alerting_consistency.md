@@ -31,6 +31,8 @@ A list of references on good alerting practices:
   * Many alerts will include this by virtue of the fact that their PromQL
     expressions result in a namespace label.  Others may require a static
     namespace label.
+* Alerts SHOULD include a cluster identifier label, especially in cases where alerts are defined or routed centrally for multiple services & clusters.
+  * This can hint to an SRE where the affected service is located. It can also be useful for aggregation & filtering when analysing groups of firing alerts.
 * All alerts MUST include a `sop_url` annotation.
   * Standard Operating Procedure (SOP) style documentation for resolving alerts is required. (SOP Template Placeholder - https://issues.redhat.com/browse/SIGSRE-55)
 

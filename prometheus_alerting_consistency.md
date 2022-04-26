@@ -27,7 +27,7 @@ A list of references on good alerting practices:
   * Think of `summary` as the first line of a commit message, or an email
     subject line.  It should be brief but informative.  The `description` is the
     longer, more detailed explanation of the alert.
-* Alerts SHOULD include a `namespace` label indicating the source of the alert.
+* Where applicable, alerts SHOULD include a `namespace` label indicating the source of the alert.
   * Many alerts will include this by virtue of the fact that their PromQL
     expressions result in a namespace label.  Others may require a static
     namespace label.

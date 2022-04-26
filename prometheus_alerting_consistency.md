@@ -4,7 +4,7 @@
 
 This guide is originally based on the [Alerting Consistency][1] proposal for OpenShift alerts.
 
-Clear and actionable alerts are a key component of a smooth operational experience.
+Clear and actionable alerts are a key component of a smooth operational experience. If an alert doesn't have a proven documented procedure to follow when it fires, it can lead to an increase in mean time to repair (MTTR). 
 Ensuring you have clear and concise guidelines for engineers and SRE creating new alerts will result in a better experience for end users.
 
 ## Recommended Reading

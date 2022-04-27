@@ -18,7 +18,7 @@ A list of references on good alerting practices:
 ## Style Guide
 
 * Alert names MUST be CamelCase, e.g.: `BackendServiceStuck`
-* Alert names SHOULD be prefixed with a component, e.g.: `ZookeeperPersistentVolumeFillingUp`
+* Alert names SHOULD be prefixed with a component, e.g.: `ZookeeperPersistentVolumeFillingUp`, or an SLO name if the alert is a [Multi-Window, Multi-Burn Rate alert](https://sre.google/workbook/alerting-on-slos/#6-multiwindow-multi-burn-rate-alerts)
   * There may be exceptions for some broadly scoped alerts, e.g.: `TargetDown`
 * Alerts MUST include a `severity` label indicating the alert's urgency.
   * Valid severities are: `critical` or `warning` — see below for

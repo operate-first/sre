@@ -4,7 +4,7 @@
 
 This guide is originally based on the [Alerting Consistency][1] proposal for OpenShift alerts.
 
-Clear and actionable alerts are a key component of a smooth operational experience. If an alert doesn't have a proven documented procedure to follow when it fires, it can lead to an increase in mean time to repair (MTTR). 
+Clear and actionable alerts are a key component of a smooth operational experience. If an alert doesn't have a proven documented procedure to follow when it fires, it can lead to an increase in mean time to repair (MTTR).
 Ensuring you have clear and concise guidelines for engineers and SRE creating new alerts will result in a better experience for end users.
 
 ## Recommended Reading
@@ -16,6 +16,8 @@ A list of references on good alerting practices:
 * [Alerting for Distributed Systems][4]
 
 ## Style Guide
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
 * Alert names MUST be CamelCase, e.g.: `BackendServiceStuck`
 * Alert names SHOULD be prefixed with a component, e.g.: `ZookeeperPersistentVolumeFillingUp`, or an SLO name if the alert is a [Multi-Window, Multi-Burn Rate alert](https://sre.google/workbook/alerting-on-slos/#6-multiwindow-multi-burn-rate-alerts)
@@ -33,8 +35,7 @@ A list of references on good alerting practices:
     namespace label.
 * Alerts SHOULD include a cluster identifier label, especially in cases where alerts are defined or routed centrally for multiple services & clusters.
   * This can hint to an SRE where the affected service is located. It can also be useful for aggregation & filtering when analysing groups of firing alerts.
-* All alerts MUST include an annotation (e.g. `runbook_url`) which directs the responder(s) to the location of the runbook (or SOP) that is specific to fixing that problem.
-  * Standard Operating Procedure (SOP) style documentation for resolving alerts is required. (SOP Template Placeholder - https://issues.redhat.com/browse/SIGSRE-55)
+* All alerts SHOULD include an annotation (e.g. `runbook_url`) which directs the responder(s) to the location of the runbook (sometimes called a Standard Operating Procedure or SOP) that is specific to fixing that problem.
 
 ## Critical Alerts
 
@@ -58,12 +59,12 @@ Example critical alert:
   annotations:
     summary: 'The backend service is stuck in a non-ready state'
     description: 'The backend service {{ $labels.name }} in the {{ $labels.namespace }} namespace, managed by operator {{ $labels.pod }} has been in a non-ready state for 10 minutes'
-    sop_url: 'https://example.com/backend_service_stuck.asciidoc'
+    runbook_url: 'https://example.com/backend_service_stuck.asciidoc'
 ```
 
 This alert fires if a backend service has *not* been ready for the last 10 minutes.
 This is a clear example of a critical issue that represents a threat to the operability of the service, and likely warrants paging someone.
-The alert has a clear summary and description annotations, and it links to a SOP with information on investigating and resolving the issue.
+The alert has a clear summary and description annotations, and it links to a runbook with information on investigating and resolving the issue.
 
 The group of critical alerts should be small, very well-defined, highly documented, polished and with a high bar set for entry.
 
@@ -84,19 +85,20 @@ You should have a policy for triaging warning alerts and responding in a timely 
 Example warning alert:
 
 ```yaml
-- alert: ZookeeperPersistentVolumeFillingUp
-  expr: (kubelet_volume_stats_available_bytes{persistentvolumeclaim=~"data-(.+)-zookeeper-[0-9]+"} / kubelet_volume_stats_capacity_bytes{persistentvolumeclaim=~"data-(.+)-zookeeper-[0-9]+"} < 0.15) and predict_linear(kubelet_volume_stats_available_bytes{persistentvolumeclaim=~"data-(.+)-zookeeper-[0-9]+"}[6h], 4 * 24 * 3600) < 0
+- alert: PersistentVolumeFillingUp
+  expr: kubelet_volume_stats_available_bytes / kubelet_volume_stats_capacity_bytes < 0.15
   for: 1h
   labels:
     severity: warning
   annotations:
-    summary: 'Zookeeper PersistentVolume is filling up.'
-    description: 'Based on recent sampling, the Zookeeper PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} is expected to fill up within four days. Currently {{ $value | humanizePercentage }} is available.'
-    sop_url: 'https://example.com/persistent_volume_filling.asciidoc'
+    summary: 'A PersistentVolume is filling up.'
+    description: 'Based on recent sampling, the PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} is at 85% capacity and may fill up soon. If it reaches 100% the service will no longer process some API calls that are important to users.'
+    runbook_url: 'https://example.com/persistent_volume_filling.asciidoc'
 ```
 
-This alert fires if one or more Zookeeper volumes are getting close to filling up.
-The alert has a clear name and informative summary and description annotations, and it links to a SOP with information on investigating and resolving the issue.
+For the sake of simplicity and example, this alert fires if one or more volumes reach 85% full.
+In practice you may prefer a more complex query that predicts when a volume will fill based on the rate of filling (e.g. using predict_linear).
+The important thing is that the alert has a clear name and informative summary and description annotations, and it links to a runbook with information on investigating and resolving the issue.
 The timeline is appropriate for allowing the service to resolve the issue itself, avoiding the need to alert SRE.
 
 [1]: https://github.com/openshift/enhancements/blob/master/enhancements/monitoring/alerting-consistency.md

@@ -74,7 +74,7 @@ Issues at the warning level should be addressed in a timely manner, but don't po
 
 Timeline: ~60 minutes
 
-If your alert does not meet the criteria in "Critical Alerts" above, it belongs to the warning level or lower.
+If your alert does not meet the criteria in "Critical Alerts" above, it belongs to the warning level.
 
 Use warning level alerts for reporting conditions that may lead to inability to deliver individual features of the service, but not the service as a whole.
 Most alerts are likely to be warnings.

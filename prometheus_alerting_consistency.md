@@ -33,7 +33,7 @@ A list of references on good alerting practices:
     namespace label.
 * Alerts SHOULD include a cluster identifier label, especially in cases where alerts are defined or routed centrally for multiple services & clusters.
   * This can hint to an SRE where the affected service is located. It can also be useful for aggregation & filtering when analysing groups of firing alerts.
-* All alerts MUST include a `sop_url` annotation.
+* All alerts MUST include an annotation (e.g. `runbook_url`) which directs the responder(s) to the location of the runbook (or SOP) that is specific to fixing that problem.
   * Standard Operating Procedure (SOP) style documentation for resolving alerts is required. (SOP Template Placeholder - https://issues.redhat.com/browse/SIGSRE-55)
 
 ## Critical Alerts

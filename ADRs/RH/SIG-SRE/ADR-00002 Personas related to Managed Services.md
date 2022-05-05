@@ -80,7 +80,7 @@ This persona provides assistance to Service Consumers, usually in the form of su
 
 **Exec (VP+)**
 
-While the Service Owner has a direct interest in the commercial success of the service, they are empowered and enabled by the Executive arm of the organization. The Service Owner has an interest in the success of the service. The executive leadership has an interest in the success of the company as a whole, of which that service is part of. Ultimately reporting to the board, the executive implements the  strategies that are designed to meet the goals of the company.
+Ultimately reporting to the board, the executive is responsible for implementing the strategies that are designed to meet the goals of the company. Therefore, the executive leadership has an indirect interest in the success of the service, insofar as it is reinforces the company goals. While the Service Owner has a direct interest in the commercial success of the service, they are empowered and enabled by the Executive arm of the organization.
 
 **Service Consumer (End Users)**
 

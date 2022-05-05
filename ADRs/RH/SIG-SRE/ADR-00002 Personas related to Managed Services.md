@@ -10,14 +10,11 @@ Draft
 
 ## Problem Statement
 
-There is content within SIG-SRE that is being produced that depends upon the defintion of a "persona" as it is related to Managed Services. For example, as a consumer of SLO's, I want to be able to consume the data in a relevant and consistent way in accordance with my "persona". Similarly, there is a RACI chart which has persona as a key datapoint.
-
-Therefore, to assist in the production of this other content, it is necessary to first define the persona. Some examples are (but not limited to): SRE, Engineer, Product Owner, Business, Executive.
-
+A successful SRE practice requires a cross-functional group of stakeholders to engage and work across teams to focus on reliability. This document lists the Personas involved in supporting a cloud service. For example, as a stakeholder of SLOs, I want to be able to consume the data in a relevant and consistent way in accordance with my "persona". The roles and responsibilities of each Persona will be documented in RACI format in a future PR.
 
 ## Goals
 
-This ADR hopes to resolve the problem statement by identifying and documenting the key personas in a summary format. The output will be a document which will be accessible by other assets.
+This ADR hopes to resolve the problem statement by identifying and documenting the key personas in a summary format. The output will be a document which will be referenced from other assets.
 
 
 ## Non-goals
@@ -36,7 +33,7 @@ The proposed content is as follows:
 
 ***
 
-**Personas related to "Managed Services" (WIP)**
+**Personas related to "Managed Services"**
 
 **Purpose**
 To underpin many other Site Reliability Engineering-related topics, we must define the group of "personas" describing  the interaction of that person (or group of people) with an environment supported by SREs.
@@ -51,13 +48,13 @@ With the strategic guidance of the Service Owner, this persona (also sometimes r
 
 Additionally, many services are dependent on other services, which have their own Product Owners. Therefore, this persona also plays a critical role in managing those dependencies, liaising with other Product Owners and Engineering resources to effectively prioritize work. Using agile concepts, this role is analogous to a 'Product Owner'.
 
-**Engineering Manager**
+**Engineering Managers**
 
 Work needs to be done. The majority of this work is undertaken by Developers, who comprise teams led by an Engineering Manager. The primary role of this persona is to enable those teams to do the (best) work they need to do, as it is prioritized by the Product Owner. This role must also maintain working relationships with peer Engineering managers, especially where co-dependencies, shared goals and natural affinities exist.
 
-**Developers**
+**Developers/Software Engineers**
 
-These folks are the 'do-ers' . This persona implements the service in accordance with the 'plan' (as mostly determined by the Product Owner). They turn this plan into reality, creating and maintaining the code which underpins the service. Not only are they responsible for implementing the functionality of the service (in this context "feature work"), but they[^1] are also responsible for how the service 'operates'. Therefore, if reliability is an issue (often identified by the SREs) then they are also responsible for fixing those problems also (called "reliability work").
+This persona implements the service in accordance with the 'plan' (as mostly determined by the Product Owner). They turn this plan into reality, creating and maintaining the code which underpins the service. Not only are they most often responsible for implementing the functionality of the service (in this context "feature work"), but they are also key contributors to helping the software operate reliably ("reliability work"). However, it is also important to acknowledge that it is not only Developers who are concerned with how the service 'operates'. Everyone has a significant part to play. However, in this context, Developers were highlighted to emphasize the concept of identifying operational concerns right up-front at the beginning of any project, and the developers, themselves, taking a special care for how it runs.
 
 Also, it is important to acknowledge that there are developers who are also functioning as SREs, and in fact this is definitely in the spirit of Site Reliability Engineering in general. An example may be a smaller Engineering team who fill many roles, or maybe a newer service that is early in its stages of maturity. However, for the purpose of these personas, consider the person acting in the role of a "Developer" when performing that function, and similarly acting in the role of an SRE when performing that function.
 
@@ -67,17 +64,17 @@ The Developers and SREs do not work in isolation. To obtain the economies of sca
 
 **Quality Engineer**
 
-Service development has a life-cycle that ultimately results in a service which is deployed and used by customers. The quality phase of that life-cycle is absolutely critical in the reliability of that service, as SREs need to be able to trust what is being deployed. That is the role for this persona. It is important to note, that this is not the role of the SRE, especially testing in Production environments.
+Quality Engineering (QE) installs and manages instances of the product primarily for the purpose of bug and regression testing, informing Developers of reliability issues and grounding confidence for the other personas that the product functions as intended in the subset of situations covered by QE. SREs need to be able to trust what is being deployed to Production.
 
 **Site Reliability Engineer (SRE)**
 
-The Site or Service Reliability Engineer is an essential part of the service. Without the SRE, the service is incomplete. Their primary focus is ensuring that the services are "running". When there is a problem, it is up to them to resolve the issue as quickly as possible. However, this is only the end goal. The role of an SRE is to contribute to the reliability of the service so that the need to fix something is the exception rather than the rule. This is best epitomized in this quote by one of Red Hat's SRE Managers: "Do not accept repeated failure". That is, if something fails (e.g. SRE is alerted), then follow through with all "actions" so that the problem does not repeat. These actions can be things like: from identifying the issue with the responsible engineering team through to actually fixing the problem in code, personally. 
+The Site or Service Reliability Engineer is an essential part of the service. Their primary focus is ensuring that the services are "running". When there is a problem, it is up to them to resolve the issue as quickly as possible. However, this is only the end goal. The role of an SRE is to contribute to the reliability of the service so that the need to fix something is the exception rather than the rule. This is best epitomized in this quote by one of Red Hat's SRE Managers: "Do not accept repeated failure". That is, if something fails (e.g. SRE is alerted), then follow through with all "actions" so that the problem does not repeat. These actions can be things like: from identifying the issue with the responsible engineering team through to actually fixing the problem in code, personally. 
 
 In many organizations, SRE functions support more than one service. Many projects undertaken by SRE teams provide the tooling, workflows and platforms needed to operate at scale. A key metric is for the SRE team to grow sub-linearly with "hockey stick" customer growth while minimizing toil and technical debt.
 
-SREs are also valuable consultants, particularly in these key areas: observability; automation; resilience; toil prevention; capacity planning; and, operability. They are most familiar with their operational boundaries, and can best articulate the problems being encountered since they are hands-on.
+SREs are also valuable consultants, particularly in these key areas: observability; automation; resilience; toil prevention; capacity planning; and, operability. They are most familiar with their operational boundaries, they own the core of the incident and problem management processes and are accountable for it and their continuous improvement, and can best articulate the problems being encountered since they are hands-on.
 
-**Support Agent**
+**Support Engineer**
 
 This persona provides assistance to Service Consumers, usually in the form of support cases raised by customers. They may require elevated levels of access to the service internals in order to help consumers, but in a way that ensures they cannot degrade the service itself. 
 
@@ -87,16 +84,14 @@ While the Service Owner has a direct interest in the commercial success of the s
 
 **Service Consumer (End Users)**
 
-These are consumers of the services. While this persona often does not know or care what or where the underlying technology is, there are also cases where they do (e.g. regulatory, privacy or internal deployment policies). It is important to note that services can be consumers of other services.
-
-[^1]: It is not only Developers who are concerned with how the service 'operates'. Everyone has a significant part to play. However, in this context, Developers were highlighted to emphasize the concept of “shifting-left”, which is the concept of identifying operational concerns right up-front at the beginning of any project, and the developers, themselves, taking a special care for how it runs.
+These are consumers of the services (and, often, the source of revenue). While this persona often does not know or care what or where the underlying technology is, there are also cases where they do (e.g. regulatory, privacy or internal deployment policies). It is important to note that services can be consumers of other services.
 
 ***
 
 
 ## Challenges
 
-* The are an almost infinite number of permutations with respect to these personas, depending upon the circumstances and structure of the organisation. For example, small teams may have developers and SREs doing the same role. However, the purpose of this document is not to cover every nuance or situation otherwise this document would never have an endpoint.
+* There are an almost infinite number of permutations with respect to these personas, depending upon the circumstances and structure of the organisation. For example, small teams may have developers and SREs doing the same role. However, the purpose of this document is not to cover every nuance or situation otherwise this document would never have an endpoint.
 
 
 ## Alternatives Considered

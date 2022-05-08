@@ -10,7 +10,7 @@ Draft
 
 ## Problem Statement
 
-A successful SRE practice requires a cross-functional group of stakeholders to engage and work across teams to focus on reliability. This document lists the Personas involved in supporting a cloud service. For example, as a stakeholder of SLOs, I want to be able to consume the data in a relevant and consistent way in accordance with my "persona". The roles and responsibilities of each Persona will be documented in RACI format in a future PR.
+A successful SRE practice requires a cross-functional group of stakeholders to engage and work across teams to focus on reliability. This document lists the Personas involved in supporting a cloud service. For example, as a stakeholder of SLOs, I want to be able to consume the data in a relevant and consistent way in accordance with my "persona". The roles and responsibilities of each Persona will be documented in [RACI](https://en.wikipedia.org/wiki/Responsibility_assignment_matrix) format in a future PR.
 
 ## Goals
 

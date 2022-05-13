@@ -39,10 +39,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Critical Alerts
 
-Critical alerts are for alerting current and impending disaster situations.  These alerts page an SRE.  The situation should warrant waking someone in the middle of the
-night.
-
-Timeline: ~5 minutes.
+Critical alerts are for alerting current and impending disaster situations.  These alerts page an SRE.  The situation should warrant waking someone in the middle of the night.
 
 Reserve critical level alerts only for reporting conditions that may lead to service unavailability.
 Failures of individual components should not trigger critical level alerts in general, unless they would result in that condition.
@@ -72,9 +69,6 @@ The group of critical alerts should be small, very well-defined, highly document
 
 The vast majority of alerts should use this severity.
 Issues at the warning level should be addressed in a timely manner, but don't pose an immediate threat to the operation of the service as a whole.
-
-Timeline: ~60 minutes
-
 If your alert does not meet the criteria in "Critical Alerts" above, it belongs to the warning level.
 
 Use warning level alerts for reporting conditions that may lead to inability to deliver individual features of the service, but not the service as a whole.
@@ -85,21 +79,24 @@ You should have a policy for triaging warning alerts and responding in a timely 
 Example warning alert:
 
 ```yaml
-- alert: PersistentVolumeFillingUp
-  expr: kubelet_volume_stats_available_bytes / kubelet_volume_stats_capacity_bytes < 0.15
+- alert: PrometheusDuplicateTimestamps
+  annotations:
+    description: Prometheus {{$labels.namespace}}/{{$labels.pod}} is dropping
+      {{ printf "%.4g" $value  }} samples/s with different values but duplicated
+      timestamp.
+    summary: Prometheus is dropping samples with duplicate timestamps.
+    runbook_url: 'https://example.com/prometheus_duplication_timestamps.asciidoc'
+  expr: |
+    rate(prometheus_target_scrapes_sample_duplicate_timestamp_total{job=~"prometheus-k8s|prometheus-user-workload"}[5m]) > 0
   for: 1h
   labels:
     severity: warning
-  annotations:
-    summary: 'A PersistentVolume is filling up.'
-    description: 'Based on recent sampling, the PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} is at 85% capacity and may fill up soon. If it reaches 100% the service will no longer process some API calls that are important to users.'
-    runbook_url: 'https://example.com/persistent_volume_filling.asciidoc'
 ```
 
-For the sake of simplicity and example, this alert fires if one or more volumes reach 85% full.
-In practice you may prefer a more complex query that predicts when a volume will fill based on the rate of filling (e.g. using predict_linear).
-The important thing is that the alert has a clear name and informative summary and description annotations, and it links to a runbook with information on investigating and resolving the issue.
-The timeline is appropriate for allowing the service to resolve the issue itself, avoiding the need to alert SRE.
+This alert fires if prometheus is dropping samples that have different values but the same timestamp.
+Although not ideal, it's also not a current or impending disaster situation and hence shouldn't need to wake someone in the middle of the night.
+The 1h timeline allows sufficient time for the service to resolve the problem itself before firing.
+If the alert does fire, it can be triaged during normal working hours.
 
 [1]: https://github.com/openshift/enhancements/blob/master/enhancements/monitoring/alerting-consistency.md
 [2]: https://sre.google/sre-book/monitoring-distributed-systems/

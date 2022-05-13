@@ -52,7 +52,7 @@ Example critical alert:
 
 ```yaml
 - alert: BackendServiceStuck
-  expr: backend_state != 1
+  expr: max_over_time(backend_state[5m]) != 1
   for: 10m
   labels:
     severity: critical

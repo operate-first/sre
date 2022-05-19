@@ -69,7 +69,7 @@ Before doing any further troubleshooting, First Responder must, in order:
 Only now can you continue debugging while describing the problem to people joining the bridge.
 
 #### 10 Minutes Later
-**If** 10 minutes after your announcement to slack your **region lead or manager haven’t joined** the bridge and you haven't managed to recover the service:
+**If** 10 minutes after your announcement your **region lead or manager haven’t joined** the bridge and you haven't managed to recover the service:
 * halt any further technical work
 * **pick an Incident Commander** from among the SREs present.
 
@@ -121,10 +121,10 @@ Summary:
 
 ### Supporting SRE / Parallel Investigator
 A parallel investigator is someone who will be involved hands-on in investigating and helping the fast recovery of the incident.
-A parallel investigator will get involved either by the Incident Commander or by any other members of the slack channel.
+A parallel investigator will get involved either by the Incident Commander or by any other members of the IM channel.
 
 #### Responsibilities
-The investigators have the responsibility to describe the action they are taking in the dedicated slack channel to ensure that there is awareness on the steps being taken for the recovery of everyone involved in the process. This can also be done by someone else assisting in the investigation while the main investigator is busy with the recovery.
+The investigators have the responsibility to describe the action they are taking in the dedicated IM channel to ensure that there is awareness on the steps being taken for the recovery of everyone involved in the process. This can also be done by someone else assisting in the investigation while the main investigator is busy with the recovery.
 
 ### Incident Commander
 
@@ -134,8 +134,8 @@ The Incident Commander can elect someone to be the "scribe" during the incident.
 
 #### Responsibilities
 The coordination work under the responsibility of the Incident Commander is as follows:
-1. If the incident has been uncovered by SRE and doesn't have an existing "external" ticket (Jira or ICM for ARO) then the Incident Commander will create a Jira ticket to track the overall life of the incident.
-2. Right after the Incident Commander will create a dedicated Slack channel:
+1. If the incident has been uncovered by SRE and doesn't have an existing "external" ticket then the Incident Commander will create a ticket to track the overall life of the incident.
+2. Right after the Incident Commander will create a dedicated IM channel:
   * Making sure that we have a dedicated IM channel opened specifically for the ongoing incident
     1. Channel is public
     2. Naming convention for the IM channel should start with the ticket number and the clusterid if available.
@@ -147,18 +147,18 @@ The coordination work under the responsibility of the Incident Commander is as f
       * Incident Tech Lead
       * Bridge link
       * A small description of the issue
-    4. Making sure the right people are invited in the slack channel (including customer support if need be)
+    4. Making sure the right people are invited in the IM channel (including customer support if need be)
     5. Making sure that all communications and information flows are recorded in the IM channel (it will help with the Post Mortem Review process and making sure that we have the right timeline)
   3. Using IM, post a message to the relevant channel with:
     * **link to bridge**
-    * **link to the dedicated slack channel (see point 2.)**
+    * **link to the dedicated IM channel (see point 2.)**
     * **short description of issue (which cluster, what’s failing)**
   4. Post an incident notification to the customer(s)
     * NOTE: If the ServiceLog facility is unavailable, work with the CEE Lead to open a proactive Support Case. If the incident may affect a large number of clusters / customers, the CEE Lead should escalate through their management chain to post a Customer Portal banner announcement.
   5. Create right away the RCA document and ensure that it contains the relevant information which would record the high level timeline of events and help during handovers if the incident becomes a long running one.
-  6. Designate the Incident Owner / confirm the First Responder will be that, announce it officially in the different channels, document it in the RCA document and assign the Incident Jira ticket to the Incident Owner.
+  6. Designate the Incident Owner / confirm the First Responder will be that, announce it officially in the different channels, document it in the RCA document and assign the Incident ticket to the Incident Owner.
   7. Designate an Incident Technical Lead (on the first shift it will be the Incident Owner but then if the incident spans across multiple shifts this role will be handed over to the next)
-  8. Publicly announce who is Incident Commander (IC) in the dedicated slack channel.
+  8. Publicly announce who is Incident Commander (IC) in the dedicated IM channel.
   9. Trigger oncall for the right groups that are needed for helping out with the recovery
   10. Making sure that regular updates are being given in the IM channel in addition to curated information for the customer.
   11. Provide executive summary of the ongoing state of the incident
@@ -208,7 +208,7 @@ The post mortem meeting should involve all internal parties who were involved in
 * [mandatory] The incident technical lead
 * [optional] Every SRE team members involved (as much as possible given the timezone constraints)
   * The more brain power we have in the meeting the more likely we are to find the best countermeasures to avoid reoccurrence
-* [optional] The CEE lead
+* [optional] The Customer Support lead
 
 The incident technical lead is the owner of the post mortem review meeting and is making sure that it contains the following:
 * Executive summary with customer impact, severity, …
@@ -228,7 +228,7 @@ All action items and countermeasures should aim at (as much as possible):
 * Increase resiliency (being mindful of cost)
 * Increase automated recovery (if it makes sense)
 * Decrease MTTR in case of recurrence (documentation for instance, …)
-* **Each action item must be tracked by a corresponding Jira card in the SRE's backlog so that its implementation can be prioritized and tracked by the SRE leads**
+* **Each action item must be tracked by a corresponding ticket in the SRE's backlog so that its implementation can be prioritized and tracked by the SRE leads**
 
 
 Questionnaire to be answered during the PMR:
@@ -236,13 +236,6 @@ Questionnaire to be answered during the PMR:
 * How can we ensure that the issue does not reoccur?
 * How can we recover quicker from such an incident?
 * How can we identify the issue quicker?
-
-
-Useful resources:
-* A template to be used to document the PMR can be found here.
-* Guidelines on RCA writing can be found here.
-* How to run effective Post Mortem: recording, slides
-* Pager Duty PMR resources
 
 ## Detailed process steps
 This section aims at presenting the steps that need to be taken in case of a new incident.
@@ -258,8 +251,8 @@ Some major incidents will span shift handoff between regions. When this happens:
   1. Technical status of the issue
   2. List of open and eliminated hypothesis regarding root cause
   3. Time and content of the most recent customer update
-  4. Communication channels in play, including: slack channel, tracking doc, conference bridge, and email thread
-  5. Key support personnel / stakeholders outside SRE-P engaged in the incident, such as CEE TSE, TAM, Account Team, Red Hat executives, or other SRE teams (when troubleshooting hosted tenants or layered products)
+  4. Communication channels in play, including: IM channel, tracking doc, conference bridge, and email thread
+  5. Key support personnel / stakeholders outside SRE engaged in the incident
 
 Note: Outgoing team members should disengage no later than 30 minutes after their region handoff time (handoff+30).
 

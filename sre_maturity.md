@@ -122,25 +122,24 @@ Chaos testing in production during the available time window while still meeting
 ### Security - Phase 1: The ‘Crawl’ Phase
 
 Security are the controls (administrative, technical, physical) that are put in place to manage risk of a company to an acceptable level.
-At this phase you are not granular with authz policies to start with, but do have production access restricted to a tightly scoped set of individuals.
-Granularity can come later with things like audited access, permissions escalation & tiered access as you mature the debugging experience of your service.
-You should trust your team and assume positive intent.
+At this phase, access to the service is limited to those that strictly require it.
+Users that have access to the service have the minimum amount of permissions they need to operate the service.
+Additionally, access is revoked as soon as possible when a user no longer needs to, for example when the user leaves the group / company.
+All access to the system is logged.
 
 You have a mechanism for managing credentials & secrets, and delivering them as configuration into your services.
-Additionally, you have a credential rotation policy that's based on time and individuals leaving your team.
-
 You are likely doing ad-hoc security activities such as assessments, vulnerability scans and pentesting.
 These ad-hoc tests inform larger release milestones rather than continious releasing.
 
 ### Security - Phase 2: The 'Walk' Phase
 
 In this phase you start to look at compliance.
-Compliance relates to all the activities implemented to make sure that security controls meet requirements from compliance certifications/attestations (i.e. ISO 27001:2013, HIPAA, SOC 2 Type 2, PCI DSS, etc.)
+Compliance relates to all the activities implemented to make sure that security controls meet requirements from compliance certifications/attestations (i.e. ISO 27001:2013, HIPAA, SOC 2 Type 2, PCI DSS, etc.).
+You may also have your own internal compliance processes or security standards depending on your company.
 Those compliance certifications/attestations are the tangible items you can give to your customers to provide assurances of your security posture.
 
 Regarding people, you implement background checks for individuals with privileged access to the environment.
 The more individuals with privileged access, the more background checks you have to run.
-Auditing access is a key feature in this phase.
 
 Security activities that were previously ad-hoc are now running regularly for each release, scanning your source & your production environment.
 Doing 'security impact assessments' at the design phase of service features and architecture decisions pushes you security awareness earlier in the process.

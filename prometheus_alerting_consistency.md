@@ -20,7 +20,7 @@ A list of references on good alerting practices:
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
 * Alert names MUST be CamelCase, e.g.: `BackendServiceStuck`
-* Alert names SHOULD be prefixed with a component, e.g.: `ZookeeperPersistentVolumeFillingUp`, or an SLO name if the alert is a [Multi-Window, Multi-Burn Rate alert](https://sre.google/workbook/alerting-on-slos/#6-multiwindow-multi-burn-rate-alerts)
+* Alert names SHOULD be prefixed with a component, e.g.: `ZookeeperPersistentVolumeFillingUp`, or a Service Level Objective (SLO) name if the alert is a [Multi-Window, Multi-Burn Rate alert](https://sre.google/workbook/alerting-on-slos/#6-multiwindow-multi-burn-rate-alerts)
   * There may be exceptions for some broadly scoped alerts, e.g.: `TargetDown`
 * Alerts MUST include a `severity` label indicating the alert's urgency.
   * Valid severities are: `critical` or `warning` — see below for
@@ -62,6 +62,7 @@ Example critical alert:
 This alert fires if a backend service has *not* been ready for the last 10 minutes.
 This is a clear example of a critical issue that represents a threat to the operability of the service, and likely warrants paging someone.
 The alert has a clear summary and description annotations, and it links to a runbook with information on investigating and resolving the issue.
+If there is an SLO related to the alert, mention it in the description so the responder knows why the alert is important.
 
 The group of critical alerts should be small, very well-defined, highly documented, polished and with a high bar set for entry.
 
@@ -97,6 +98,7 @@ This alert fires if prometheus is dropping samples that have different values bu
 Although not ideal, it's also not a current or impending disaster situation and hence shouldn't need to wake someone in the middle of the night.
 The 1h timeline allows sufficient time for the service to resolve the problem itself before firing.
 If the alert does fire, it can be triaged during normal working hours.
+Like with critical alerts, if there is an SLO related to the warning alert, mention it in the description so the responder knows why the alert is important.
 
 [1]: https://github.com/openshift/enhancements/blob/master/enhancements/monitoring/alerting-consistency.md
 [2]: https://sre.google/sre-book/monitoring-distributed-systems/

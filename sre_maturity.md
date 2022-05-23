@@ -126,7 +126,7 @@ At this phase you are not granular with authz policies to start with, but do hav
 Granularity can come later with things like audited access, permissions escalation & tiered access as you mature the debugging experience of your service.
 You should trust your team and assume positive intent.
 
-You have a mecahnismm for managing credentials & secrets, and deliverying them as configuration into your services.
+You have a mechanism for managing credentials & secrets, and delivering them as configuration into your services.
 Additionally, you have a credential rotation policy that's based on time and individuals leaving your team.
 
 You are likely doing ad-hoc security activities such as assessments, vulnerability scans and pentesting.

@@ -62,9 +62,15 @@ Also, it is important to acknowledge that there are developers who are also func
 
 The Developers and SREs do not work in isolation. To obtain the economies of scale that are necessary, and to make sure that work is not duplicated, they need to conform to the 'systems (including processes)' and 'architecture' that best suits the business goal. This is the primary role of this persona. They provide the "guard-rails" for the developers, and help keep the services aligned with accepted strategic technical direction. They also have a key role in developing best practices, and coaching teams to avoid anti-patterns.
 
+#### QE Manager
+
+Much like the engineering manager, QE managers need to help cross-functional team relationships as well as drive the work related to creating transparency around functional quality and that higher-level business requirements continue to perform as needed.  This persona should also help the engineering teams to drive conversations around defects management in general, customer tickets, usability concerns, along with metrics around the testing effort related to the various environments in play.
+
+#### Product Security
+
 #### Quality Engineer
 
-Quality Engineering (QE) installs and manages instances of the product primarily for the purpose of bug and regression testing, informing Developers of reliability issues and grounding confidence for the other personas that the product functions as intended in the subset of situations covered by QE. SREs need to be able to trust what is being deployed to Production.
+QE is responsible for developing, maintaining and delivering various kinds of tests needed for ensuring service quality. QE is also responsible for providing reports and metrics so that any other personas can check them and react to them. QE covers the service quality through the whole service life-cycle such as during development, during release process and testing in production
 
 #### Site Reliability Engineer (SRE)
 

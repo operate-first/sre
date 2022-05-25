@@ -23,10 +23,10 @@ In case of a customer–impacting incident (persisting or intermittent degradati
 2. After initial investigation the First Responder involves the Incident Commander (by default a Region Lead but could be Team Lead or Manager) to help with the coordination of the recovery efforts
     1. First Responder opens the bridge call for that
 3. The Incident Commander manages the communication and coordination around the recovery
-  1. By creating a dedicated IM channel to record the audit trail of the incident resolution.
-  2. Post a notification in the relevant channels for external awareness.
-  3. By involving the right people to help and speed up the recovery process
-  4. By ensuring a good communication with first level support and the customer
+    1. By creating a dedicated IM channel to record the audit trail of the incident resolution.
+    2. Post a notification in the relevant channels for external awareness.
+    3. By involving the right people to help and speed up the recovery process
+    4. By ensuring a good communication with first level support and the customer
 4. The incident is recovered
 5. The Incident Owner (usually the First Responder unless the Incident Commander picked someone else) is responsible for running and documenting the post mortem and root cause analysis and bring the incident to full closure.
 

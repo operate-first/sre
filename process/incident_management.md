@@ -139,9 +139,9 @@ The coordination work under the responsibility of the Incident Commander is as f
   * Making sure that we have a dedicated IM channel opened specifically for the ongoing incident
     1. Channel is public
     2. Naming convention for the IM channel should start with the ticket number and the clusterid if available.
-       * Examples:
-         * #inc1096029-<CLUSTERID>
-         * #OHSS-1234-title
+      * Example:
+        * [ticket-nb]-[clusterid]
+        * [ticket-nb]-[service]
     3. The description of the IM channel should record:
       * Incident Commander
       * Incident Tech Lead
@@ -154,7 +154,6 @@ The coordination work under the responsibility of the Incident Commander is as f
     * **link to the dedicated IM channel (see point 2.)**
     * **short description of issue (which cluster, what’s failing)**
   4. Post an incident notification to the customer(s)
-    * NOTE: If the ServiceLog facility is unavailable, work with the Customer Support Lead to open a proactive Support Case. If the incident may affect a large number of clusters / customers, the Customer Support Lead should escalate through their management chain to post a Customer Portal banner announcement.
   5. Create right away the RCA document and ensure that it contains the relevant information which would record the high level timeline of events and help during handovers if the incident becomes a long running one.
   6. Designate the Incident Owner / confirm the First Responder will be that, announce it officially in the different channels, document it in the RCA document and assign the Incident ticket to the Incident Owner.
   7. Designate an Incident Technical Lead (on the first shift it will be the Incident Owner but then if the incident spans across multiple shifts this role will be handed over to the next)

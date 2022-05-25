@@ -186,8 +186,6 @@ Once our services are recovered and we are back in business then the following s
 
 Templates for RCA and PMR documents can be found here.
 
-Folder with drafts is here.
-
 ### Return to baseline
 The recovery of an incident consists of making sure that there is no more impact to the customer using our services.
 But in some cases it means that the system is not yet fully back to its original desired state (loss of resilience, manual non persisted config change, ...).

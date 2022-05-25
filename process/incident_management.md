@@ -7,7 +7,7 @@ It aims at formalizing the roles of the different actors while working on a **ma
 
 There can be multiple levels of severity for an incident depending on the impact it has. The process below would be used when the incident is considered to be a major incident. When the incident is a minor one then a lightweight ad-hoc process can be used. The goal being to make sure not to make the process too heavy for small incidents.
 
-A major outage can be defined when our platform is running out of error budget or when we start failing our SLOs:
+A major outage can be defined when our platform is running out of error budget or when we start failing our SLOs.
 
 examples of major incidents:
 * Full outage or heavy degradation of one or multiple services impacting one or several customers

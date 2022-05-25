@@ -66,8 +66,6 @@ The Developers and SREs do not work in isolation. To obtain the economies of sca
 
 Much like the engineering manager, QE managers need to help cross-functional team relationships as well as drive the work related to creating transparency around functional quality and that higher-level business requirements continue to perform as needed.  This persona should also help the engineering teams to drive conversations around defects management in general, customer tickets, usability concerns, along with metrics around the testing effort related to the various environments in play.
 
-#### Product Security
-
 #### Quality Engineer
 
 QE is responsible for developing, maintaining and delivering various kinds of tests needed for ensuring service quality. QE is also responsible for providing reports and metrics so that any other personas can check them and react to them. QE covers the service quality through the whole service life-cycle such as during development, during release process and testing in production

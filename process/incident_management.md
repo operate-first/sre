@@ -128,7 +128,7 @@ The investigators have the responsibility to describe the action they are taking
 
 ### Incident Commander
 
-The key element for this role is to ensure that the Incident Commander is solely focused on "oiling the machinery" of incident recovery and will not participate in the hands-on resolution. In Fact the main goal for the Incident Commander is to deal with the overall coordination overhead of the incident recovery, with a cool head, while the investigators are focused 100% on performing the recovery. This will allow faster recovery, better communication flows and less errors during the stress of the incident management.
+The key element for this role is for the Incident Commander to be solely focused on "oiling the machinery" of incident recovery instead of participating in the hands-on resolution. In fact the main goal for the Incident Commander is to deal with the overall coordination overhead of the incident recovery, with a cool head, while the investigators are focused 100% on performing the recovery. This will allow faster recovery, better communication flows and fewer errors during the stress of the incident management.
 
 The Incident Commander can elect someone to be the "scribe" during the incident. The duty of the scribe is to report in the RCA document all the important information (technical details, timeline, ...) while the Incident Commander is focused on helping with the coordination.
 

@@ -21,7 +21,7 @@ In case of a customer–impacting incident (persisting or intermittent degradati
 
 1. The Incident First Responder is the first SRE being alerted of the issue and starting the investigation
 2. After initial investigation the First Responder involves the Incident Commander (by default a Region Lead but could be Team Lead or Manager) to help with the coordination of the recovery efforts
-  1. First Responder opens the bridge call for that
+    1. First Responder opens the bridge call for that
 3. The Incident Commander manages the communication and coordination around the recovery
   1. By creating a dedicated IM channel to record the audit trail of the incident resolution.
   2. Post a notification in the relevant channels for external awareness.

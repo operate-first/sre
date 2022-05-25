@@ -17,7 +17,7 @@ Examples of major incidents:
 Note that when a team has a path for fast recovery then they shouldn't break it to fit that process if it's not required.
 
 ## Quick reference guide
-In case of customer impacting incident (persisting or intermittent degradation of customer exposed functionality)
+In case of a customer–impacting incident (persisting or intermittent degradation of customer–exposed functionality):
 
 1. The Incident First Responder is the first SRE being alerted of the issue and starting the investigation
 2. After initial investigation the First Responder involves the Incident Commander (by default a Region Lead but could be Team Lead or Manager) to help with the coordination of the recovery efforts

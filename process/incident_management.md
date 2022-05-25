@@ -139,14 +139,14 @@ The coordination work under the responsibility of the Incident Commander is as f
   * Making sure that we have a dedicated IM channel opened specifically for the ongoing incident
     1. Channel is public
     2. Naming convention for the IM channel should start with the ticket number and the clusterid if available.
-      * Example:
-        * [ticket-nb]-[clusterid]
-        * [ticket-nb]-[service]
+        * Example:
+          * [ticket-nb]-[clusterid]
+          * [ticket-nb]-[service]
     3. The description of the IM channel should record:
-      * Incident Commander
-      * Incident Tech Lead
-      * Bridge link
-      * A small description of the issue
+        * Incident Commander
+        * Incident Tech Lead
+        * Bridge link
+        * A small description of the issue
     4. Making sure the right people are invited in the IM channel (including customer support if need be)
     5. Making sure that all communications and information flows are recorded in the IM channel (it will help with the Post Mortem Review process and making sure that we have the right timeline)
   3. Using IM, post a message to the relevant channel with:
@@ -245,11 +245,11 @@ Some major incidents will span shift handoff between regions. When this happens:
 1. Outgoing Incident Commander identifies an incoming Incident Commander
 2. Incoming Incident Commander identifies an incoming Incident Tech Lead, and any Supporting SRE engineers
 3. Outgoing incident personnel brief by incoming incident personnel at shift handoff. Be sure to include:
-  1. Technical status of the issue
-  2. List of open and eliminated hypothesis regarding root cause
-  3. Time and content of the most recent customer update
-  4. Communication channels in play, including: IM channel, tracking doc, conference bridge, and email thread
-  5. Key support personnel / stakeholders outside SRE engaged in the incident
+    1. Technical status of the issue
+    2. List of open and eliminated hypothesis regarding root cause
+    3. Time and content of the most recent customer update
+    4. Communication channels in play, including: IM channel, tracking doc, conference bridge, and email thread
+    5. Key support personnel / stakeholders outside SRE engaged in the incident
 
 Note: Outgoing team members should disengage no later than 30 minutes after their region handoff time (handoff+30).
 

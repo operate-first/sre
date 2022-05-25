@@ -63,9 +63,9 @@ Before doing any further troubleshooting, First Responder must, in order:
 
 1. **Create a bridge.**
 2. Using IM, **post a message in the relevant channels** with:
-  * link to bridge,
-  * short description of issue (which cluster, what’s failing),
-  * your IM handle.
+    * link to bridge,
+    * short description of issue (which service, what’s failing),
+    * your IM handle.
 Only now can you continue debugging while describing the problem to people joining the bridge.
 
 #### 10 Minutes Later

@@ -68,7 +68,7 @@ Much like the engineering manager, QE managers need to help cross-functional tea
 
 #### Quality Engineer
 
-QE is responsible for developing, maintaining and delivering various kinds of tests needed for ensuring service quality. QE is also responsible for providing reports and metrics so that any other personas can check them and react to them. QE covers the service quality through the whole service life-cycle such as during development, during release process and testing in production
+QE is responsible for developing, maintaining, executing, and delivering various tests to ensure service quality. QE is also responsible for providing product and service quality metrics so other personas can check them and act on them as needed. QE covers the service quality through the whole service life-cycle, development, release, and production testing.
 
 #### Site Reliability Engineer (SRE)
 

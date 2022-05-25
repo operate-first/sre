@@ -9,7 +9,7 @@ There can be multiple levels of severity for an incident depending on the impact
 
 A major outage can be defined when our platform is running out of error budget or when we start failing our SLOs.
 
-examples of major incidents:
+Examples of major incidents:
 * Full outage or heavy degradation of one or multiple services impacting one or several customers
 * Duration of the incident is greater than 4 hours
 * Multiple layers and SRE teams are impacted (platform, application, …)

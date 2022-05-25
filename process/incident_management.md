@@ -53,7 +53,7 @@ Any SRE investigating a cluster issue becomes this, when they notice a **problem
 * may be a **customer–facing cluster having an issue impacting (degradation or outage)**
 * or cause **imminent major outage.**
 
-A major outage can be defined when our platform is running out of error budget and we start failing our SLOs.
+A major outage can be defined as one where our platform is running out of error budget and we start failing our SLOs.
 
 SRE teams have the concept of an on-duty shift person who is responsible for answering to alerts and incidents while the rest of the team is focusing on engineering work. These persons will usually be First Responders. Most often a shift Primary or Secondary become First Responders while investigating ongoing cases/alerts.
 

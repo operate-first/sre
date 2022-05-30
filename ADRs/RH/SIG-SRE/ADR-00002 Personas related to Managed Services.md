@@ -64,7 +64,7 @@ The Developers and SREs do not work in isolation. To obtain the economies of sca
 
 #### QE Manager
 
-Much like the Engineering manager, QE managers need to help cross-functional team relationships as well as drive the work related to creating transparency around functional quality and that higher-level business requirements continue to perform as needed.  This persona should also help the engineering teams to drive conversations around defects management in general, customer tickets, usability concerns, along with metrics around the testing effort related to the various environments in play.
+Much like the Engineering Managers, QE Managers need to help cross-functional team relationships as well as drive the work related to creating transparency around functional quality and that higher-level business requirements continue to perform as needed.  This persona should also help the engineering teams to drive conversations around defects management in general, customer tickets, usability concerns, along with metrics around the testing effort related to the various environments in play.
 
 #### Quality Engineer
 

@@ -14,6 +14,7 @@ A list of references on good alerting practices:
 * [Google SRE Book - Monitoring Distributed Systems][2]
 * [Prometheus Alerting Documentation][3]
 * [Alerting for Distributed Systems][4]
+* [Philosophy on Alerting][5]
 
 ## Style Guide
 
@@ -35,7 +36,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
     namespace label.
 * Alerts SHOULD include a cluster identifier label, especially in cases where alerts are defined or routed centrally for multiple services & clusters.
   * This can hint to an SRE where the affected service is located. It can also be useful for aggregation & filtering when analysing groups of firing alerts.
-* All alerts SHOULD include an annotation (e.g. `runbook_url`) which directs the responder(s) to the location of the runbook (sometimes called a Standard Operating Procedure or SOP) that is specific to fixing that problem.
+* All alerts MUST include an annotation (e.g. `runbook_url`) which directs the responder(s) to the location of the runbook (sometimes called a Standard Operating Procedure or SOP) that is specific to fixing that problem.
 
 ## Critical Alerts
 
@@ -104,3 +105,4 @@ Like with critical alerts, if there is an SLO related to the warning alert, ment
 [2]: https://sre.google/sre-book/monitoring-distributed-systems/
 [3]: https://prometheus.io/docs/practices/alerting/
 [4]: https://www.usenix.org/sites/default/files/conference/protected-files/srecon16europe_slides_rabenstein.pdf
+[5]: https://docs.google.com/document/d/199PqyG3UsyXlwieHaqbGiWVa8eMWi8zzAn0YfcApr8Q/edit

@@ -20,10 +20,10 @@
     - [Security - Phase 1: The ‘Crawl’ Phase](#security---phase-1-the-crawl-phase)
     - [Security - Phase 2: The 'Walk' Phase](#security---phase-2-the-walk-phase)
     - [Security - Phase 3: The 'Run' Phase](#security---phase-3-the-run-phase)
-  - [Room to improve](#room-to-improve)
-    - [Room to improve - Phase 1: The ‘Crawl’ Phase](#room-to-improve---phase-1-the-crawl-phase)
-    - [Room to improve - Phase 2: The 'Walk' Phase](#room-to-improve---phase-2-the-walk-phase)
-    - [Room to improve - Phase 3: The 'Run' Phase](#room-to-improve---phase-3-the-run-phase)
+  - [Toil Management and Operational Improvements](#toil-management-and-operational-improvements)
+    - [Toil Management and Operational Improvements - Phase 1: The ‘Crawl’ Phase](#toil-management-and-operational-improvements---phase-1-the-crawl-phase)
+    - [Toil Management and Operational Improvements - Phase 2: The 'Walk' Phase](#toil-management-and-operational-improvements---phase-2-the-walk-phase)
+    - [Toil Management and Operational Improvements - Phase 3: The 'Run' Phase](#toil-management-and-operational-improvements---phase-3-the-run-phase)
   - [Releasing](#releasing)
     - [Releasing - Phase 1: The ‘Crawl’ Phase](#releasing---phase-1-the-crawl-phase)
     - [Releasing - Phase 2: The 'Walk' Phase](#releasing---phase-2-the-walk-phase)
@@ -175,27 +175,68 @@ In this phase you do ad-hoc security assessments, scans and pentesting.
 
 * Automated Policy enforcement
 
-## Room to improve
+## Toil Management and Operational Improvements
 
-### Room to improve - Phase 1: The ‘Crawl’ Phase
+### Toil Management and Operational Improvements - Phase 1: The ‘Crawl’ Phase
 
-Your team has sufficient time in their day to pursue improvement.
-Your team needs room to practice processes, improve them and automate things.
-Without this room, your team will mature more slowly and get bogged down in just keeping the service running day to day.
-This can lead to scaling problems, both for the service and the team.
-It isn't necessary to formally measure how much time is spent on keeping things running vs. feature development or automation.
-That can come later, however you are familiar with the concept of Toil.
+There are five requirements that need to be met for your SRE team to start burning down toil and improving its operational efficiency:
+1. Oncall time must be limited to at most 50% of total engineering time.
+2. The remaining time must be dedicated to work that contributes to operational improvements – toil reduction, automation, architectural improvements, etc.
+3. Engineers must have an understanding of what toil is, how to spot it in day-to-day work and what are the ways of reducing it.
+4. The team must have the technical and organizational capability to work on toil reduction – at a minimum a repository to store runbooks, guidelines on creating automations and the ability to fix and/or file bugs with the product you're SRE-ing.
+5. Oncall shifts must (on average) be light enough that when toil gets noticed, oncall engineers have sufficient time and energy to tend to it – either address it immediately if it's small enough (e.g. update a runbook) or write it up for the team to follow up on later.
 
-### Room to improve - Phase 2: The 'Walk' Phase
+There are some additional considerations when it comes to developer teams – as opposed to dedicated SRE teams – trying to take on SRE tasks:
+1. The non-oncall time needs to be split between standard dev work (like customer-visible features) and SRE-related dev work.
+   We strongly suggest initially reserving at least half of the total dev work time for SRE-related tasks.
+   Giving a dev team SRE responsibilities without reserving sufficient time for tending to an SRE fundamental – toil reduction – will be setting that team up for failure.
+2. Do not expect your engineers to handle development tasks during oncall shifts.
+   Oncall needs to be reserved for responding to interrupts and following up on those responses.
+   Consistent and thorough followups are a crucial prerequisite for staying ahead of toil growth.
 
-*This is a stub. Please help by adding content. Ref:[SIGSRE-86](https://issues.redhat.com/browse/SIGSRE-86)*
+At this stage it isn't necessary to measure and compare different kinds of work, that will come later.
+Automating away unpleasant toil and enhancing one's oncall experience are self-rewarding tasks.
+If engineers are given the time, know-how and the tools to work on toil reduction, they should be able to stay on top of toil growth by focusing on what they perceive to be the most bothersome issues.
+Still, leadership should regularly reinforce the message that constant improvement to operational efficiency is a key component of SRE success and a lens through which engineers should always look at their work.
 
-* Start measuring Toil more formally & management track it
-  * Develop relationship with the upstream (eng and sre, or sre & upstream product) for managing toil
+#### Toil Bankruptcy and the Dangers of Unmanaged Toil
 
-### Room to improve - Phase 3: The 'Run' Phase
+Should an SRE team fail at reducing toil faster than it accumulates due to service growth, such a team can find itself in a very serious predicament – spending all of its time on operations tasks with zero room to improve (e.g. automate) anything.
 
-*This is a stub. Please help by adding content. Ref:[SIGSRE-87](https://issues.redhat.com/browse/SIGSRE-87)*
+The chart below visualizes what happens to an SRE team's time commitments when their system is growing 20% quarter over quarter yet they do not address the toily part of operations (marked in red).
+Within a year the system more than doubles its size and a team that originally spent 40% of their time on operations and 60% on development work (a healthy balance) now sees that proportion skew towards 79% to 22%.
+Two more quarters of this and operations becomes 100% of time allocated, which makes such a team "SRE" in name only.
+
+![Engineering Time Commitments at 20% Quarter over Quarter Growth](images/Engineering%20Time%20Commitments%20at%2020%25%20Quarter%20over%20Quarter%20Growth.png)
+
+This is obviously a bad trajectory to be on for multiple reasons:
+- The system being managed will hit scaling issues.
+- The team's morale will quickly plummet and attrition – especially among the more experienced engineers – will increase, which will only worsen the underlying situation.
+
+No team should let matters get to such a state.
+Toil management practices should be properly set up from the start for any new SRE team and once the basic approach becomes insufficient, leadership should take notice and start reaching for more advanced tools (see the 'Walk' and 'Run' phases described below).
+
+But in case your team did not address these issues early enough and now all everyone does is operations and there's zero room for working on toil reduction, there's still one thing left – declare Toil Bankruptcy.
+Temporarily suspend SLOs, communicate to stakeholders you will, for a time, miss reliability objectives on your system and use the freed engineering resources to aggressively pursue toil reduction efforts.
+Start with anything your team identified as low effort and high reward.
+Only once you're certain your team has made enough improvements that there's no longer a risk of things spiralling out of control, can you return to your previous obligations.
+
+### Toil Management and Operational Improvements - Phase 2: The 'Walk' Phase
+
+*This is a stub. Please help by adding content. Ref: [SIGSRE-86](https://issues.redhat.com/browse/SIGSRE-86)*
+
+* Contact with upstream (whichever team owns the product you’re SRE-ing) is well-established and they have resources reserved to work on issues raised by your SRE team. Workarounds for production issues applied by SREs are always temporary, while upstream works on a proper fix.
+* Toil items are tracked and a simple scoring system is used to prioritize work.
+* Regular meetings are held to review recent on-call shifts and ensure all improvement opportunities have been captured and scored to prioritize future work.
+* 
+
+### Toil Management and Operational Improvements - Phase 3: The 'Run' Phase
+
+*This is a stub. Please help by adding content. Ref: [SIGSRE-87](https://issues.redhat.com/browse/SIGSRE-87)*
+
+* Cooperation with upstream has matured to a point where high priority toil reduction items raised by the SRE team get immediate attention simply because SRE needs the toil reduced as soon as possible.
+  * This is separate from customer-visible incidents, where upstream’s quick involvement would stem from a different escalation path.
+* Toil reduction opportunities are scored with a multi-variable scoring system tailored to a particular SRE team’s goals and priorities.
 
 ## Releasing
 

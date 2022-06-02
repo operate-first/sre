@@ -148,6 +148,6 @@ Like with SELinux, the most value from the system comes from the "enforcing mode
 Key consequences for not adopting a SLO lifecycle is that there will continue to be ad-hoc practices if they exist. Teams may not set themselves up for success without adopting a lifecycle for SLOs.
 
 [sli-guide]: https://github.com/operate-first/sre/pulls/8
-[raci-chart]: https://github.com/operate-first/sre/pulls/9
+[raci-chart]: #raci-chart-notcreatedyet
 [personas-adr]: https://github.com/operate-first/sre/blob/main/ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.md
 [selinux-project]: https://selinuxproject.org

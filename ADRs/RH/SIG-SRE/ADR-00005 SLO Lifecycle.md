@@ -1,4 +1,4 @@
-# ADR-00000 Template
+# ADR-00005 SLO Lifecycle
 
 Authors: Lisa Seelye <@lisa>, Jeremy Eder
 
@@ -119,8 +119,8 @@ A parting thought for this section is to remember the purpose of the Service Lev
 ## Challenges
 
 * Teams may desire to adopt the guidelines in this document but lack the data to do so because they don't have any SLO, or a way to measure the remaining error budget. 
-* Teams may face encounter difficulties scheduling reliability work by those who deprioritize it in favour of "feature work."
-  * Related, teams may not have the throughput to address reliability work above "keeping the lights on" work. (See also toil management.)
+* Teams may face encounter difficulties scheduling "reliability work" by those who deprioritize it in favour of "feature work."
+  * Related, teams may not have the throughput to address "reliability work" above "keeping the lights on" work. (See also toil management.)
 
 These challenges could be addressed by a [permissive SLO phase](#permissive-slo-phase).
 
@@ -134,9 +134,9 @@ Like with SELinux, the most value from the system comes from the "enforcing mode
 
 ## Dependencies
 
-* The existence of an SLO
-* Reporting for SLO compliance and error budget exhaustion
-* Willingness to prioritize reliability work over feature work when necessary to ensure a continued customer experience.
+* The existence of an SLO.
+* Reporting for SLO compliance and error budget exhaustion.
+* Willingness to prioritize "reliability work" over "feature work" when necessary to ensure a continued customer experience.
 
 ## Stakeholders
 

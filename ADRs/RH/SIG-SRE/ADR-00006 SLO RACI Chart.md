@@ -72,7 +72,6 @@ The following matrix can be used as a starting point and is intended to be copie
 Some organizations may have personas that do not directly map to the ones outlined in the [Personas ADR][personas-adr]. In this case, teams adopting this ADR will need to apply a “best fit” to map their personas to the ones discussed here.
 
 
-
 ## Alternatives Considered
 
 None.

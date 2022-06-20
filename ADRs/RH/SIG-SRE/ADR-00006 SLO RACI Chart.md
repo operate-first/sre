@@ -10,7 +10,7 @@ Draft
 
 ## Problem Statement
 
-With [a large number of personas][personas-adr] involved in a managed services context it can be difficult to keep track of how each persona interacts with or is involved with the many SLO processes.
+With a large number of [personas][personas-adr] involved in a managed services context it can be difficult to keep track of how each persona interacts with or is involved with the many SLO processes.
 
 ## Goals
 
@@ -27,7 +27,7 @@ Ad-Hoc.
 
 ## Proposed Architecture
 
-We propose to introduce a RACI, or Responsibility Assignment Matrix to define and help visualize roles typically assigned to [various personas][personas-adr] involved with the SLO lifecycle. “RACI” refers to the four different roles, discussed below. These roles are then associated with one or more steps in a table to form the matrix, or chart.
+We propose to introduce a RACI, or Responsibility Assignment Matrix to define and help visualize roles typically assigned to various [personas][personas-adr] involved with the SLO lifecycle. “RACI” refers to the four different roles, discussed below. These roles are then associated with one or more steps in a table to form the matrix, or chart.
 
 ### Proposed Roles
 
@@ -53,7 +53,9 @@ The Informed role applies to those who are only notified of the status. Their in
 
 The following matrix can be used as a starting point and is intended to be copied to other documents with names filled in for those personas. The steps in the matrix correspond to activities taking place in the phases from the [SLO Lifecycle][slo-lifecycle-adr] and areas of responsibility to each persona.
 
-**Note**: Not every [persona][personas-adr] may appear in this chart.
+**Note**: Not every [persona][personas-adr] may appear in this chart. The intention is that this chart can be adapted to individual circumstances.
+
+**Note**: The example below is represents an organisation with "wide" set of [personas][personas-adr]. This chart can also be adapted to be more reflective of the individual circumstances of each organisation.
 
 | Step                 | Service Owner | Product Owner(s) | Engineering/Quality Lead | Sw. Eng/QE | SRE IC | Eng Manager/Director | Exec (VP) |
 |----------------------|---------------|------------------|--------------------------|------------|--------|----------------------|-----------|
@@ -69,8 +71,7 @@ The following matrix can be used as a starting point and is intended to be copie
 
 ## Challenges
 
-Some organizations may have personas that do not directly map to the ones outlined in the [Personas ADR][personas-adr]. In this case, teams adopting this ADR will need to apply a “best fit” to map their personas to the ones discussed here.
-
+Some organizations may have personas that do not directly map to the ones outlined in the [Personas ADR][personas-adr]. In this case, teams adopting this ADR will need to apply a “best fit” to map their personas to the ones discussed here. For example, some personas may actually be combined, or grouped together in a specific way. Various organisations have different levels of engineering structure and size, where a subset of the above table makes more sense.
 
 ## Alternatives Considered
 

@@ -86,7 +86,7 @@ The SLOs for this service are tracked via \<this\> dashboard (link to dashboard 
 ## Short-term
 
 * If the service has any remaining error budget for each SLO, releases (feature work) can proceed.
-* If the service has consumed all the error budget for at least one SLO, all releases will stop except for security fixes and the work needed to recover from the "SLO miss" state (reliability work).
+* If the service has consumed more than the allowed error budget for at least one SLO, all releases will stop except for security fixes and the work needed to recover from the "SLO miss" state (reliability work).
     * However, if the error budget was consumed by miscategorised errors (false positives e.g. due to imperfect SLI implementation) and no customers were impacted, releases may continue. A bug for the miscategorisation must be prioritized and fixed as soon as possible.
     * As the error budget is only one of the inputs, an exception process is available to enable the continuation of feature work at the discretion of the service owner (business).
 

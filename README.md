@@ -4,6 +4,7 @@
 
 * [Architecture Decision Records](./ADRs/)
 * [SRE Maturity Model](./sre_maturity.md)
+* [Picking Good SLIs](./picking_good_slis.md)
 
 ## Contributing
 

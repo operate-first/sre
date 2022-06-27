@@ -19,7 +19,6 @@ For an SLO to be effective, it needs to have consequences. That is:
 
 In many organisations, this question is often answered through the existence of a document, backed by a process, that can be called an "Error Budget Policy".
 
-
 ## Goals
 
 The aim of this ADR is to provide a template, with some rationale, for an example Error Budget Policy.
@@ -86,6 +85,7 @@ The SLOs for this service are tracked via \<this\> dashboard (link to dashboard 
 ## Short-term
 
 * If the service has any remaining error budget for each SLO, releases (feature work) can proceed.
+* If the service has any remaining error budget for each SLO, but some anticipated "risky" work is scheduled (e.g. load tests) which may rapidly consume the remaining budget, then a risk assessment needs to be done, and a decision made as to whether this work should continue or not and/or feature work needs to be stopped.
 * If the service has consumed more than the allowed error budget for at least one SLO, all releases will stop except for security fixes and the work needed to recover from the "SLO miss" state (reliability work).
     * However, if the error budget was consumed by miscategorised errors (false positives e.g. due to imperfect SLI implementation) and no customers were impacted, releases may continue. A bug for the miscategorisation must be prioritized and fixed as soon as possible.
     * As the error budget is only one of the inputs, an exception process is available to enable the continuation of feature work at the discretion of the service owner (business).

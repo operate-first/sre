@@ -180,9 +180,9 @@ In this phase you do ad-hoc security assessments, scans and pentesting.
 ### Toil Management and Operational Improvements - Phase 1: The ‘Crawl’ Phase
 
 There are five requirements that need to be met for your SRE team to start burning down toil and improving its operational efficiency:
-1. Oncall time must be limited to at most 50% of total engineering time.
+1. Management supports a policy of limiting oncall time to at most 50% of total engineering time.
 2. The remaining time must be dedicated to work that contributes to operational improvements – toil reduction, automation, architectural improvements, etc.
-3. Engineers must have an understanding of what toil is, how to spot it in day-to-day work and what are the ways of reducing it.
+3. Engineers and managers must have an understanding of what toil is, how to spot it in day-to-day work and what are the ways of reducing it.
 4. The team must have the technical and organizational capability to work on toil reduction – at a minimum a repository to store runbooks, guidelines on creating automations and the ability to fix and/or file bugs with the product you're SRE-ing.
 5. Oncall shifts must (on average) be light enough that when toil gets noticed, oncall engineers have sufficient time and energy to tend to it – either address it immediately if it's small enough (e.g. update a runbook) or write it up for the team to follow up on later.
 
@@ -201,7 +201,7 @@ Still, leadership should regularly reinforce the message that constant improveme
 
 #### Toil Bankruptcy and the Dangers of Unmanaged Toil
 
-Should an SRE team fail at reducing toil faster than it accumulates due to service growth, such a team can find itself in a very serious predicament – spending all of its time on operations tasks with zero room to improve (e.g. automate) anything.
+Should an SRE team fail at reducing toil faster than it accumulates, such a team can find itself in a very serious predicament – spending all of its time on operations tasks with zero room to improve (e.g. automate) anything.
 
 The chart below visualizes what happens to an SRE team's time commitments when their system is growing 20% quarter over quarter yet they do not address the toily part of operations (marked in red).
 Within a year the system more than doubles its size and a team that originally spent 40% of their time on operations and 60% on development work (a healthy balance) now sees that proportion skew towards 79% to 22%.
@@ -225,16 +225,15 @@ Only once you're certain your team has made enough improvements that there's no 
 
 *This is a stub. Please help by adding content. Ref: [SIGSRE-86](https://issues.redhat.com/browse/SIGSRE-86)*
 
-* Contact with upstream (whichever team owns the product you’re SRE-ing) is well-established and they have resources reserved to work on issues raised by your SRE team. Workarounds for production issues applied by SREs are always temporary, while upstream works on a proper fix.
-* Toil items are tracked and a simple scoring system is used to prioritize work.
+* Contact with upstream (whichever team owns the product you’re SRE-ing) is well-established and they have resources reserved to work on issues raised by your SRE team.
+  Workarounds for production issues applied by SREs are always temporary, while upstream works on a proper fix.
 * Regular meetings are held to review recent on-call shifts and ensure all improvement opportunities have been captured and scored to prioritize future work.
-* 
+* Care is taken that observed toil items and improvement opportunities are always written up and tracked.
+* When planning upcoming work through existing planning ceremonies, cards are prioritized higher based on their potential for operational improvements.
 
 ### Toil Management and Operational Improvements - Phase 3: The 'Run' Phase
 
-*This is a stub. Please help by adding content. Ref: [SIGSRE-87](https://issues.redhat.com/browse/SIGSRE-87)*
-
-* Cooperation with upstream has matured to a point where high priority toil reduction items raised by the SRE team get immediate attention simply because SRE needs the toil reduced as soon as possible.
+* Cooperation with upstream has matured to a point where high priority toil reduction items raised by the SRE team get immediate attention.
   * This is separate from customer-visible incidents, where upstream’s quick involvement would stem from a different escalation path.
 * Toil reduction opportunities are scored with a multi-variable scoring system tailored to a particular SRE team’s goals and priorities.
 

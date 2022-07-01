@@ -205,7 +205,7 @@ Should an SRE team fail at reducing toil faster than it accumulates, such a team
 
 The chart below visualizes what happens to an SRE team's time commitments when their system is growing 20% quarter over quarter yet they do not address the toily part of operations (marked in red).
 Within a year the system more than doubles its size and a team that originally spent 40% of their time on operations and 60% on development work (a healthy balance) now sees that proportion skew towards 79% to 22%.
-Two more quarters of this and operations becomes 100% of time allocated, which makes such a team "SRE" in name only.
+Two more quarters of this and operations becomes 100% of time allocated, which makes such a team "SRE" in name only (see [detailed explanation](images/Engineering%20Time%20Commitments%20at%2020%25%20Quarter%20over%20Quarter%20Growth.md)).
 
 ![Engineering Time Commitments at 20% Quarter over Quarter Growth](images/Engineering%20Time%20Commitments%20at%2020%25%20Quarter%20over%20Quarter%20Growth.png)
 

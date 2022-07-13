@@ -27,7 +27,7 @@ A new service presents the opportunity to use an SLO to steer development effort
 Ideally, a new service in production is both featureful and reliable. Product managers responsible for the service could use an SLO to define the production readiness. 
 SLOs can assist in removing subjectivity about components of a decision and that helps make clear and quantifiable decisions about the service's readiness. 
 
-To learn more about the responsibilities across different personas in an organization, read our [article](./ADRs/RH/SIG-SRE/ADR-00006%20SLO%20RACI%20Chart.md) on the RACI model
+To learn more about the responsibilities across different personas in an organization, read our [article](./ADRs/RH/SIG-SRE/ADR-00006%20SLO%20RACI%20Chart.md) on the RACI model.
 
 ## Case 2 - Existing Service 
 

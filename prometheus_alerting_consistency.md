@@ -60,7 +60,7 @@ Example critical alert:
     runbook_url: 'https://example.com/backend_service_stuck.asciidoc'
 ```
 
-This alert fires if a backend service has *not* been ready for the last 10 minutes.
+This alert fires if a backend service has *not* been ready for a pre-configured time. To avoid false alarms the chosen timeout MUST be long enough that it is unlikely to be reached during any routine restart or deployment. 
 This is a clear example of a critical issue that represents a threat to the operability of the service, and likely warrants paging someone.
 The alert has a clear summary and description annotations, and it links to a runbook with information on investigating and resolving the issue.
 If there is an SLO related to the alert, mention it in the description so the responder knows why the alert is important.

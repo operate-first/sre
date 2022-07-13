@@ -43,7 +43,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 Critical alerts are for alerting current and impending disaster situations.  These alerts page an on-call Engineer.  The situation should warrant waking someone in the middle of the night and/or interrupting their regular workflow.
 
 Reserve critical level alerts only for reporting conditions that may lead to service unavailability.
-Failures of individual components should not trigger critical level alerts in general, unless they would result in that condition.
+Failures of individual components MUST NOT trigger critical level alerts unless that failure is likely to affect a related SLO if not attended to.
 Configure critical level alerts so they fire before the situation becomes irrecoverable.
 
 Example critical alert:

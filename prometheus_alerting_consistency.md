@@ -34,7 +34,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
   * Many alerts will include this by virtue of the fact that their PromQL
     expressions result in a namespace label.  Others may require a static
     namespace label.
-* Alerts SHOULD include a cluster identifier label, especially in cases where alerts are defined or routed centrally for multiple services & clusters.
+* Alerts SHOULD include a cluster identifier label, especially in cases where alerts are defined or routed centrally for multiple services & clusters. This cluster identifier label SHOULD be consistent and obvious - for example, `cluster`.
   * This can hint to an SRE where the affected service is located. It can also be useful for aggregation & filtering when analysing groups of firing alerts.
 * All alerts MUST include an annotation (e.g. `runbook_url`) which directs the responder(s) to the location of the runbook (sometimes called a Standard Operating Procedure or SOP) that is specific to fixing that problem.
 

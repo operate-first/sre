@@ -1,6 +1,6 @@
 # SLO Bootstrap Guide
 
-Red Hat's SIG-SRE group has created a set of documents which share how some teams engage with the practice of SLOs inside Red Hat. It is our hope that these supporting documents can assist others. Before we get started, there are some [definitions](#step-1-familiarise-definitions) to ensure common understanding of terms and phrases that are used throughout the package.
+Red Hat's SIG-SRE group has created a set of documents which share how some teams engage with the practice of SLOs inside Red Hat. This guide is meant to be a self-contained bootstrapping guide for teams looking to use the site reliability engineering approach to supporting services. It is our hope that these supporting documents can assist others. Before we get started, there are some [definitions](#step-1-familiarise-definitions) to ensure common understanding of terms and phrases that are used throughout the package.
 
 ## Steps
 

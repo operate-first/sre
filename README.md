@@ -25,6 +25,16 @@ make use of it with, at most, minor modification.
     in SRE, and defining them correctly is key to running an effective
     SRE service.
 
+* [Picking good Service Level Objectives (SLOs)](./picking_good_slos.md)
+
+    Where SLIs are used to answer the question "Is everything working as it
+    should?", Service Level Objectives (SLOs) define the expectations for
+    how much and how often a service should perform correctly according
+    to its SLIs. They are probably the single most important set of
+    statistics used for evaluating the performance of a managed service,
+    as they show maintainers and customers alike just how well things are
+    working.
+
 * [Prometheus Alerting Consistency](./prometheus_alerting_consistency.md)
 
     Alerts are only useful if they're clear and understandable. This guide

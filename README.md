@@ -52,8 +52,7 @@ make use of it with, at most, minor modification.
     decision it relates to, and in years to come can be extremely valuable
     for answering the eternal question - "Why do we do things this way?".
 
-    This directory contains some sample Red Hat ADRs from a variety of
-    different discussions.
+    This directory contains some sample ADRs from the SIG-SRE group.
 
 ### Other Documents
 

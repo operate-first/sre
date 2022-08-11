@@ -35,6 +35,16 @@ make use of it with, at most, minor modification.
 
 * Some sample SIG-SRE [Architecture Decision Records](./ADRs/RH/SIG-SRE)
 
+    When major decisions are made on design or operational aspects of
+    system, it can be very worthwhile to keep a clear record of those
+    decisions for future reference. An Architecture Decision Record
+    (ADR) acts as a document of the discussion and reasoning behind the
+    decision it relates to, and in years to come can be extremely valuable
+    for answering the eternal question - "Why do we do things this way?".
+
+    This directory contains some sample Red Hat ADRs from a variety of
+    different discussions.
+
 ### Other Documents
 
 * A work in progess - the [SRE Maturity Model](./sre_maturity.md)

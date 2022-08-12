@@ -65,8 +65,12 @@ make use of it with, at most, minor modification.
 
 ## Contributing
 
-Feedback is always welcome, and contributions are too! Feel free to file an
-issue, or simply send us a PR.
+Feedback is always welcome, and contributions are too!
+Feel free to file an
+[issue](https://github.com/operate-first/sre/issues/new) or
+send us a pull request (PR). If you'd like to know more about what we do or
+find out about ways you can get involved, then you can read about
+[becoming part of the Operate First community.](https://www.operate-first.cloud/our-community)
 
 If you're submitting Markdown, please check for any linting problems.  The
 [vscode-markdownlint](https://github.com/DavidAnson/vscode-markdownlint) plugin

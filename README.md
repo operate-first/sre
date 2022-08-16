@@ -27,8 +27,8 @@ make use of it with, at most, minor modification.
 
 * [The SLO Bootstrap Guide](./slo_bootstrap_guide.md)
 
-    This guide is meant to be a self-contained bootstrapping guide for teams
-    looking to use the SRE approach to supporting services.
+    A self-contained bootstrapping guide for teams looking to use the
+    SRE approach to supporting services.
 
 * [Incident Management Process Guide](./process/incident_management.md)
 

@@ -17,6 +17,24 @@ make use of it with, at most, minor modification.
 
 ##  Table of Contents
 
+### Getting Started
+
+* [The Reliability Nightmares Colouring Book](https://github.com/operate-first/sre/raw/main/sre-coloring-book/red-hat-sre-coloring-book.pdf)
+
+    A readable, accessible guide to the various ways in which SRE principles
+    and managed services can solve many of the problems associated with running
+    complex IT services (and restaurants).
+
+* [The SLO Bootstrap Guide](./slo_bootstrap_guide.md)
+
+    This guide is meant to be a self-contained bootstrapping guide for teams
+    looking to use the SRE approach to supporting services.
+
+* [Incident Management Process Guide](./process/incident_management.md)
+
+    A useful starting point for developing your own incident management
+    proceses and procedures.
+
 ### Metrics and Monitoring
 
 * [Picking good Service Level Indicators (SLIs)](./picking_good_slis.md)

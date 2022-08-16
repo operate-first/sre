@@ -33,7 +33,7 @@ make use of it with, at most, minor modification.
 * [Incident Management Process Guide](./process/incident_management.md)
 
     A useful starting point for developing your own incident management
-    proceses and procedures.
+    processes and procedures.
 
 ### Metrics and Monitoring
 
@@ -55,7 +55,7 @@ make use of it with, at most, minor modification.
 
 * [Prometheus Alerting Consistency](./prometheus_alerting_consistency.md)
 
-    Alerts are only useful if they're clear and understandable. This guide
+    Alerts are only useful if they're clear, understandable and actionable. This guide
     presents some suggested best practices for designing alerts that are
     consistent and useful.
 

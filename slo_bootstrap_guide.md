@@ -6,7 +6,7 @@ Red Hat's SIG-SRE group has created a set of documents which share how some team
 
 ### Step 1: Familiarise Definitions
 
-**Service Level Objective (SLO)** - A Service Level Objective is a specific, measurable target to express the level of service provided to a service's custoemrs, be they internal or external. These **objectives** can be focused on a particular aspect of the service, such as a specific API endpoint.
+**Service Level Objective (SLO)** - A Service Level Objective is a specific, measurable target to express the level of service provided to a service's customers, be they internal or external. These **objectives** can be focused on a particular aspect of the service, such as a specific API endpoint.
 
 **Service Level Indicator (SLI)** - A Service Level Indicator (SLI) is a specific metric that is used to measure against the objective. These **indicators** may be exposed through the service (“white box”) itself or measured in a way that is external to the service (“black box”).
 

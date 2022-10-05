@@ -39,7 +39,7 @@ Break down the SLO lifecycle into three phases:
 
 The Research Phase consists of two lines of work which result in a SLO proposal agreement between stakeholders.
 
-Initially, Product Managers, Engineering Managers and SRE representatives will gather business and technical requirements that will inform the subsequent SLO discussions. The types of requirements may include what customer (both internal and external) expectations are for the service in terms of its performance, reliability and durability where applicable. Once the requirements are gathered, product managers and/or engineering leads for the service create a plan to implement the changes. The plan should contain enough details to successfully implement any required changes to the service. The changes might include [instrumenting SLIs][sli-guide], the creation of a monitoring dashboard, team policy and procedure changes and so on. The [RACI chart][raci-chart]] can be used as a guide for the Implementation Phase when the work is assigned.
+Initially, Product Managers, Engineering Managers and SRE representatives will gather business and technical requirements that will inform the subsequent SLO discussions. The types of requirements may include what customer (both internal and external) expectations are for the service in terms of its performance, reliability and durability where applicable. Once the requirements are gathered, product managers and/or engineering leads for the service create a plan to implement the changes. The plan should contain enough details to successfully implement any required changes to the service. The changes might include [instrumenting SLIs][sli-guide], the creation of a monitoring dashboard, team policy and procedure changes and so on. The [RACI chart][raci-chart] can be used as a guide for the Implementation Phase when the work is assigned.
 
 ### Implementation Phase
 
@@ -118,7 +118,7 @@ A parting thought for this section is to remember the purpose of the Service Lev
 
 ## Challenges
 
-* Teams may desire to adopt the guidelines in this document but lack the data to do so because they don't have any SLO, or a way to measure the remaining error budget. 
+* Teams may desire to adopt the guidelines in this document but lack the data to do so because they don't have any SLO, or a way to measure the remaining error budget.
 * Teams may face encounter difficulties scheduling "reliability work" by those who deprioritize it in favour of "feature work."
   * Related, teams may not have the throughput to address "reliability work" above "keeping the lights on" work. (See also toil management.)
 
@@ -148,6 +148,6 @@ Like with SELinux, the most value from the system comes from the "enforcing mode
 Key consequences for not adopting a SLO lifecycle is that there will continue to be ad-hoc practices if they exist. Teams may not set themselves up for success without adopting a lifecycle for SLOs.
 
 [sli-guide]: https://github.com/operate-first/sre/pulls/8
-[raci-chart]: #raci-chart-notcreatedyet
+[raci-chart]: https://github.com/operate-first/sre/blob/main/ADRs/RH/SIG-SRE/ADR-00006%20SLO%20RACI%20Chart.md
 [personas-adr]: https://github.com/operate-first/sre/blob/main/ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.md
 [selinux-project]: https://selinuxproject.org

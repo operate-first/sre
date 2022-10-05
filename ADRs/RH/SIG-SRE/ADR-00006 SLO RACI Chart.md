@@ -2,11 +2,9 @@
 
 Authors: Lisa Seelye <@lisa>, Jeremy Eder
 
-
 ## Status
 
 Draft
-
 
 ## Problem Statement
 
@@ -19,7 +17,6 @@ Create a matrix that breaks down the steps involved with the SLO lifecycle and u
 ## Non-goals
 
 Inclusion of every persona and every possible step is not desired. Some personas are not involved with this matrix and it is not feasible to enumerate every possible step.
-
 
 ## Current Architecture
 

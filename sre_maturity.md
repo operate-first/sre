@@ -1,33 +1,33 @@
 # SRE Maturity
 
-  - [People and Culture](#people-and-culture)
-    - [People and Culture - Phase 1: The ‘Crawl’ Phase](#people-and-culture---phase-1-the-crawl-phase)
-    - [People and Culture - Phase 2: The 'Walk' Phase](#people-and-culture---phase-2-the-walk-phase)
-    - [People and Culture - Phase 3: The 'Run' Phase](#people-and-culture---phase-3-the-run-phase)
-  - [Observability](#observability)
-    - [Observability - Phase 1: The ‘Crawl’ Phase](#observability---phase-1-the-crawl-phase)
-    - [Observability - Phase 2: The 'Walk' Phase](#observability---phase-2-the-walk-phase)
-    - [Observability - Phase 3: The 'Run' Phase](#observability---phase-3-the-run-phase)
-  - [On Call, Escalations and Incidents](#on-call-escalations-and-incidents)
-    - [On Call, Escalations and Incidents - Phase 1: The ‘Crawl’ Phase](#on-call-escalations-and-incidents---phase-1-the-crawl-phase)
-    - [On Call, Escalations and Incidents - Phase 2: The 'Walk' Phase](#on-call-escalations-and-incidents---phase-2-the-walk-phase)
-    - [On Call, Escalations and Incidents - Phase 3: The 'Run' Phase](#on-call-escalations-and-incidents---phase-3-the-run-phase)
-  - [Failures](#failures)
-    - [Failures - Phase 1: The ‘Crawl’ Phase](#failures---phase-1-the-crawl-phase)
-    - [Failures - Phase 2: The 'Walk' Phase](#failures---phase-2-the-walk-phase)
-    - [Failures - Phase 3: The 'Run' Phase](#failures---phase-3-the-run-phase)
-  - [Security](#security)
-    - [Security - Phase 1: The ‘Crawl’ Phase](#security---phase-1-the-crawl-phase)
-    - [Security - Phase 2: The 'Walk' Phase](#security---phase-2-the-walk-phase)
-    - [Security - Phase 3: The 'Run' Phase](#security---phase-3-the-run-phase)
-  - [Room to improve](#room-to-improve)
-    - [Room to improve - Phase 1: The ‘Crawl’ Phase](#room-to-improve---phase-1-the-crawl-phase)
-    - [Room to improve - Phase 2: The 'Walk' Phase](#room-to-improve---phase-2-the-walk-phase)
-    - [Room to improve - Phase 3: The 'Run' Phase](#room-to-improve---phase-3-the-run-phase)
-  - [Releasing](#releasing)
-    - [Releasing - Phase 1: The ‘Crawl’ Phase](#releasing---phase-1-the-crawl-phase)
-    - [Releasing - Phase 2: The 'Walk' Phase](#releasing---phase-2-the-walk-phase)
-    - [Releasing - Phase 3: The 'Run' Phase](#releasing---phase-3-the-run-phase)
+- [People and Culture](#people-and-culture)
+  - [People and Culture - Phase 1: The ‘Crawl’ Phase](#people-and-culture---phase-1-the-crawl-phase)
+  - [People and Culture - Phase 2: The 'Walk' Phase](#people-and-culture---phase-2-the-walk-phase)
+  - [People and Culture - Phase 3: The 'Run' Phase](#people-and-culture---phase-3-the-run-phase)
+- [Observability](#observability)
+  - [Observability - Phase 1: The ‘Crawl’ Phase](#observability---phase-1-the-crawl-phase)
+  - [Observability - Phase 2: The 'Walk' Phase](#observability---phase-2-the-walk-phase)
+  - [Observability - Phase 3: The 'Run' Phase](#observability---phase-3-the-run-phase)
+- [On Call, Escalations and Incidents](#on-call-escalations-and-incidents)
+  - [On Call, Escalations and Incidents - Phase 1: The ‘Crawl’ Phase](#on-call-escalations-and-incidents---phase-1-the-crawl-phase)
+  - [On Call, Escalations and Incidents - Phase 2: The 'Walk' Phase](#on-call-escalations-and-incidents---phase-2-the-walk-phase)
+  - [On Call, Escalations and Incidents - Phase 3: The 'Run' Phase](#on-call-escalations-and-incidents---phase-3-the-run-phase)
+- [Failures](#failures)
+  - [Failures - Phase 1: The ‘Crawl’ Phase](#failures---phase-1-the-crawl-phase)
+  - [Failures - Phase 2: The 'Walk' Phase](#failures---phase-2-the-walk-phase)
+  - [Failures - Phase 3: The 'Run' Phase](#failures---phase-3-the-run-phase)
+- [Security](#security)
+  - [Security - Phase 1: The ‘Crawl’ Phase](#security---phase-1-the-crawl-phase)
+  - [Security - Phase 2: The 'Walk' Phase](#security---phase-2-the-walk-phase)
+  - [Security - Phase 3: The 'Run' Phase](#security---phase-3-the-run-phase)
+- [Room to improve](#room-to-improve)
+  - [Room to improve - Phase 1: The ‘Crawl’ Phase](#room-to-improve---phase-1-the-crawl-phase)
+  - [Room to improve - Phase 2: The 'Walk' Phase](#room-to-improve---phase-2-the-walk-phase)
+  - [Room to improve - Phase 3: The 'Run' Phase](#room-to-improve---phase-3-the-run-phase)
+- [Releasing](#releasing)
+  - [Releasing - Phase 1: The ‘Crawl’ Phase](#releasing---phase-1-the-crawl-phase)
+  - [Releasing - Phase 2: The 'Walk' Phase](#releasing---phase-2-the-walk-phase)
+  - [Releasing - Phase 3: The 'Run' Phase](#releasing---phase-3-the-run-phase)
 
 ## People and Culture
 
@@ -51,13 +51,13 @@ They should help you advocate for service features that make the service more re
 
 *This is a stub. Please help by adding content. Ref: [SIGSRE-75](https://issues.redhat.com/browse/SIGSRE-75)*
 
-* Starting to get Exec support (improvement on 'buy-in')
+- Starting to get Exec support (improvement on 'buy-in')
 
 ### People and Culture - Phase 3: The 'Run' Phase
 
 *This is a stub. Please help by adding content. Ref: [SIGSRE-76](https://issues.redhat.com/browse/SIGSRE-76)*
 
-* Exec engagement
+- Exec engagement
 
 ## Observability
 
@@ -81,23 +81,23 @@ You have established patterns and guidelines for observability signals such as m
 You are using these patterns to speed up debugging of issues and to be to able to correlate various signals more easily, thereby reducing your Mean Time To Recovery (MTTR).
 Your alerts have matured and rarely give false positives as a result of having these patterns and refining queries.
 
-* SLOs - SLOs have been iterated on, and you have more than 1 meaningful SLO.
-* You understand and track error budgets
-* Your alerts are actionable
-* Your systems are self healing
-  * Avoid SRE having sub-systems that automagically work around the inefficiencies of upstream - needs a good argument why it can’t be fixed upstream - pushing left
-* Combination of internal (whitebox) and external (blackbox) monitoring - tied to SLOs
-* Dashboards, logging (easily accessible)
-* Improving the architecture for lower cost to serve. Pereq here - calculating & knowing the cost to serve
+- SLOs - SLOs have been iterated on, and you have more than 1 meaningful SLO.
+- You understand and track error budgets
+- Your alerts are actionable
+- Your systems are self healing
+  - Avoid SRE having sub-systems that automagically work around the inefficiencies of upstream - needs a good argument why it can’t be fixed upstream - pushing left
+- Combination of internal (whitebox) and external (blackbox) monitoring - tied to SLOs
+- Dashboards, logging (easily accessible)
+- Improving the architecture for lower cost to serve. Pereq here - calculating & knowing the cost to serve
 
 ### Observability - Phase 3: The 'Run' Phase
 
 *This section needs elaboration. Please help by adding content. Ref: [SIGSRE-78](https://issues.redhat.com/browse/SIGSRE-78)*
 
-* Observability correlation beteween logs, metrics, alerts, events etc..
-* build on this foundation looking at AI Ops and improving the debug experience (focused on decreasing MTTR further)
-  * Needs everything underneath it first (all the signals)
-* SLOs - Well established SLO Review process
+- Observability correlation beteween logs, metrics, alerts, events etc..
+- build on this foundation looking at AI Ops and improving the debug experience (focused on decreasing MTTR further)
+  - Needs everything underneath it first (all the signals)
+- SLOs - Well established SLO Review process
 
 ## On Call, Escalations and Incidents
 
@@ -141,7 +141,7 @@ You understand how the service reacts to failures and feed the output into plann
 
 Validate well established and iterated SLOs under turbulent conditions in addition to making sure right alerts are in place given that observability maturity is part of this phase
 
-* Disaster Recovery & Incident Rehearsals
+- Disaster Recovery & Incident Rehearsals
 
 ### Failures - Phase 3: The 'Run' Phase
 
@@ -171,7 +171,7 @@ Companies may also have your own internal compliance processes or security stand
 Those compliance certifications/attestations are the tangible items you can give to your customers to provide assurances of your security posture.
 
 Background checks are implemented for individuals with privileged access to the environment.
-The number of background checks needed grows linearly with the individuals with privileged access 
+The number of background checks needed grows linearly with the individuals with privileged access
 
 Security activities that were previously ad-hoc are now running regularly for each release, scanning your source & your production environment.
 Doing 'security impact assessments' at the design phase of service features and architecture decisions pushes you security awareness earlier in the process.
@@ -182,7 +182,7 @@ All code dependencies are being scanned for vulnerabilities and you are responsi
 
 *This is a stub. Please help by adding content. Ref: [SIGSRE-85](https://issues.redhat.com/browse/SIGSRE-85)*
 
-* Automated Policy enforcement
+- Automated Policy enforcement
 
 ## Room to improve
 
@@ -199,8 +199,8 @@ That can come later, however you are familiar with the concept of Toil.
 
 *This is a stub. Please help by adding content. Ref:[SIGSRE-86](https://issues.redhat.com/browse/SIGSRE-86)*
 
-* Start measuring Toil more formally & management track it
-  * Develop relationship with the upstream (eng and sre, or sre & upstream product) for managing toil
+- Start measuring Toil more formally & management track it
+  - Develop relationship with the upstream (eng and sre, or sre & upstream product) for managing toil
 
 ### Room to improve - Phase 3: The 'Run' Phase
 
@@ -212,12 +212,12 @@ That can come later, however you are familiar with the concept of Toil.
 
 ### Releasing - Phase 1: The ‘Crawl’ Phase
 
-* One-off Release Scripts
+- One-off Release Scripts
 
 ### Releasing - Phase 2: The 'Walk' Phase
 
-* Robust CI/CD Practices
+- Robust CI/CD Practices
 
 ### Releasing - Phase 3: The 'Run' Phase
 
-* Canary Releases
+- Canary Releases

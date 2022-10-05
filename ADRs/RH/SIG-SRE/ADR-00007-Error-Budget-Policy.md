@@ -2,7 +2,6 @@
 
 Authors: Craig Robinson
 
-
 ## Status
 
 Draft
@@ -23,7 +22,6 @@ In many organisations, this question is often answered through the existence of 
 
 The aim of this ADR is to provide a template, with some rationale, for an example Error Budget Policy.
 
-
 ## Non-goals
 
 * This ADR does not aim at providing a definitive policy. The intention would be that consumers of this document would be able to take this example, based on the lessons learned from SRE teams already experienced in the running of services, and mold it to their own experience. It is purposefully generalised.
@@ -32,32 +30,31 @@ The aim of this ADR is to provide a template, with some rationale, for an exampl
 
 * An analysis of a number of existing Error Budget Policies was conducted, identifying the commonalities and the differences. The best practices articulated in this document was a synthesis of these sources.
 
-
 ## Proposed Architecture
 
 The proposed content is as follows:
 
 ***
 
-# Error Budget Policy (draft)
+## Error Budget Policy (draft)
 
 Service Name: \<Service/s Name\>
 
-# Service
+### Service
 
 \<Briefly describe the service/s under the scope of this document.\>
 
-# Definitions
+### Definitions
 
 * _SLI_: The Service Level Indicator is the carefully-considered measure for an aspect of the service that is considered necessary to its function (e.g. the login screen should be available).
 * _SLO_: The Service Level Objective is the desired target for the aspect measured by an SLI (e.g. the login screen should be available for 99% of the time).
 * _Error Budget_:  The Error budget is one of the fundamental metrics for service reliability. It is the measure of how much a service can be unreliable (e.g. fail) without impacting customers. Error budgets are always based on SLOs.
-* _SLO miss_: The state where the error budget has been consumed, and the level of service is not acceptable to the service owner. 
-* _Burn rate_: The speed you are consuming your error budget. For example, consuming 100% of the error budget in the expected period (for 30 days period - 30 days), consuming 200% of the error budget in the expected period (for 30 days period - 15 days). This should be used for SLO-based alerting. 
+* _SLO miss_: The state where the error budget has been consumed, and the level of service is not acceptable to the service owner.
+* _Burn rate_: The speed you are consuming your error budget. For example, consuming 100% of the error budget in the expected period (for 30 days period - 30 days), consuming 200% of the error budget in the expected period (for 30 days period - 15 days). This should be used for SLO-based alerting.
 * _Reliability Work_: The work that is needed to recover the service from an "SLO miss" state.
 * _Feature Work_: The work that is done to provide the features and functionality that is needed by that service.
 
-# Aim
+### Aim
 
 There are many inputs which affect the prioritization of work. The reliability of a service is a significant, but not the only, input to this process. The Error Budget is the primary metric that is used to inform the decision makers of issues that affect the reliability of a service, and by inference, the satisfaction of the customer with that service.
 
@@ -66,31 +63,31 @@ The questions that this is aiming to help answer is:
 * "What do we need to do now that the error budget is all gone?"
 * "How do we detect the early signs of system degradation, and what automated mechanisms do we have in place to intercept them?"
 
-# Scope
+### Scope
 
 The scope of this policy is limited to: \<service\>.
 
 The SLOs for this \<service\> are defined \<here\> (link to SLO definitions document).
 
-# Out-of-Scope
+### Out-of-Scope
 
 The scope of this policy does not apply to: \<service/aspect-of-service\>.
 
-# Current Status
+### Current Status
 
 The SLOs for this service are tracked via \<this\> dashboard (link to dashboard or visualization of SLOs).
 
-# Decision Making Principles
+### Decision Making Principles
 
-## Short-term
+#### Short-term
 
 * If the service has any remaining error budget for each SLO, releases (feature work) can proceed.
 * If the service has any remaining error budget for each SLO, but some anticipated "risky" work is scheduled (e.g. load tests) which may rapidly consume the remaining budget, then a risk assessment needs to be done, and a decision made as to whether this work should continue or not and/or feature work needs to be stopped.
 * If the service has consumed more than the allowed error budget for at least one SLO, all releases will stop except for security fixes and the work needed to recover from the "SLO miss" state (reliability work).
-    * However, if the error budget was consumed by miscategorised errors (false positives e.g. due to imperfect SLI implementation) and no customers were impacted, releases may continue. A bug for the miscategorisation must be prioritized and fixed as soon as possible.
-    * As the error budget is only one of the inputs, an exception process is available to enable the continuation of feature work at the discretion of the service owner (business).
+  * However, if the error budget was consumed by miscategorised errors (false positives e.g. due to imperfect SLI implementation) and no customers were impacted, releases may continue. A bug for the miscategorisation must be prioritized and fixed as soon as possible.
+  * As the error budget is only one of the inputs, an exception process is available to enable the continuation of feature work at the discretion of the service owner (business).
 
-## Long-Term
+#### Long-Term
 
 The following table is adapted from the ["Implementing SLOs"](https://sre.google/workbook/implementing-slos/#decision-making-using-slos-and-error-budgets) chapter in [The Site Reliability Workbook](https://sre.google/workbook/table-of-contents/). The intention is to use it for reviewing and being accountable to SLOs on a regular cadence. The inputs to this table are:
 
@@ -98,6 +95,7 @@ The following table is adapted from the ["Implementing SLOs"](https://sre.google
 * The amount of toil required to operate the service (Measured in terms of responding to alerts, manual work & customer reported issues from CEE)?
 * The level of customer satisfaction with the service (Measured by customer tickets and any direct customer engagement from the Business)?
 
+```html
 <table>
   <tr>
    <td colspan="3" ><strong>INPUTS</strong></td>
@@ -167,22 +165,23 @@ The following table is adapted from the ["Implementing SLOs"](https://sre.google
    <td>Stop "feature work" and focus on "reliability work" to resolve the customer satisfaction problem.</td>
   </tr>
 </table>
+```
 
-# Review Cadence
+i### Review Cadence
 
 It is absolutely necessary to setup a cadence for a regular review of the state of the error budget consumption at any point in time. The following is an example of what would be considered the minimum viable cadence required to keep on top of "burning" error budget. These meetings are an essential part of the "Iteration" phase as described in the [SLO Lifecycle ADR](https://github.com/operate-first/sre/pull/13). The reviews refer to these [personas](https://github.com/operate-first/sre/blob/main/ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.md).
 
-## Weekly Team Uptime Review
+#### Weekly Team Uptime Review
 
 The team/s (SRE/Engineering) responsible for the services need to collaboratively review the availability of the services on a regular basis. As per many typical engineering processes that have been well established, this can, and should, include regular sprint reviews (standups) and retrospectives. However, it has proven very beneficial to have a regular (e.g. weekly) review between, at least, SRE and engineering (but also possibly including the Product Owner). SRE, for example, are typically those who first identify that the error budget has been consumed, or is being consumed. At this meeting, they have the opportunity to inform the engineering team. If the error budget consumption coincides with an incident, this is often in the form of an RCA (Root Cause Analysis) document. The engineering team receive this information, and in close collaboration with the Product Owner, they can prioritise the rectification of the issue/s.
 
 Note: this regular weekly meeting does not replace the need for urgent action required in the case of a significant incident. It is expected that, at these times, ad-hoc review meetings can be called to expedite the resolution.
 
-## Monthly Uptime Review
+#### Monthly Uptime Review
 
 The weekly review meeting focuses on rapidly identifying issues to mitigate burning error budget as quickly as possible. However, as SLOs are often measured monthly, it is also beneficial to review the SLO performance on a monthly basis. The focus for this review is identifying trends over this longer time period. This is particularly useful in identifying SLOs that may need to be revised (for example, they are set to low or to high, or, they may be false alerts).
 
-# Escalation Process
+### Escalation Process
 
 If, during one of these review meetings, that an "SLO miss" is declared, then it may be an advantage to have a defined process that best enables the resolution of the issue causing the miss. That is, it can be "escalated" through the appropriate channels. The following is an example of an escalation process for this situation.
 
@@ -204,7 +203,7 @@ If any service team exceeds their error budget for a given time period (e.g. mon
 7. The team regularly update about the event status on the program call and in other venues as agreed.
 8. Once the issue has been addressed, the coordinator informs the stakeholders that this issue is resolved.
 
-# Exception Process
+### Exception Process
 
 In a scenario where there is a "SLO miss" that is affecting customers (i.e. valid), and, de-prioritizing committed work is not acceptable to stakeholders, a decision needs to be made between these two opposing options:
 
@@ -215,7 +214,7 @@ Decision #2 is a valid response and it is a knob that can be tuned (together wit
 
 The following is an example of such a process (for the purposes of this process, these [personas](https://github.com/operate-first/sre/blob/main/ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.md) are assumed):
 
-1. The Product Manager is best placed to assess all the inputs and propose the exception. The persona becomes the owner of this process, and they document the inputs affecting the decision and the cons of not doing #1 and proposing #2. JIRA is a good 
+1. The Product Manager is best placed to assess all the inputs and propose the exception. The persona becomes the owner of this process, and they document the inputs affecting the decision and the cons of not doing #1 and proposing #2. JIRA is a good
 2. The Product Manager organizes a meeting with the key internal stakeholders and presents the document. The decision is ratified.
 3. The Product Manager notifies the broader stakeholders. This would typically include:
     * An email to a team or project mailing list.

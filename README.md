@@ -74,7 +74,7 @@ make use of it with, at most, minor modification.
 
 ### Other Documents
 
-* A work in progess - the [SRE Maturity Model](./sre_maturity.md)
+* A work in progress - the [SRE Maturity Model](./sre_maturity.md)
 
     Moving to an SRE model generally happens in a series of steps rather than
     as a single big change. The SRE Maturity Model is intended to describe

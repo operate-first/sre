@@ -2,11 +2,9 @@
 
 Authors: Craig Robinson
 
-
 ## Status
 
 Draft
-
 
 ## Problem Statement
 
@@ -16,16 +14,13 @@ A successful SRE practice requires a cross-functional group of stakeholders to e
 
 This ADR hopes to resolve the problem statement by identifying and documenting the key personas in a summary format. The output will be a document which will be referenced from other assets.
 
-
 ## Non-goals
 
 * This ADR does not aim at capturing every form or type of persona. It is purposefully generalised, utilising the most frequent persona types as experienced within the Red Hat 'Managed Services' context. The reason is that every organisation calls their personas by different names (and they will inevitably have different role descriptions). Nevertheless, this document hopes to capture the main types in a translatable way.
 
-
 ## Current Architecture
 
 * There was some pre-existing art in an internal Red Hat document entitled the "Application Services Primer". That was used as a source for this ADR.
-
 
 ## Proposed Architecture
 
@@ -72,7 +67,7 @@ QE is responsible for developing, maintaining, executing, and delivering various
 
 #### Site Reliability Engineer (SRE)
 
-The Site or Service Reliability Engineer is an essential part of the service. Their primary focus is ensuring that the services are "running". When there is a problem, it is up to them to resolve the issue as quickly as possible. However, this is only the end goal. The role of an SRE is to contribute to the reliability of the service so that the need to fix something is the exception rather than the rule. This is best epitomized in this quote by one of Red Hat's SRE Managers: "Do not accept repeated failure". That is, if something fails (e.g. SRE is alerted), then follow through with all "actions" so that the problem does not repeat. These actions can be things like: from identifying the issue with the responsible engineering team through to actually fixing the problem in code, personally. 
+The Site or Service Reliability Engineer is an essential part of the service. Their primary focus is ensuring that the services are "running". When there is a problem, it is up to them to resolve the issue as quickly as possible. However, this is only the end goal. The role of an SRE is to contribute to the reliability of the service so that the need to fix something is the exception rather than the rule. This is best epitomized in this quote by one of Red Hat's SRE Managers: "Do not accept repeated failure". That is, if something fails (e.g. SRE is alerted), then follow through with all "actions" so that the problem does not repeat. These actions can be things like: from identifying the issue with the responsible engineering team through to actually fixing the problem in code, personally.
 
 In many organizations, SRE functions support more than one service. Many projects undertaken by SRE teams provide the tooling, workflows and platforms needed to operate at scale. A key metric is for the SRE team to grow sub-linearly with "hockey stick" customer growth while minimizing toil and technical debt.
 
@@ -80,7 +75,7 @@ SREs are also valuable consultants, particularly in these key areas: observabili
 
 #### Support Engineer
 
-This persona provides assistance to Service Consumers, usually in the form of support cases raised by customers. They may require elevated levels of access to the service internals in order to help consumers, but in a way that ensures they cannot degrade the service itself. 
+This persona provides assistance to Service Consumers, usually in the form of support cases raised by customers. They may require elevated levels of access to the service internals in order to help consumers, but in a way that ensures they cannot degrade the service itself.
 
 #### Exec (VP+)
 
@@ -92,26 +87,21 @@ These are consumers of the services (and, often, the source of revenue). While t
 
 ***
 
-
 ## Challenges
 
 * There are an almost infinite number of permutations with respect to these personas, depending upon the circumstances and structure of the organisation. For example, small teams may have developers and SREs doing the same role. However, the purpose of this document is not to cover every nuance or situation otherwise this document would never have an endpoint.
-
 
 ## Alternatives Considered
 
 No alternatives were considered.
 
-
 ## Dependencies
 
 There are no dependencies.
 
-
 ## Stakeholders
 
 * Relevant SIG-SRE members who are dependent on the content in this document.
-
 
 ## Consequences if Not Completed
 

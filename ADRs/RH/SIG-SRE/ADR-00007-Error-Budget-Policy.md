@@ -8,7 +8,7 @@ Draft
 
 ## Problem Statement
 
-A fundamential tenet of Site Reliability Engineering is to maximise customer satisfaction, not only through the function that a service provides, but also through its stability (aka reliability). This stability is measured through an SLO (Service Level Objective).
+A fundamental tenet of Site Reliability Engineering is to maximise customer satisfaction, not only through the function that a service provides, but also through its stability (aka reliability). This stability is measured through an SLO (Service Level Objective).
 
 This "SLO miss" can be referred to as the "error budget". The error budget can be described as the amount of "error" that a system can withstand without having a negative effect on the service, most notably, the customers "experience" of the service. Mathematically, it is often described as the inverse of the SLO: that is, as an example, there is an SLO target of 99.9% (3 nines) then the error budget is 0.1%. It can also be referred to as a measure of time (e.g. the error budget is 4 minutes per month).
 

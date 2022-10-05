@@ -176,7 +176,7 @@ The coordination work under the responsibility of the Incident Commander is as f
 6. Designate the Incident Owner / confirm the First Responder will be that, announce it officially in the different channels, document it in the RCA document and assign the Incident ticket to the Incident Owner.
 7. Designate an Incident Technical Lead (on the first shift it will be the Incident Owner but then if the incident spans across multiple shifts this role will be handed over to the next)
 8. Publicly announce who is Incident Commander (IC) in the dedicated IM channel.
-9. Trigger oncall for the right groups that are needed for helping out with the recovery
+9. Trigger on-call for the right groups that are needed for helping out with the recovery
 10. Making sure that regular updates are being given in the IM channel in addition to curated information for the customer.
 11. Provide executive summary of the ongoing state of the incident
 

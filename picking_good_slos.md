@@ -35,7 +35,7 @@ There are two main paths this could be navigated, and each should consider if th
 
 * Have good SLIs based on what is important to customers.
 * Reflect on customer experience: Customer satisfaction drives the sustainability of the business, so make sure to focus on critical paths that make customers happy.
-* Define Expectations vs Reality SLOs: Distinct aspirational SLO target levels from those you can acually achieve.
+* Define Expectations vs Reality SLOs: Distinct aspirational SLO target levels from those you can actually achieve.
 * Start somewhere: Don't wait until you find the best target levels to create an SLO.
 * Iterate often: You need continuously re-evaluate reliability targets and update the SLOs based on more realistic target goals.
 * Never forget external dependencies: Monitoring external dependencies and considering them while crafting SLOs is important as they have a direct impact on the reliability targets.

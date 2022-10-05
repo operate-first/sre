@@ -88,13 +88,13 @@ Your alerts have matured and rarely give false positives as a result of having t
   - Avoid SRE having sub-systems that automagically work around the inefficiencies of upstream - needs a good argument why it can’t be fixed upstream - pushing left
 - Combination of internal (whitebox) and external (blackbox) monitoring - tied to SLOs
 - Dashboards, logging (easily accessible)
-- Improving the architecture for lower cost to serve. Pereq here - calculating & knowing the cost to serve
+- Improving the architecture for lower cost to serve. Prereq here - calculating & knowing the cost to serve
 
 ### Observability - Phase 3: The 'Run' Phase
 
 *This section needs elaboration. Please help by adding content. Ref: [SIGSRE-78](https://issues.redhat.com/browse/SIGSRE-78)*
 
-- Observability correlation beteween logs, metrics, alerts, events etc..
+- Observability correlation between logs, metrics, alerts, events etc..
 - build on this foundation looking at AI Ops and improving the debug experience (focused on decreasing MTTR further)
   - Needs everything underneath it first (all the signals)
 - SLOs - Well established SLO Review process

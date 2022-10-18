@@ -190,6 +190,21 @@ The customer support lead is the person from our first level support organizatio
 
 When an incident is initially triggered or managed internally to SRE, meaning that it was not initiated by a customer request through Customer support and when this incident has an impact to the customer then the Incident Commander needs to ensure that the right representation from Customer Support is available in the bridge.
 
+### Problem Investigation Manager
+The Problem Investigation Manager is the SRE Manager supporting the team who is working on resolving the incident from a management perspective.
+
+The Problem Investigation Manager is accountable for following-up on the Post Mortem and all the action items that have been derived from it until they are all completed.
+
+The Problem Investigation Manager must ensure that the PMR and all its action items are properly tracked and will be acted upon in a timely fashion by the different teams impacted according to their priorities.
+
+This is a coordination and project management type of activity which requires to reach out to different external teams and potentially escalate issues, that's the main reason why this is under the responsibility of a Manager.
+
+Usually the Problem Investigation Manager will be one of the Regional Manager where the incident first occurs, whoever is available at the time. 
+
+The Problem Investigation Manager doesn't need to be handed over as a follow the sun role, it can stay within the Region of origin.
+
+If the incident ownership is fully transferred to a different region or a different team, the Problem Investigation Manager role can be handed over.
+
 ## After incident recovery
 
 Once our services are recovered and we are back in business then the following steps must happen:
@@ -230,6 +245,7 @@ The post mortem meeting should involve all internal parties who were involved in
 * [optional] Every SRE team members involved (as much as possible given the timezone constraints)
   * The more brain power we have in the meeting the more likely we are to find the best countermeasures to avoid reoccurrence
 * [optional] The Customer Support lead
+* [mandatory] The problem investigation manager
 
 The incident technical lead is the owner of the post mortem review meeting and is making sure that it contains the following:
 
@@ -251,6 +267,39 @@ All action items and countermeasures should aim at (as much as possible):
 * Increase automated recovery (if it makes sense)
 * Decrease MTTR in case of recurrence (documentation for instance, …)
 * **Each action item must be tracked by a corresponding ticket in the SRE's backlog so that its implementation can be prioritized and tracked by the SRE leads**
+
+### PMR tracking Epic:
+
+After each major incident we must create an overarching PMR tracking epic which will have a separate lifecycle as the incident but which will centralize all the PMR action items that we derive during the PMR exercise.
+
+The epic must have the following data:
+
+* The title naming convention: [YYYY-MM-DD] PMR for ${incident id} - ${incident title}
+* The label "pmr" to be able to be identified as such
+* The date of the incident occurrence
+* The link to the RCA document
+* The epic must reference the incident record.
+
+The accountability for following up the PMR Epic and its completion (meaning the completion of all sub tasks within the Epic) is with the Problem Investigation Manager.
+
+### PMR action item tasks:
+
+During the PMR we detail all action items that we need to implement to avoid reoccurrence or limit the impact of them in the future. Each of these action items must be tracked as a dedicated task under the PMR Epic.
+
+Each PMR AI task must have the following data:
+
+* A meaningful title
+* The label "pmr-ai" to be able to be identified as such
+* The right level of priority and urgency according to the impact and urgency this item will have in preventing reoccurrence in the future.
+* The task must be assigned to the targeted team
+* The task must be linked to the PMR Epic
+* When relevant the task must have the label of the impacted operator
+ 
+
+### Follow-up and prioritization:
+Prioritization of PMR work is the same as the one for toil reduction because in the end incidents are toil and PMR AI are aiming at reducing incident or their impact, thus reducing toil.
+Assignment of PMR AI falls under 2 possibilities, either the PMR AI is operator specific, in that case the work is assigned to the functional team owning the component, or the PMR AI is generic, in that case the work is assigned following the same process as the toil reduction work assignment.
+Accountability and follow-up of PMR and PMR AI must happen during the lead sync, at the same time we review functional Epic statuses and toil reduction Epic ones.
 
 Questionnaire to be answered during the PMR:
 

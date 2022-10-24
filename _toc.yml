@@ -1,0 +1,27 @@
+format: jb-book
+root: README
+parts:
+  - caption: Getting started
+    chapters:
+      - file: sre-coloring-book/red-hat-sre-coloring-book
+      - file: slo_bootstrap_guide
+      - file: process/incident_management
+  - caption: Metrics and Monitoring
+    chapters:
+      - file: picking_good_slis
+      - file: picking_good_slos
+      - file: prometheus_alerting_consistency
+  - caption: Decision-Making
+    chapters:
+      - file: ADRs/RH/SIG-SRE/README
+        sections:
+          - file: ADRs/RH/SIG-SRE/ADR-00000 Template
+          - file: ADRs/RH/SIG-SRE/ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates
+          - file: ADRs/RH/SIG-SRE/ADR-00002 Personas related to Managed Services
+          - file: ADRs/RH/SIG-SRE/ADR-00004-Chaos-Testing-and-Engineering
+          - file: ADRs/RH/SIG-SRE/ADR-00005 SLO Lifecycle
+          - file: ADRs/RH/SIG-SRE/ADR-00006 SLO RACI Chart
+          - file: ADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy
+  - caption: Other Documents
+    chapters:
+      - file: sre_maturity

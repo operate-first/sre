@@ -1,0 +1,26 @@
+title: Operate First - Site Reliability Engineering
+author: SIG SRE
+copyright: "2022"
+logo: images/logo.png
+
+exclude_patterns: [_build, Thumbs.db, .DS_Store]
+only_build_toc_file: false
+
+execute:
+  execute_notebooks: force
+
+latex:
+  latex_documents:
+    targetname: book.tex
+
+repository:
+  url: https://github.com/operate-first/sre
+  #  path_to_book: ./
+  branch: master
+
+html:
+  favicon: images/favicon.png
+  use_issues_button: true
+  use_repository_button: true
+# bibtex_bibfiles:
+#   - references.bib

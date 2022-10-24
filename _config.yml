@@ -15,8 +15,8 @@ latex:
 
 repository:
   url: https://github.com/operate-first/sre
-  #  path_to_book: ./
-  branch: master
+  path_to_book: .
+  branch: main
 
 html:
   favicon: images/favicon.png

@@ -25,12 +25,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r courses/course-operate_first_intro/requirements.txt
+          pip install -r requirements.txt
 
       # Build the book
       - name: Build the book
         run: |
-          jupyter-book build courses/course-operate_first_intro/
+          jupyter-book build .
 
       # Push the book's HTML to github-pages
       - name: GitHub Pages action

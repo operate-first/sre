@@ -1,0 +1,1103 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Incident Management Process &#8212; Operate First - Site Reliability Engineering</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Picking Good SLIs" href="../picking_good_slis.html" />
+    <link rel="prev" title="SLO Bootstrap Guide" href="../slo_bootstrap_guide.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Operate First - Site Reliability Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Operate First - Site Reliability Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../sre-coloring-book/red-hat-sre-coloring-book.html">
+   Red Hat SRE coloring book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slo_bootstrap_guide.html">
+   SLO Bootstrap Guide
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Incident Management Process
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Metrics and Monitoring
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../picking_good_slis.html">
+   Picking Good SLIs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../picking_good_slos.html">
+   How to pick a good SLO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prometheus_alerting_consistency.html">
+   Prometheus Alerting Consistency
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Decision-Making
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ADRs/RH/SIG-SRE/README.html">
+   SIG-SRE
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ADRs/RH/SIG-SRE/ADR-00000%20Template.html">
+     ADR-00000 Template
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ADRs/RH/SIG-SRE/ADR-00001%20Document%20architecture%20decisions%20using%20the%20Architecture%20Decision%20Records%20approach%20and%20define%20their%20templates.html">
+     ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.html">
+     ADR-00002 Personas related to Managed Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ADRs/RH/SIG-SRE/ADR-00004-Chaos-Testing-and-Engineering.html">
+     ADR-00004 - Chaos Testing &amp; Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ADRs/RH/SIG-SRE/ADR-00005%20SLO%20Lifecycle.html">
+     ADR-00005 SLO Lifecycle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ADRs/RH/SIG-SRE/ADR-00006%20SLO%20RACI%20Chart.html">
+     ADR-00006 SLO RACI Chart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy.html">
+     ADR-00007 Error Budget Policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other Documents
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../sre_maturity.html">
+   SRE Maturity
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/operate-first/sre"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/operate-first/sre/issues/new?title=Issue%20on%20page%20%2Fprocess/incident_management.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/process/incident_management.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-reference-guide">
+   Quick reference guide
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#incidents">
+   Incidents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#roles-and-responsibilities">
+   Roles and Responsibilities
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incident-first-responder">
+     Incident First Responder
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initial-response">
+       Initial Response
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#minutes-later">
+       10 Minutes Later
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#first-responder-comments-reasoning">
+       First Responder Comments / Reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incident-owner">
+     Incident Owner
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#responsibilities">
+       Responsibilities
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incident-technical-lead">
+     Incident Technical Lead
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#technical-lead-responsibilities">
+       Technical Lead Responsibilities
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supporting-sre-parallel-investigator">
+     Supporting SRE / Parallel Investigator
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#supporting-sre-responsibilities">
+       Supporting SRE Responsibilities
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incident-commander">
+     Incident Commander
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#incident-commander-responsibilities">
+       Incident Commander Responsibilities
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#incident-commander-comments-reasoning">
+       Incident Commander Comments / Reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customer-support-lead">
+     Customer support Lead
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#after-incident-recovery">
+   After incident recovery
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#return-to-baseline">
+     Return to baseline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#root-cause-analysis">
+     Root Cause Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-mortem-review">
+   Post Mortem Review
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detailed-process-steps">
+   Detailed process steps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handoff">
+   Handoff
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Incident Management Process</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-reference-guide">
+   Quick reference guide
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#incidents">
+   Incidents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#roles-and-responsibilities">
+   Roles and Responsibilities
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incident-first-responder">
+     Incident First Responder
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initial-response">
+       Initial Response
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#minutes-later">
+       10 Minutes Later
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#first-responder-comments-reasoning">
+       First Responder Comments / Reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incident-owner">
+     Incident Owner
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#responsibilities">
+       Responsibilities
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incident-technical-lead">
+     Incident Technical Lead
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#technical-lead-responsibilities">
+       Technical Lead Responsibilities
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supporting-sre-parallel-investigator">
+     Supporting SRE / Parallel Investigator
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#supporting-sre-responsibilities">
+       Supporting SRE Responsibilities
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incident-commander">
+     Incident Commander
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#incident-commander-responsibilities">
+       Incident Commander Responsibilities
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#incident-commander-comments-reasoning">
+       Incident Commander Comments / Reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customer-support-lead">
+     Customer support Lead
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#after-incident-recovery">
+   After incident recovery
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#return-to-baseline">
+     Return to baseline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#root-cause-analysis">
+     Root Cause Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-mortem-review">
+   Post Mortem Review
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detailed-process-steps">
+   Detailed process steps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handoff">
+   Handoff
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="incident-management-process">
+<h1>Incident Management Process<a class="headerlink" href="#incident-management-process" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>The goal of this page is to document the incident management process.</p>
+<p>It aims at formalizing the roles of the different actors while working on a <strong>major</strong> incident, as well as describing the high level course of actions and mandatory steps that need to be taken to minimize MTTR (=Mean Time To Recover/Repair, so ensuring quick recovery of our services) and proper customer communication and satisfaction throughout the process.</p>
+<p>There can be multiple levels of severity for an incident depending on the impact it has. The process below would be used when the incident is considered to be a major incident. When the incident is a minor one then a lightweight ad-hoc process can be used. The goal being to make sure not to make the process too heavy for small incidents.</p>
+<p>A major outage can be defined when our platform is running out of error budget or when we start failing our SLOs.</p>
+<p>Examples of major incidents:</p>
+<ul class="simple">
+<li><p>Full outage or heavy degradation of one or multiple services impacting one or several customers</p></li>
+<li><p>Duration of the incident is greater than 4 hours</p></li>
+<li><p>Multiple layers and SRE teams are impacted (platform, application, …)</p></li>
+</ul>
+<p>Note that when a team has a path for fast recovery then they shouldn’t break it to fit that process if it’s not required.</p>
+</section>
+<section id="quick-reference-guide">
+<h2>Quick reference guide<a class="headerlink" href="#quick-reference-guide" title="Permalink to this headline">#</a></h2>
+<p>In case of a customer–impacting incident (persisting or intermittent degradation of customer–exposed functionality):</p>
+<ol class="simple">
+<li><p>The Incident First Responder is the first SRE being alerted of the issue and starting the investigation</p></li>
+<li><p>After initial investigation the First Responder involves the Incident Commander (by default a Region Lead but could be Team Lead or Manager) to help with the coordination of the recovery efforts</p>
+<ol class="simple">
+<li><p>First Responder opens the bridge call for that</p></li>
+</ol>
+</li>
+<li><p>The Incident Commander manages the communication and coordination around the recovery</p>
+<ol class="simple">
+<li><p>By creating a dedicated IM channel to record the audit trail of the incident resolution.</p></li>
+<li><p>Post a notification in the relevant channels for external awareness.</p></li>
+<li><p>By involving the right people to help and speed up the recovery process</p></li>
+<li><p>By ensuring a good communication with first level support and the customer</p></li>
+</ol>
+</li>
+<li><p>The incident is recovered</p></li>
+<li><p>The Incident Owner (usually the First Responder unless the Incident Commander picked someone else) is responsible for running and documenting the post mortem and root cause analysis and bring the incident to full closure.</p></li>
+</ol>
+</section>
+<section id="incidents">
+<h2>Incidents<a class="headerlink" href="#incidents" title="Permalink to this headline">#</a></h2>
+<p>An incident is an event that can occur at any time and which results in a degradation or outage of one or multiple of our services.</p>
+<p>An incident can be raised by a customer or directly by our monitoring and alerting systems, or directly by a member of the SRE team.</p>
+<p>Depending on the impact of the incident on the services and customers it will be categorized in terms of severity.</p>
+<p>As an SRE organization we should aim at:</p>
+<ul class="simple">
+<li><p>Minimizing the time it takes us to recover the service (MTTR)</p></li>
+<li><p>Improve Reliability of our services: i.e. having as few incidents as possible, optimizing prevention of incidents</p></li>
+<li><p>Having incidents with the least impact to our customers</p></li>
+<li><p>Catching incident occurrences through our automation (monitoring/alerting) before they are noticed by the customer</p></li>
+<li><p>Avoiding re-occurrences of similar incidents</p></li>
+<li><p>Minimizing the time to detect a potential incident (MTTA)</p></li>
+</ul>
+</section>
+<section id="roles-and-responsibilities">
+<h2>Roles and Responsibilities<a class="headerlink" href="#roles-and-responsibilities" title="Permalink to this headline">#</a></h2>
+<section id="incident-first-responder">
+<h3>Incident First Responder<a class="headerlink" href="#incident-first-responder" title="Permalink to this headline">#</a></h3>
+<p>Any SRE investigating a cluster issue becomes this, when they notice a <strong>problem with a cluster or a specific application</strong>  which:</p>
+<ul class="simple">
+<li><p>may be a <strong>customer–facing cluster having an issue impacting (degradation or outage)</strong></p></li>
+<li><p>or cause <strong>imminent major outage.</strong></p></li>
+</ul>
+<p>A major outage can be defined as one where our platform is running out of error budget and we start failing our SLOs.</p>
+<p>SRE teams have the concept of an on-duty shift person who is responsible for answering to alerts and incidents while the rest of the team is focusing on engineering work. These persons will usually be First Responders. Most often a shift Primary or Secondary become First Responders while investigating ongoing cases/alerts.</p>
+<section id="initial-response">
+<h4>Initial Response<a class="headerlink" href="#initial-response" title="Permalink to this headline">#</a></h4>
+<p>Before doing any further troubleshooting, First Responder must, in order:</p>
+<ol class="simple">
+<li><p><strong>Create a bridge.</strong></p></li>
+<li><p>Using IM, <strong>post a message in the relevant channels</strong> with:</p>
+<ul class="simple">
+<li><p>link to bridge,</p></li>
+<li><p>short description of issue (which service, what’s failing),</p></li>
+<li><p>your IM handle.
+Only now can you continue debugging while describing the problem to people joining the bridge.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="minutes-later">
+<h4>10 Minutes Later<a class="headerlink" href="#minutes-later" title="Permalink to this headline">#</a></h4>
+<p><strong>If</strong> 10 minutes after your announcement your <strong>region lead or manager haven’t joined</strong> the bridge and you haven’t managed to recover the service:</p>
+<ul class="simple">
+<li><p>halt any further technical work</p></li>
+<li><p><strong>pick an Incident Commander</strong> from among the SREs present.</p></li>
+</ul>
+<p>Only now can you continue debugging.</p>
+</section>
+<section id="first-responder-comments-reasoning">
+<h4>First Responder Comments / Reasoning<a class="headerlink" href="#first-responder-comments-reasoning" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><strong>The First Responder Protocol is the most important part.</strong></p></li>
+<li><p>It needs to be:</p>
+<ul>
+<li><p><strong>as short as possible</strong> – since everybody needs to know it by heart,</p></li>
+<li><p><strong>as simple and unambiguous as possible</strong> – because it needs to guarantee proper bootstrapping of the full Incident Management Process even by someone who’s still in training and accidentally stumbled upon a serious issue.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="incident-owner">
+<h3>Incident Owner<a class="headerlink" href="#incident-owner" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The Incident Owner is by default the First Responder</p></li>
+<li><p>The Incident Owner role is not handed over from one shift to the next and stays the same throughout the lifecycle of the incident unless the current owner doesn’t feel confident or can’t assume the role throughout the incident. In that case the role can be handed over and the handover needs to be fully documented and communicated to the wider team.</p></li>
+<li><p>The incident ticket is assigned to the Incident Owner</p></li>
+</ul>
+<section id="responsibilities">
+<h4>Responsibilities<a class="headerlink" href="#responsibilities" title="Permalink to this headline">#</a></h4>
+<p>The main responsibility of the Incident Owner is to assume the complete ownership of the incident from a technical standpoint:</p>
+<ul class="simple">
+<li><p>Understanding the course of the incident and its technical details from start to finish</p></li>
+<li><p>Organizing and driving the PMR meeting in the 5 business days after recovery</p></li>
+<li><p>Is accountable to ensure that full RCA documentation is written up and making sure it contains all the information with regards to primary and secondary corrective actions</p></li>
+<li><p>Being the main point of reference for the incident when there are follow-up questions about it</p></li>
+<li><p>Driving any follow-up activity linked to the incident owned</p></li>
+<li><p>Cleaning up after the incident is fully closed, like archiving the IM channel</p></li>
+</ul>
+<p>The owner of an incident is in charge of the lifecycle of the incident ticket that has been opened by either customer support, the monitoring or any other person who detected the incident until it’s closed. During the incident the “customer oriented” updates in the ticket are managed by the Incident Commander but once the incident is recovered then the ticket lifecycle (status update, attached PMR and RCA, …) are under the responsibility of the Incident Owner.</p>
+<p>The Incident Owner is also making sure that the Post Mortem Review (PMR) is organized with full Root Cause Analysis, that Action Items to avoid recurrence and to ensure proper countermeasures are being generated and tracked.</p>
+<p>The incident owner must make sure that the different action items from the PMR are being worked on and addressed in a timely fashion and so make sure that they are prioritized accordingly in the backlog of the functional teams.</p>
+</section>
+</section>
+<section id="incident-technical-lead">
+<h3>Incident Technical Lead<a class="headerlink" href="#incident-technical-lead" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The incident technical lead is by default the First Responder</p></li>
+<li><p>An Incident Technical Lead <strong>can be changed only by an <strong>explicit decision</strong> of the Incident Commander.</strong></p>
+<ul>
+<li><p>If you’re a First Responder, but don’t want to be the Lead, you must coordinate that change with the Incident Commander.</p></li>
+</ul>
+</li>
+</ul>
+<section id="technical-lead-responsibilities">
+<h4>Technical Lead Responsibilities<a class="headerlink" href="#technical-lead-responsibilities" title="Permalink to this headline">#</a></h4>
+<p>The technical lead of an incident is in charge of leading the technical investigation of the incident and make sure that it is recovered as quickly as possible.</p>
+<p>If the incident is not resolved at the end of the current shift then the Incident Tech Lead role gets handed over to the next shift, while Incident Owner is not.</p>
+<p>The Incident Tech Lead is responsible to contribute to the documentation of what happened in the RCA document and help the Incident Owner (if not self) to close any gaps in the overall management of the incident</p>
+<p>Summary:</p>
+<ul class="simple">
+<li><p>Is in charge of the investigation and recovery</p></li>
+<li><p>Role is handed over from one shift to the other until full resolution</p></li>
+<li><p>Helps the Incident Owner document the RCA and PMR Action Items.</p></li>
+</ul>
+</section>
+</section>
+<section id="supporting-sre-parallel-investigator">
+<h3>Supporting SRE / Parallel Investigator<a class="headerlink" href="#supporting-sre-parallel-investigator" title="Permalink to this headline">#</a></h3>
+<p>A parallel investigator is someone who will be involved hands-on in investigating and helping the fast recovery of the incident.
+A parallel investigator will get involved either by the Incident Commander or by any other members of the IM channel.</p>
+<section id="supporting-sre-responsibilities">
+<h4>Supporting SRE Responsibilities<a class="headerlink" href="#supporting-sre-responsibilities" title="Permalink to this headline">#</a></h4>
+<p>The investigators have the responsibility to describe the action they are taking in the dedicated IM channel to ensure that there is awareness on the steps being taken for the recovery of everyone involved in the process. This can also be done by someone else assisting in the investigation while the main investigator is busy with the recovery.</p>
+</section>
+</section>
+<section id="incident-commander">
+<h3>Incident Commander<a class="headerlink" href="#incident-commander" title="Permalink to this headline">#</a></h3>
+<p>The key element for this role is for the Incident Commander to be solely focused on “oiling the machinery” of incident recovery instead of participating in the hands-on resolution. In fact the main goal for the Incident Commander is to deal with the overall coordination overhead of the incident recovery, with a cool head, while the investigators are focused 100% on performing the recovery. This will allow faster recovery, better communication flows and fewer errors during the stress of the incident management.</p>
+<p>The Incident Commander can elect someone to be the “scribe” during the incident. The duty of the scribe is to report in the RCA document all the important information (technical details, timeline, …) while the Incident Commander is focused on helping with the coordination.</p>
+<section id="incident-commander-responsibilities">
+<h4>Incident Commander Responsibilities<a class="headerlink" href="#incident-commander-responsibilities" title="Permalink to this headline">#</a></h4>
+<p>The coordination work under the responsibility of the Incident Commander is as follows:</p>
+<ol class="simple">
+<li><p>If the incident has been uncovered by SRE and doesn’t have an existing “external” ticket then the Incident Commander will create a ticket to track the overall life of the incident.</p></li>
+<li><p>Right after the Incident Commander will create a dedicated IM channel:</p>
+<ul class="simple">
+<li><p>Making sure that we have a dedicated IM channel opened specifically for the ongoing incident</p>
+<ol class="simple">
+<li><p>Channel is public</p></li>
+<li><p>Naming convention for the IM channel should start with the ticket number and the clusterid if available.</p>
+<ul>
+<li><p>Example:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">[ticket-nb]-[clusterid]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[ticket-nb]-[service]</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The description of the IM channel should record:</p>
+<ul>
+<li><p>Incident Commander</p></li>
+<li><p>Incident Tech Lead</p></li>
+<li><p>Bridge link</p></li>
+<li><p>A small description of the issue</p></li>
+</ul>
+</li>
+<li><p>Making sure the right people are invited in the IM channel (including customer support if need be)</p></li>
+<li><p>Making sure that all communications and information flows are recorded in the IM channel (it will help with the Post Mortem Review process and making sure that we have the right timeline)</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Using IM, post a message to the relevant channel with:</p>
+<ul class="simple">
+<li><p><strong>link to bridge</strong></p></li>
+<li><p><strong>link to the dedicated IM channel (see point 2.)</strong></p></li>
+<li><p><strong>short description of issue (which cluster, what’s failing)</strong></p></li>
+</ul>
+</li>
+<li><p>Post an incident notification to the customer(s)</p></li>
+<li><p>Create right away the RCA document and ensure that it contains the relevant information which would record the high level timeline of events and help during handovers if the incident becomes a long running one.</p></li>
+<li><p>Designate the Incident Owner / confirm the First Responder will be that, announce it officially in the different channels, document it in the RCA document and assign the Incident ticket to the Incident Owner.</p></li>
+<li><p>Designate an Incident Technical Lead (on the first shift it will be the Incident Owner but then if the incident spans across multiple shifts this role will be handed over to the next)</p></li>
+<li><p>Publicly announce who is Incident Commander (IC) in the dedicated IM channel.</p></li>
+<li><p>Trigger on-call for the right groups that are needed for helping out with the recovery</p></li>
+<li><p>Making sure that regular updates are being given in the IM channel in addition to curated information for the customer.</p></li>
+<li><p>Provide executive summary of the ongoing state of the incident</p></li>
+</ol>
+</section>
+<section id="incident-commander-comments-reasoning">
+<h4>Incident Commander Comments / Reasoning<a class="headerlink" href="#incident-commander-comments-reasoning" title="Permalink to this headline">#</a></h4>
+<p>If half of each region is trained to be good at doing this, that’s enough to always get a great incident response no matter who the First Responder is.</p>
+</section>
+</section>
+<section id="customer-support-lead">
+<h3>Customer support Lead<a class="headerlink" href="#customer-support-lead" title="Permalink to this headline">#</a></h3>
+<p>The customer support lead is the person from our first level support organization who is going to handle the customer notification and communication throughout the duration of the incident, based on the information provided by the Incident Commander.</p>
+<p>When an incident is initially triggered or managed internally to SRE, meaning that it was not initiated by a customer request through Customer support and when this incident has an impact to the customer then the Incident Commander needs to ensure that the right representation from Customer Support is available in the bridge.</p>
+</section>
+</section>
+<section id="after-incident-recovery">
+<h2>After incident recovery<a class="headerlink" href="#after-incident-recovery" title="Permalink to this headline">#</a></h2>
+<p>Once our services are recovered and we are back in business then the following steps must happen:</p>
+<ul class="simple">
+<li><p>Incident ticket is updated accordingly by the Incident Owner</p></li>
+<li><p>The Customer support lead is in charge of making sure the right level of communication to the customer is sent.</p>
+<ul>
+<li><p>It is up to Customer support to decide if proactive communication is sent or not if the customer didn’t notice the issue</p></li>
+<li><p>If the incident was solely managed by an SRE team, without the involvement of Customer support then it is up to the Incident Commander to decide if proactive communication is sent or not if the customer didn’t notice the issue</p></li>
+</ul>
+</li>
+<li><p>The system is returned to baseline: the Incident Owner Lead is accountable to make it happen</p></li>
+<li><p>The Root Cause Analysis (RCA) is done: the Incident Owner is accountable to make it happen</p></li>
+<li><p>The Post Mortem Review (PMR) is scheduled and run by the Incident Owner in the next 5 business days</p></li>
+<li><p>That the above steps are being performed in a timely manner is verified by the Incident Commander.</p></li>
+</ul>
+<p>Templates for RCA and PMR documents can be found here.</p>
+<section id="return-to-baseline">
+<h3>Return to baseline<a class="headerlink" href="#return-to-baseline" title="Permalink to this headline">#</a></h3>
+<p>The recovery of an incident consists of making sure that there is no more impact to the customer using our services.
+But in some cases it means that the system is not yet fully back to its original desired state (loss of resilience, manual non persisted config change, …).
+So the return to baseline is the process that ensures that we are back in a nominal state with regards to the resilience of the service or its model driven configuration/state.
+NOTE: confirm monitoring has returned to baseline by ensuring any alert silences have been removed.
+This is the very next step after recovery of the service.</p>
+</section>
+<section id="root-cause-analysis">
+<h3>Root Cause Analysis<a class="headerlink" href="#root-cause-analysis" title="Permalink to this headline">#</a></h3>
+<p>Once the system is recovered and back to its nominal state then we shall ensure that we investigate and understand the root cause of the incident. This will allow us to make sure that we can find the best countermeasures or fixes to avoid re-occurrence. It has been found highly effective for the major roles within the incident to take a break after <strong>Return to baseline</strong> to refresh themselves and then return for a 30 minute scavenger hunt to produce the initial timeline. The point is to immediately explore, scope and shape the timeline using all available data as well as proposing drafts for follow up actions while the incident is still fresh in the minds of engineers.</p>
+</section>
+</section>
+<section id="post-mortem-review">
+<h2>Post Mortem Review<a class="headerlink" href="#post-mortem-review" title="Permalink to this headline">#</a></h2>
+<p>A post mortem review is mandatory after each major incident and should happen in the next 5 business days after recovery of the incident, while the events are still fresh in everybody’s mind.</p>
+<p><strong>Very important: the post mortem review is a blameless exercise. Human error is inevitable and our goal is always to find the right process and tooling. Focus on the objective facts of the event and offer constructive input to where we can improve.</strong></p>
+<p>The post mortem meeting should involve all internal parties who were involved in the recovery itself and should be scheduled publicly to allow anyone interested to join and listen in or contribute:</p>
+<ul class="simple">
+<li><p>[mandatory] The incident commander</p></li>
+<li><p>[mandatory] The incident technical lead</p></li>
+<li><p>[optional] Every SRE team members involved (as much as possible given the timezone constraints)</p>
+<ul>
+<li><p>The more brain power we have in the meeting the more likely we are to find the best countermeasures to avoid reoccurrence</p></li>
+</ul>
+</li>
+<li><p>[optional] The Customer Support lead</p></li>
+</ul>
+<p>The incident technical lead is the owner of the post mortem review meeting and is making sure that it contains the following:</p>
+<ul class="simple">
+<li><p>Executive summary with customer impact, severity, …</p></li>
+<li><p>Root Cause Analysis</p></li>
+<li><p>Timeline of events</p></li>
+<li><p>List of action items and countermeasures with</p>
+<ul>
+<li><p>Owner</p></li>
+<li><p>Criticality</p></li>
+<li><p>Target date for delivery</p></li>
+</ul>
+</li>
+</ul>
+<p>All action items and countermeasures should aim at (as much as possible):</p>
+<ul class="simple">
+<li><p>Avoid recurrence</p></li>
+<li><p>Fix root cause</p></li>
+<li><p>Improve monitoring and alerting by following best practices</p>
+<ul>
+<li><p>do not alert on edge cases, alert should be based on symptoms not root causes</p></li>
+</ul>
+</li>
+<li><p>Increase resiliency (being mindful of cost)</p></li>
+<li><p>Increase automated recovery (if it makes sense)</p></li>
+<li><p>Decrease MTTR in case of recurrence (documentation for instance, …)</p></li>
+<li><p><strong>Each action item must be tracked by a corresponding ticket in the SRE’s backlog so that its implementation can be prioritized and tracked by the SRE leads</strong></p></li>
+</ul>
+<p>Questionnaire to be answered during the PMR:</p>
+<ul class="simple">
+<li><p>How can we protect ourselves better from such an incident?</p></li>
+<li><p>How can we ensure that the issue does not reoccur?</p></li>
+<li><p>How can we recover quicker from such an incident?</p></li>
+<li><p>How can we identify the issue quicker?</p></li>
+</ul>
+</section>
+<section id="detailed-process-steps">
+<h2>Detailed process steps<a class="headerlink" href="#detailed-process-steps" title="Permalink to this headline">#</a></h2>
+<p>This section aims at presenting the steps that need to be taken in case of a new incident.</p>
+<p><img alt="flow chart" src="../_images/im_flowchart.png" /></p>
+</section>
+<section id="handoff">
+<h2>Handoff<a class="headerlink" href="#handoff" title="Permalink to this headline">#</a></h2>
+<p>Some major incidents will span shift handoff between regions. When this happens:</p>
+<ol class="simple">
+<li><p>Outgoing Incident Commander identifies an incoming Incident Commander</p></li>
+<li><p>Incoming Incident Commander identifies an incoming Incident Tech Lead, and any Supporting SRE engineers</p></li>
+<li><p>Outgoing incident personnel brief by incoming incident personnel at shift handoff. Be sure to include:</p>
+<ol class="simple">
+<li><p>Technical status of the issue</p></li>
+<li><p>List of open and eliminated hypothesis regarding root cause</p></li>
+<li><p>Time and content of the most recent customer update</p></li>
+<li><p>Communication channels in play, including: IM channel, tracking doc, conference bridge, and email thread</p></li>
+<li><p>Key support personnel / stakeholders outside SRE engaged in the incident</p></li>
+</ol>
+</li>
+</ol>
+<p>Note: Outgoing team members should disengage no later than 30 minutes after their region handoff time (handoff+30).</p>
+<p>Some example permitted activities after handoff+30:</p>
+<ul class="simple">
+<li><p>answer questions that were missed at handoff</p></li>
+<li><p>final updates to stakeholders to communicate handoff status</p></li>
+</ul>
+<p>Some example prohibited activities after handoff+30:</p>
+<ul class="simple">
+<li><p>any hands-on-keyboard SRE work</p></li>
+</ul>
+<p>The purpose of this guideline is to ensure only rested, clear-headed SREs are working on our Production systems, and to discourage burn-out.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./process"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../slo_bootstrap_guide.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">SLO Bootstrap Guide</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../picking_good_slis.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Picking Good SLIs</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By SIG SRE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates &#8212; Operate First - Site Reliability Engineering</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ADR-00002 Personas related to Managed Services" href="ADR-00002%20Personas%20related%20to%20Managed%20Services.html" />
+    <link rel="prev" title="ADR-00000 Template" href="ADR-00000%20Template.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Operate First - Site Reliability Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Operate First - Site Reliability Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../sre-coloring-book/red-hat-sre-coloring-book.html">
+   Red Hat SRE coloring book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../slo_bootstrap_guide.html">
+   SLO Bootstrap Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../process/incident_management.html">
+   Incident Management Process
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Metrics and Monitoring
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../picking_good_slis.html">
+   Picking Good SLIs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../picking_good_slos.html">
+   How to pick a good SLO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../prometheus_alerting_consistency.html">
+   Prometheus Alerting Consistency
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Decision-Making
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="README.html">
+   SIG-SRE
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00000%20Template.html">
+     ADR-00000 Template
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00002%20Personas%20related%20to%20Managed%20Services.html">
+     ADR-00002 Personas related to Managed Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00004-Chaos-Testing-and-Engineering.html">
+     ADR-00004 - Chaos Testing &amp; Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00005%20SLO%20Lifecycle.html">
+     ADR-00005 SLO Lifecycle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00006%20SLO%20RACI%20Chart.html">
+     ADR-00006 SLO RACI Chart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00007-Error-Budget-Policy.html">
+     ADR-00007 Error Budget Policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other Documents
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../sre_maturity.html">
+   SRE Maturity
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/operate-first/sre"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/operate-first/sre/issues/new?title=Issue%20on%20page%20%2FADRs/RH/SIG-SRE/ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/ADRs/RH/SIG-SRE/ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#status">
+   Status
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-statement">
+   Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals">
+   Goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-goals">
+   Non-goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#current-architecture">
+   Current Architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proposed-architecture">
+   Proposed Architecture
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adr-status-fields">
+     ADR Status Fields
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenges">
+   Challenges
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternatives-considered">
+   Alternatives Considered
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dependencies">
+   Dependencies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stakeholders">
+   Stakeholders
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#consequences-if-not-completed">
+   Consequences if Not Completed
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-status">
+   Review Status
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#status">
+   Status
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-statement">
+   Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals">
+   Goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-goals">
+   Non-goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#current-architecture">
+   Current Architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proposed-architecture">
+   Proposed Architecture
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adr-status-fields">
+     ADR Status Fields
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenges">
+   Challenges
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternatives-considered">
+   Alternatives Considered
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dependencies">
+   Dependencies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stakeholders">
+   Stakeholders
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#consequences-if-not-completed">
+   Consequences if Not Completed
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-status">
+   Review Status
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="adr-00001-document-architecture-decisions-using-the-architecture-decision-records-approach-and-define-their-templates">
+<h1>ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates<a class="headerlink" href="#adr-00001-document-architecture-decisions-using-the-architecture-decision-records-approach-and-define-their-templates" title="Permalink to this headline">#</a></h1>
+<p>Authors: Jeremy Eder</p>
+<section id="status">
+<h2>Status<a class="headerlink" href="#status" title="Permalink to this headline">#</a></h2>
+<p>Draft</p>
+</section>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this headline">#</a></h2>
+<p>We need to capture our architecture decisions for all of Red Hat’s SIG-SRE and consumers. This capture should make it easy for people to find a given decision and refer to it. The decision context should be captured so we can question that decision when changes arise.</p>
+</section>
+<section id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Capture key decisions</p></li>
+<li><p>Let the team rely on these decisions</p></li>
+<li><p>Capture decision context so we can revisit when context changes</p></li>
+<li><p>Be easily discoverable</p></li>
+</ul>
+</section>
+<section id="non-goals">
+<h2>Non-goals<a class="headerlink" href="#non-goals" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Does not aim at achieving perfection from the get go</p></li>
+</ul>
+</section>
+<section id="current-architecture">
+<h2>Current Architecture<a class="headerlink" href="#current-architecture" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>None</p></li>
+</ul>
+</section>
+<section id="proposed-architecture">
+<h2>Proposed Architecture<a class="headerlink" href="#proposed-architecture" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Embrace a well formed template for each Architecture Decision</p>
+<ul>
+<li><p><a class="reference internal" href="ADR-00000%20Template.html"><span class="doc std std-doc">[Template] Architecture Decision Record</span></a></p></li>
+</ul>
+</li>
+<li><p>Store each Architecture Decision Record (ADR) in <a class="reference external" href="https://github.com/operate-first/sre/tree/main/ADRs/RH/SIG-SRE">Operate First’s SRE repository</a>.</p></li>
+<li><p>Each Architecture Decision Record is named “ADR-nnnnn Some title”</p>
+<ul>
+<li><p>nnnnn is a quasi monotonic number assigned at ADR creation time</p></li>
+</ul>
+</li>
+<li><p>ADRs are immutable once their status moves to accepted</p></li>
+<li><p>ADRs can supersede preceding ADRs: this is how a decision is changed.</p></li>
+<li><p>No ADR once moved past Draft can be ‘deleted’ or ‘removed’.</p></li>
+<li><p>Drafts can be developed as pull requests or using gdocs. However once they reach Proposed, they must become PRs against the ADR repository.</p></li>
+</ul>
+<section id="adr-status-fields">
+<h3>ADR Status Fields<a class="headerlink" href="#adr-status-fields" title="Permalink to this headline">#</a></h3>
+<p>Expected life cycle for each ADR will be as follows:</p>
+<ol class="simple">
+<li><p><strong>Draft</strong>: An ADR in Draft indicates its a concept under consideration, being scoped, being written up. No action is expected from anyone other than the author, and there are no time pressures towards moving from the draft state.</p></li>
+<li><p><strong>Proposed</strong>: ADRs can move to the proposed state once a sponsor has signed up, and the ADR can then start to be socialized within the team / with PMs and with RFCs / RFEs can be scoped in.</p></li>
+<li><p><strong>Reviewing</strong>: Once moved to Reviewing state, the ADR must be brought to the SIG-SRE weekly call for consideration based on feedback already received. An ADR from this stage can either be moved back to the Proposed state, if gaps are identified or conversations need to be closed, or is Accepted / Rejected. And actions as follow-up should be executed.</p></li>
+<li><p><strong>Accepted</strong>: Once an ADR is ‘accepted’, it must be moved into read-only mode and no further changes are allowed.</p></li>
+<li><p><strong>Rejected</strong>: From the reviewing state, it’s possible to move ADRs to a rejected state if they do not align with goals, or if stakeholders have fundamental concerns.</p></li>
+<li><p><strong>Superseded</strong>: ADRs once they move to Accepted state can no longer be changed, since goals and execution is established. Changes would be implemented by replacement ADRs with the previous ADR being moved to ‘superseded’ state, and a comment being added into the ADR metadata itself indicating which ADR now supersedes this specific one. The general pattern to follow is the IETF RFC flow.</p></li>
+</ol>
+</section>
+</section>
+<section id="challenges">
+<h2>Challenges<a class="headerlink" href="#challenges" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Each existing decisions should be identified and recaptured as Architecture Decision Records (ADR)</p></li>
+<li><p>Since ADRs are numbered at creation time, it is possible that an ADR with a higher number is in effect before an ADR with a lower number. Shouldn’t be a problem as long as they don’t contradict (nor supersede) one another.</p></li>
+</ul>
+</section>
+<section id="alternatives-considered">
+<h2>Alternatives Considered<a class="headerlink" href="#alternatives-considered" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Google doc free form documents: are hard to be versioned, searched and made to be immutable</p></li>
+</ul>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="ADR-00000%20Template.html"><span class="doc std std-doc">[Template] Architecture Decision Record</span></a></p></li>
+<li><p>Architecture Decision Records directory</p></li>
+<li><p>Some materials on the concept of ADR</p>
+<ul>
+<li><p><a class="reference external" href="https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html">https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html</a></p></li>
+<li><p><a class="reference external" href="https://adr.github.io/">https://adr.github.io/</a></p></li>
+<li><p><a class="reference external" href="https://adr.github.io/madr/">https://adr.github.io/madr/</a></p></li>
+<li><p><a class="reference external" href="https://engineering.atspotify.com/2020/04/14/when-should-i-write-an-architecture-decision-record/">https://engineering.atspotify.com/2020/04/14/when-should-i-write-an-architecture-decision-record/</a></p></li>
+<li><p>Note that we are deviating from these descriptions in some areas (including the template)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="stakeholders">
+<h2>Stakeholders<a class="headerlink" href="#stakeholders" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>SIG-SRE and other SRE and engineering teams contributing to these ADRs will consume (and generate) these Architecture Decision Records</p></li>
+<li><p>Engineering Management and Product Management personas putting requirements on SRE teams</p></li>
+<li><p>SIG-SRE workstream leads are the caretakers of these Architecture Decision Records and are Approvers of all ADR PRs</p></li>
+</ul>
+</section>
+<section id="consequences-if-not-completed">
+<h2>Consequences if Not Completed<a class="headerlink" href="#consequences-if-not-completed" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Ad-hoc decision recording that might be hard to find</p></li>
+<li><p>Non-decisions slowing down the team progress</p></li>
+</ul>
+</section>
+<section id="review-status">
+<h2>Review Status<a class="headerlink" href="#review-status" title="Permalink to this headline">#</a></h2>
+<p>Proposition is circulated to internal stakeholders.</p>
+<p>Status to converge within a week to accept unless concerns are arisen.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ADRs/RH/SIG-SRE"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ADR-00000%20Template.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ADR-00000 Template</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ADR-00002%20Personas%20related%20to%20Managed%20Services.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ADR-00002 Personas related to Managed Services</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By SIG SRE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

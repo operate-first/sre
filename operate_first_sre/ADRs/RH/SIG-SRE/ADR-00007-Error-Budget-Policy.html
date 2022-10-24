@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ADR-00007 Error Budget Policy &#8212; Operate First - Site Reliability Engineering</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SRE Maturity" href="../../../sre_maturity.html" />
+    <link rel="prev" title="ADR-00006 SLO RACI Chart" href="ADR-00006%20SLO%20RACI%20Chart.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Operate First - Site Reliability Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Operate First - Site Reliability Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../sre-coloring-book/red-hat-sre-coloring-book.html">
+   Red Hat SRE coloring book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../slo_bootstrap_guide.html">
+   SLO Bootstrap Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../process/incident_management.html">
+   Incident Management Process
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Metrics and Monitoring
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../picking_good_slis.html">
+   Picking Good SLIs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../picking_good_slos.html">
+   How to pick a good SLO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../prometheus_alerting_consistency.html">
+   Prometheus Alerting Consistency
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Decision-Making
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="README.html">
+   SIG-SRE
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00000%20Template.html">
+     ADR-00000 Template
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00001%20Document%20architecture%20decisions%20using%20the%20Architecture%20Decision%20Records%20approach%20and%20define%20their%20templates.html">
+     ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00002%20Personas%20related%20to%20Managed%20Services.html">
+     ADR-00002 Personas related to Managed Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00004-Chaos-Testing-and-Engineering.html">
+     ADR-00004 - Chaos Testing &amp; Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00005%20SLO%20Lifecycle.html">
+     ADR-00005 SLO Lifecycle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADR-00006%20SLO%20RACI%20Chart.html">
+     ADR-00006 SLO RACI Chart
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ADR-00007 Error Budget Policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other Documents
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../sre_maturity.html">
+   SRE Maturity
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/operate-first/sre"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/operate-first/sre/issues/new?title=Issue%20on%20page%20%2FADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/ADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#status">
+   Status
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-statement">
+   Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals">
+   Goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-goals">
+   Non-goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#current-architecture">
+   Current Architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proposed-architecture">
+   Proposed Architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#error-budget-policy-draft">
+   Error Budget Policy (draft)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#service">
+     Service
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definitions">
+     Definitions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aim">
+     Aim
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scope">
+     Scope
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#out-of-scope">
+     Out-of-Scope
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#current-status">
+     Current Status
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-making-principles">
+     Decision Making Principles
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#short-term">
+       Short-term
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#long-term">
+       Long-Term
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#weekly-team-uptime-review">
+       Weekly Team Uptime Review
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#monthly-uptime-review">
+       Monthly Uptime Review
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#escalation-process">
+     Escalation Process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exception-process">
+     Exception Process
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenges">
+   Challenges
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternatives-considered">
+   Alternatives Considered
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dependencies">
+   Dependencies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stakeholders">
+   Stakeholders
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#consequences-if-not-completed">
+   Consequences if Not Completed
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ADR-00007 Error Budget Policy</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#status">
+   Status
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-statement">
+   Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals">
+   Goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-goals">
+   Non-goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#current-architecture">
+   Current Architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proposed-architecture">
+   Proposed Architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#error-budget-policy-draft">
+   Error Budget Policy (draft)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#service">
+     Service
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definitions">
+     Definitions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aim">
+     Aim
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scope">
+     Scope
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#out-of-scope">
+     Out-of-Scope
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#current-status">
+     Current Status
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-making-principles">
+     Decision Making Principles
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#short-term">
+       Short-term
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#long-term">
+       Long-Term
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#weekly-team-uptime-review">
+       Weekly Team Uptime Review
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#monthly-uptime-review">
+       Monthly Uptime Review
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#escalation-process">
+     Escalation Process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exception-process">
+     Exception Process
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenges">
+   Challenges
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternatives-considered">
+   Alternatives Considered
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dependencies">
+   Dependencies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stakeholders">
+   Stakeholders
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#consequences-if-not-completed">
+   Consequences if Not Completed
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="adr-00007-error-budget-policy">
+<h1>ADR-00007 Error Budget Policy<a class="headerlink" href="#adr-00007-error-budget-policy" title="Permalink to this headline">#</a></h1>
+<p>Authors: Craig Robinson</p>
+<section id="status">
+<h2>Status<a class="headerlink" href="#status" title="Permalink to this headline">#</a></h2>
+<p>Draft</p>
+</section>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this headline">#</a></h2>
+<p>A fundamental tenet of Site Reliability Engineering is to maximise customer satisfaction, not only through the function that a service provides, but also through its stability (aka reliability). This stability is measured through an SLO (Service Level Objective).</p>
+<p>This “SLO miss” can be referred to as the “error budget”. The error budget can be described as the amount of “error” that a system can withstand without having a negative effect on the service, most notably, the customers “experience” of the service. Mathematically, it is often described as the inverse of the SLO: that is, as an example, there is an SLO target of 99.9% (3 nines) then the error budget is 0.1%. It can also be referred to as a measure of time (e.g. the error budget is 4 minutes per month).</p>
+<p>For an SLO to be effective, it needs to have consequences. That is:</p>
+<p>“What happens when we consume all our error budget?”</p>
+<p>In many organisations, this question is often answered through the existence of a document, backed by a process, that can be called an “Error Budget Policy”.</p>
+</section>
+<section id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">#</a></h2>
+<p>The aim of this ADR is to provide a template, with some rationale, for an example Error Budget Policy.</p>
+</section>
+<section id="non-goals">
+<h2>Non-goals<a class="headerlink" href="#non-goals" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>This ADR does not aim at providing a definitive policy. The intention would be that consumers of this document would be able to take this example, based on the lessons learned from SRE teams already experienced in the running of services, and mold it to their own experience. It is purposefully generalised.</p></li>
+</ul>
+</section>
+<section id="current-architecture">
+<h2>Current Architecture<a class="headerlink" href="#current-architecture" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>An analysis of a number of existing Error Budget Policies was conducted, identifying the commonalities and the differences. The best practices articulated in this document was a synthesis of these sources.</p></li>
+</ul>
+</section>
+<section id="proposed-architecture">
+<h2>Proposed Architecture<a class="headerlink" href="#proposed-architecture" title="Permalink to this headline">#</a></h2>
+<p>The proposed content is as follows:</p>
+</section>
+<hr class="docutils" />
+<section id="error-budget-policy-draft">
+<h2>Error Budget Policy (draft)<a class="headerlink" href="#error-budget-policy-draft" title="Permalink to this headline">#</a></h2>
+<p>Service Name: &lt;Service/s Name&gt;</p>
+<section id="service">
+<h3>Service<a class="headerlink" href="#service" title="Permalink to this headline">#</a></h3>
+<p>&lt;Briefly describe the service/s under the scope of this document.&gt;</p>
+</section>
+<section id="definitions">
+<h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><em>SLI</em>: The Service Level Indicator is the carefully-considered measure for an aspect of the service that is considered necessary to its function (e.g. the login screen should be available).</p></li>
+<li><p><em>SLO</em>: The Service Level Objective is the desired target for the aspect measured by an SLI (e.g. the login screen should be available for 99% of the time).</p></li>
+<li><p><em>Error Budget</em>:  The Error budget is one of the fundamental metrics for service reliability. It is the measure of how much a service can be unreliable (e.g. fail) without impacting customers. Error budgets are always based on SLOs.</p></li>
+<li><p><em>SLO miss</em>: The state where the error budget has been consumed, and the level of service is not acceptable to the service owner.</p></li>
+<li><p><em>Burn rate</em>: The speed you are consuming your error budget. For example, consuming 100% of the error budget in the expected period (for 30 days period - 30 days), consuming 200% of the error budget in the expected period (for 30 days period - 15 days). This should be used for SLO-based alerting.</p></li>
+<li><p><em>Reliability Work</em>: The work that is needed to recover the service from an “SLO miss” state.</p></li>
+<li><p><em>Feature Work</em>: The work that is done to provide the features and functionality that is needed by that service.</p></li>
+</ul>
+</section>
+<section id="aim">
+<h3>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">#</a></h3>
+<p>There are many inputs which affect the prioritization of work. The reliability of a service is a significant, but not the only, input to this process. The Error Budget is the primary metric that is used to inform the decision makers of issues that affect the reliability of a service, and by inference, the satisfaction of the customer with that service.</p>
+<p>The questions that this is aiming to help answer is:</p>
+<ul class="simple">
+<li><p>“What do we need to do now that the error budget is all gone?”</p></li>
+<li><p>“How do we detect the early signs of system degradation, and what automated mechanisms do we have in place to intercept them?”</p></li>
+</ul>
+</section>
+<section id="scope">
+<h3>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">#</a></h3>
+<p>The scope of this policy is limited to: &lt;service&gt;.</p>
+<p>The SLOs for this &lt;service&gt; are defined &lt;here&gt; (link to SLO definitions document).</p>
+</section>
+<section id="out-of-scope">
+<h3>Out-of-Scope<a class="headerlink" href="#out-of-scope" title="Permalink to this headline">#</a></h3>
+<p>The scope of this policy does not apply to: &lt;service/aspect-of-service&gt;.</p>
+</section>
+<section id="current-status">
+<h3>Current Status<a class="headerlink" href="#current-status" title="Permalink to this headline">#</a></h3>
+<p>The SLOs for this service are tracked via &lt;this&gt; dashboard (link to dashboard or visualization of SLOs).</p>
+</section>
+<section id="decision-making-principles">
+<h3>Decision Making Principles<a class="headerlink" href="#decision-making-principles" title="Permalink to this headline">#</a></h3>
+<section id="short-term">
+<h4>Short-term<a class="headerlink" href="#short-term" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>If the service has any remaining error budget for each SLO, releases (feature work) can proceed.</p></li>
+<li><p>If the service has any remaining error budget for each SLO, but some anticipated “risky” work is scheduled (e.g. load tests) which may rapidly consume the remaining budget, then a risk assessment needs to be done, and a decision made as to whether this work should continue or not and/or feature work needs to be stopped.</p></li>
+<li><p>If the service has consumed more than the allowed error budget for at least one SLO, all releases will stop except for security fixes and the work needed to recover from the “SLO miss” state (reliability work).</p>
+<ul>
+<li><p>However, if the error budget was consumed by miscategorised errors (false positives e.g. due to imperfect SLI implementation) and no customers were impacted, releases may continue. A bug for the miscategorisation must be prioritized and fixed as soon as possible.</p></li>
+<li><p>As the error budget is only one of the inputs, an exception process is available to enable the continuation of feature work at the discretion of the service owner (business).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="long-term">
+<h4>Long-Term<a class="headerlink" href="#long-term" title="Permalink to this headline">#</a></h4>
+<p>The following table is adapted from the <a class="reference external" href="https://sre.google/workbook/implementing-slos/#decision-making-using-slos-and-error-budgets">“Implementing SLOs”</a> chapter in <a class="reference external" href="https://sre.google/workbook/table-of-contents/">The Site Reliability Workbook</a>. The intention is to use it for reviewing and being accountable to SLOs on a regular cadence. The inputs to this table are:</p>
+<ul class="simple">
+<li><p>Performance against SLO (were the current SLOs met or not)?</p></li>
+<li><p>The amount of toil required to operate the service (Measured in terms of responding to alerts, manual work &amp; customer reported issues from CEE)?</p></li>
+<li><p>The level of customer satisfaction with the service (Measured by customer tickets and any direct customer engagement from the Business)?</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span> <span class="na">colspan</span><span class="o">=</span><span class="s">&quot;3&quot;</span> <span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>INPUTS<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span> <span class="na">colspan</span><span class="o">=</span><span class="s">&quot;2&quot;</span> <span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>ACTIONS<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>SLO<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Level of Toil/Effort<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Customer Satisfaction <span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Considered Action<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>&quot;Feature&quot; vs. &quot;Reliability&quot; Balance<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Met<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>No action suggested.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Focus on &quot;feature work&quot;.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Met<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Focus on reducing toil - especially eliminating false positives.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Balance the velocity of &quot;reliability work&quot; vs. &quot;feature work&quot; based on all inputs, <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>considering the effect on the SRE team and the risk of error.<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Met<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>If there is no SLO reflecting customer dissatisfaction, create it if appropriate.<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>If an SLO exists, then review based on customer feedback.<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Fix the Service if needed.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Stop &quot;feature work&quot; and focus on &quot;reliability work&quot; to resolve the customer satisfaction problem as the priority.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Met<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>If there is no SLO reflecting customer dissatisfaction, create it if appropriate.<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>If an SLO exists, then review based on customer feedback.<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Fix the Service if needed.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Stop &quot;feature work&quot; and focus on &quot;reliability work&quot; to resolve the customer satisfaction problem as the priority.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Not Met<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Review the SLO. It is likely a false positive and needs to be adjusted (or even deleted).<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Focus on &quot;feature work&quot;. However, fixing the SLO is a priority, as it may hide actual issues.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Not Met<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Review the SLO. It could be a false positive and needs to be adjusted (or even deleted). If this is causing toil for another team then fix it.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Balance the velocity of &quot;reliability work&quot; vs. &quot;feature work&quot; based on all inputs, <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>considering the effect on the affected teams and the risk of error.<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Not Met<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>If there is no SLO reflecting customer dissatisfaction, create it if appropriate.<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>If an SLO exists, then review based on customer feedback.<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Fix the Service if needed.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Focus on &quot;reliability work&quot; to resolve the customer satisfaction problem.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Not Met<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Offload toil and fix product and/or improve automated fault mitigation.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Stop &quot;feature work&quot; and focus on &quot;reliability work&quot; to resolve the customer satisfaction problem.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>i### Review Cadence</p>
+<p>It is absolutely necessary to setup a cadence for a regular review of the state of the error budget consumption at any point in time. The following is an example of what would be considered the minimum viable cadence required to keep on top of “burning” error budget. These meetings are an essential part of the “Iteration” phase as described in the <a class="reference external" href="https://github.com/operate-first/sre/pull/13">SLO Lifecycle ADR</a>. The reviews refer to these <a class="reference external" href="https://github.com/operate-first/sre/blob/main/ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.md">personas</a>.</p>
+</section>
+<section id="weekly-team-uptime-review">
+<h4>Weekly Team Uptime Review<a class="headerlink" href="#weekly-team-uptime-review" title="Permalink to this headline">#</a></h4>
+<p>The team/s (SRE/Engineering) responsible for the services need to collaboratively review the availability of the services on a regular basis. As per many typical engineering processes that have been well established, this can, and should, include regular sprint reviews (standups) and retrospectives. However, it has proven very beneficial to have a regular (e.g. weekly) review between, at least, SRE and engineering (but also possibly including the Product Owner). SRE, for example, are typically those who first identify that the error budget has been consumed, or is being consumed. At this meeting, they have the opportunity to inform the engineering team. If the error budget consumption coincides with an incident, this is often in the form of an RCA (Root Cause Analysis) document. The engineering team receive this information, and in close collaboration with the Product Owner, they can prioritise the rectification of the issue/s.</p>
+<p>Note: this regular weekly meeting does not replace the need for urgent action required in the case of a significant incident. It is expected that, at these times, ad-hoc review meetings can be called to expedite the resolution.</p>
+</section>
+<section id="monthly-uptime-review">
+<h4>Monthly Uptime Review<a class="headerlink" href="#monthly-uptime-review" title="Permalink to this headline">#</a></h4>
+<p>The weekly review meeting focuses on rapidly identifying issues to mitigate burning error budget as quickly as possible. However, as SLOs are often measured monthly, it is also beneficial to review the SLO performance on a monthly basis. The focus for this review is identifying trends over this longer time period. This is particularly useful in identifying SLOs that may need to be revised (for example, they are set to low or to high, or, they may be false alerts).</p>
+</section>
+</section>
+<section id="escalation-process">
+<h3>Escalation Process<a class="headerlink" href="#escalation-process" title="Permalink to this headline">#</a></h3>
+<p>If, during one of these review meetings, that an “SLO miss” is declared, then it may be an advantage to have a defined process that best enables the resolution of the issue causing the miss. That is, it can be “escalated” through the appropriate channels. The following is an example of an escalation process for this situation.</p>
+<p>This event is typically captured during one of the SLO review meetings mentioned previously, but is not constrained to that. An escalation can be triggered at any time, and by any stakeholder. An obvious example of that is when an “incident” is declared, often coinciding with a serious indication of error budget depletion. In these cases, an “incident management process” is often triggered, with its own process and deliverables (e.g. a postmortem).</p>
+<p>If any service team exceeds their error budget for a given time period (e.g. monthly), the following steps need to be taken to address the breakage in alignment with stakeholders. For the purposes of this process, these <a class="reference external" href="https://github.com/operate-first/sre/blob/main/ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.md">personas</a> are assumed:</p>
+<ol class="simple">
+<li><p>A “SLO miss” is declared (by anyone, but typically by SRE), and an “owner” is identified.</p></li>
+<li><p>The owner (initially a SRE lead or Manager) meets with the team to declare the start of the rectification process. The root cause should be tracked (even if it is not yet fully determined). At a minimum, it should include:</p>
+<ul class="simple">
+<li><p>Problem description</p></li>
+<li><p>Impact on the team, end users and stakeholders</p></li>
+<li><p>If there is a manual workaround, then the impact on the SRE team, and a risk assessment.</p></li>
+</ul>
+</li>
+<li><p>The owner informs the stakeholders. This would typically include:</p>
+<ul class="simple">
+<li><p>An email to a team or project mailing list.</p></li>
+<li><p>Announcement at a program call.</p></li>
+</ul>
+</li>
+<li><p>The Product Manager takes into consideration all the inputs and prioritizes the work, balancing “feature work” and “reliability work” as appropriate.</p></li>
+<li><p>The owner role transitions to Engineering (Lead or Manager).</p></li>
+<li><p>The team meets regularly to track the progress and make any adjustments as necessary.</p></li>
+<li><p>The team regularly update about the event status on the program call and in other venues as agreed.</p></li>
+<li><p>Once the issue has been addressed, the coordinator informs the stakeholders that this issue is resolved.</p></li>
+</ol>
+</section>
+<section id="exception-process">
+<h3>Exception Process<a class="headerlink" href="#exception-process" title="Permalink to this headline">#</a></h3>
+<p>In a scenario where there is a “SLO miss” that is affecting customers (i.e. valid), and, de-prioritizing committed work is not acceptable to stakeholders, a decision needs to be made between these two opposing options:</p>
+<ol class="simple">
+<li><p>De-prioritizing the previously committed work (“feature work”), in favor of “reliability” work.</p></li>
+<li><p>Accepting the current impact on the customer/s and lowering the SLO for the service in question (I.e. effectively reducing the SLA).</p></li>
+</ol>
+<p>Decision #2 is a valid response and it is a knob that can be tuned (together with stakeholders) to get the right balance between feature velocity and service reliability. Choosing this path should trigger an “Exception Process”, which is handled on a case-by-case basis. This process is essentially about documenting the decision that the stakeholders have chosen, together.</p>
+<p>The following is an example of such a process (for the purposes of this process, these <a class="reference external" href="https://github.com/operate-first/sre/blob/main/ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.md">personas</a> are assumed):</p>
+<ol class="simple">
+<li><p>The Product Manager is best placed to assess all the inputs and propose the exception. The persona becomes the owner of this process, and they document the inputs affecting the decision and the cons of not doing #1 and proposing #2. JIRA is a good</p></li>
+<li><p>The Product Manager organizes a meeting with the key internal stakeholders and presents the document. The decision is ratified.</p></li>
+<li><p>The Product Manager notifies the broader stakeholders. This would typically include:</p>
+<ul class="simple">
+<li><p>An email to a team or project mailing list.</p></li>
+<li><p>Announcement at a program call.</p></li>
+</ul>
+</li>
+<li><p>The team meets regularly to track the progress and make any adjustments as necessary.</p></li>
+<li><p>The item is tracked on a program call or similar venue as agreed.</p></li>
+<li><p>Once the issue has been addressed, the Product Manager announces the closure of the exception.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="challenges">
+<h2>Challenges<a class="headerlink" href="#challenges" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Every organisation has their own structure and processes. This document is not designed to override these, but is offered as a resource to be adapted.</p></li>
+</ul>
+</section>
+<section id="alternatives-considered">
+<h2>Alternatives Considered<a class="headerlink" href="#alternatives-considered" title="Permalink to this headline">#</a></h2>
+<p>Google has published a sample <a class="reference external" href="https://sre.google/workbook/error-budget-policy/">Error Budget Policy</a> which was also considered in the building of this document. There are many common concepts which are shared in both documents.</p>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">#</a></h2>
+<p>There are no dependencies.</p>
+</section>
+<section id="stakeholders">
+<h2>Stakeholders<a class="headerlink" href="#stakeholders" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Relevant SIG-SRE members who are dependent on the content in this document.</p></li>
+<li><p>Consumers of this document, especially those teams currently building services and considering the questions around SLOs and their consequences.</p></li>
+</ul>
+</section>
+<section id="consequences-if-not-completed">
+<h2>Consequences if Not Completed<a class="headerlink" href="#consequences-if-not-completed" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>This ADR is a good example of an Error Budget Policy. If this was not completed, then those teams considering these issues would not have this resource to base their efforts upon. It is a good starting place.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ADRs/RH/SIG-SRE"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ADR-00006%20SLO%20RACI%20Chart.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ADR-00006 SLO RACI Chart</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../../sre_maturity.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SRE Maturity</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By SIG SRE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

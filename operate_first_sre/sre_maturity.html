@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>SRE Maturity &#8212; Operate First - Site Reliability Engineering</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="ADR-00007 Error Budget Policy" href="ADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Operate First - Site Reliability Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Operate First - Site Reliability Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="sre-coloring-book/red-hat-sre-coloring-book.html">
+   Red Hat SRE coloring book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slo_bootstrap_guide.html">
+   SLO Bootstrap Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="process/incident_management.html">
+   Incident Management Process
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Metrics and Monitoring
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="picking_good_slis.html">
+   Picking Good SLIs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="picking_good_slos.html">
+   How to pick a good SLO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prometheus_alerting_consistency.html">
+   Prometheus Alerting Consistency
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Decision-Making
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="ADRs/RH/SIG-SRE/README.html">
+   SIG-SRE
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00000%20Template.html">
+     ADR-00000 Template
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00001%20Document%20architecture%20decisions%20using%20the%20Architecture%20Decision%20Records%20approach%20and%20define%20their%20templates.html">
+     ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.html">
+     ADR-00002 Personas related to Managed Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00004-Chaos-Testing-and-Engineering.html">
+     ADR-00004 - Chaos Testing &amp; Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00005%20SLO%20Lifecycle.html">
+     ADR-00005 SLO Lifecycle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00006%20SLO%20RACI%20Chart.html">
+     ADR-00006 SLO RACI Chart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy.html">
+     ADR-00007 Error Budget Policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other Documents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   SRE Maturity
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/operate-first/sre"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/operate-first/sre/issues/new?title=Issue%20on%20page%20%2Fsre_maturity.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/sre_maturity.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#people-and-culture">
+   People and Culture
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#people-and-culture-phase-1-the-crawl-phase">
+     People and Culture - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#people-and-culture-phase-2-the-walk-phase">
+     People and Culture - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#people-and-culture-phase-3-the-run-phase">
+     People and Culture - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#observability">
+   Observability
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observability-phase-1-the-crawl-phase">
+     Observability - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observability-phase-2-the-walk-phase">
+     Observability - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observability-phase-3-the-run-phase">
+     Observability - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#on-call-escalations-and-incidents">
+   On Call, Escalations and Incidents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#on-call-escalations-and-incidents-phase-1-the-crawl-phase">
+     On Call, Escalations and Incidents - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#on-call-escalations-and-incidents-phase-2-the-walk-phase">
+     On Call, Escalations and Incidents - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#on-call-escalations-and-incidents-phase-3-the-run-phase">
+     On Call, Escalations and Incidents - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#failures">
+   Failures
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#failures-phase-1-the-crawl-phase">
+     Failures - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#failures-phase-2-the-walk-phase">
+     Failures - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#failures-phase-3-the-run-phase">
+     Failures - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#security">
+   Security
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#security-phase-1-the-crawl-phase">
+     Security - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#security-phase-2-the-walk-phase">
+     Security - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#security-phase-3-the-run-phase">
+     Security - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#room-to-improve">
+   Room to improve
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#room-to-improve-phase-1-the-crawl-phase">
+     Room to improve - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#room-to-improve-phase-2-the-walk-phase">
+     Room to improve - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#room-to-improve-phase-3-the-run-phase">
+     Room to improve - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#releasing">
+   Releasing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#releasing-phase-1-the-crawl-phase">
+     Releasing - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#releasing-phase-2-the-walk-phase">
+     Releasing - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#releasing-phase-3-the-run-phase">
+     Releasing - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>SRE Maturity</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#people-and-culture">
+   People and Culture
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#people-and-culture-phase-1-the-crawl-phase">
+     People and Culture - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#people-and-culture-phase-2-the-walk-phase">
+     People and Culture - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#people-and-culture-phase-3-the-run-phase">
+     People and Culture - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#observability">
+   Observability
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observability-phase-1-the-crawl-phase">
+     Observability - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observability-phase-2-the-walk-phase">
+     Observability - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observability-phase-3-the-run-phase">
+     Observability - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#on-call-escalations-and-incidents">
+   On Call, Escalations and Incidents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#on-call-escalations-and-incidents-phase-1-the-crawl-phase">
+     On Call, Escalations and Incidents - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#on-call-escalations-and-incidents-phase-2-the-walk-phase">
+     On Call, Escalations and Incidents - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#on-call-escalations-and-incidents-phase-3-the-run-phase">
+     On Call, Escalations and Incidents - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#failures">
+   Failures
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#failures-phase-1-the-crawl-phase">
+     Failures - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#failures-phase-2-the-walk-phase">
+     Failures - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#failures-phase-3-the-run-phase">
+     Failures - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#security">
+   Security
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#security-phase-1-the-crawl-phase">
+     Security - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#security-phase-2-the-walk-phase">
+     Security - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#security-phase-3-the-run-phase">
+     Security - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#room-to-improve">
+   Room to improve
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#room-to-improve-phase-1-the-crawl-phase">
+     Room to improve - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#room-to-improve-phase-2-the-walk-phase">
+     Room to improve - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#room-to-improve-phase-3-the-run-phase">
+     Room to improve - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#releasing">
+   Releasing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#releasing-phase-1-the-crawl-phase">
+     Releasing - Phase 1: The ‘Crawl’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#releasing-phase-2-the-walk-phase">
+     Releasing - Phase 2: The ‘Walk’ Phase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#releasing-phase-3-the-run-phase">
+     Releasing - Phase 3: The ‘Run’ Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="sre-maturity">
+<h1>SRE Maturity<a class="headerlink" href="#sre-maturity" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="#people-and-culture">People and Culture</a></p>
+<ul>
+<li><p><a class="reference external" href="#people-and-culture---phase-1-the-crawl-phase">People and Culture - Phase 1: The ‘Crawl’ Phase</a></p></li>
+<li><p><a class="reference external" href="#people-and-culture---phase-2-the-walk-phase">People and Culture - Phase 2: The ‘Walk’ Phase</a></p></li>
+<li><p><a class="reference external" href="#people-and-culture---phase-3-the-run-phase">People and Culture - Phase 3: The ‘Run’ Phase</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#observability">Observability</a></p>
+<ul>
+<li><p><a class="reference external" href="#observability---phase-1-the-crawl-phase">Observability - Phase 1: The ‘Crawl’ Phase</a></p></li>
+<li><p><a class="reference external" href="#observability---phase-2-the-walk-phase">Observability - Phase 2: The ‘Walk’ Phase</a></p></li>
+<li><p><a class="reference external" href="#observability---phase-3-the-run-phase">Observability - Phase 3: The ‘Run’ Phase</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#on-call-escalations-and-incidents">On Call, Escalations and Incidents</a></p>
+<ul>
+<li><p><a class="reference external" href="#on-call-escalations-and-incidents---phase-1-the-crawl-phase">On Call, Escalations and Incidents - Phase 1: The ‘Crawl’ Phase</a></p></li>
+<li><p><a class="reference external" href="#on-call-escalations-and-incidents---phase-2-the-walk-phase">On Call, Escalations and Incidents - Phase 2: The ‘Walk’ Phase</a></p></li>
+<li><p><a class="reference external" href="#on-call-escalations-and-incidents---phase-3-the-run-phase">On Call, Escalations and Incidents - Phase 3: The ‘Run’ Phase</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#failures">Failures</a></p>
+<ul>
+<li><p><a class="reference external" href="#failures---phase-1-the-crawl-phase">Failures - Phase 1: The ‘Crawl’ Phase</a></p></li>
+<li><p><a class="reference external" href="#failures---phase-2-the-walk-phase">Failures - Phase 2: The ‘Walk’ Phase</a></p></li>
+<li><p><a class="reference external" href="#failures---phase-3-the-run-phase">Failures - Phase 3: The ‘Run’ Phase</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#security">Security</a></p>
+<ul>
+<li><p><a class="reference external" href="#security---phase-1-the-crawl-phase">Security - Phase 1: The ‘Crawl’ Phase</a></p></li>
+<li><p><a class="reference external" href="#security---phase-2-the-walk-phase">Security - Phase 2: The ‘Walk’ Phase</a></p></li>
+<li><p><a class="reference external" href="#security---phase-3-the-run-phase">Security - Phase 3: The ‘Run’ Phase</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#room-to-improve">Room to improve</a></p>
+<ul>
+<li><p><a class="reference external" href="#room-to-improve---phase-1-the-crawl-phase">Room to improve - Phase 1: The ‘Crawl’ Phase</a></p></li>
+<li><p><a class="reference external" href="#room-to-improve---phase-2-the-walk-phase">Room to improve - Phase 2: The ‘Walk’ Phase</a></p></li>
+<li><p><a class="reference external" href="#room-to-improve---phase-3-the-run-phase">Room to improve - Phase 3: The ‘Run’ Phase</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#releasing">Releasing</a></p>
+<ul>
+<li><p><a class="reference external" href="#releasing---phase-1-the-crawl-phase">Releasing - Phase 1: The ‘Crawl’ Phase</a></p></li>
+<li><p><a class="reference external" href="#releasing---phase-2-the-walk-phase">Releasing - Phase 2: The ‘Walk’ Phase</a></p></li>
+<li><p><a class="reference external" href="#releasing---phase-3-the-run-phase">Releasing - Phase 3: The ‘Run’ Phase</a></p></li>
+</ul>
+</li>
+</ul>
+<section id="people-and-culture">
+<h2>People and Culture<a class="headerlink" href="#people-and-culture" title="Permalink to this headline">#</a></h2>
+<section id="people-and-culture-phase-1-the-crawl-phase">
+<h3>People and Culture - Phase 1: The ‘Crawl’ Phase<a class="headerlink" href="#people-and-culture-phase-1-the-crawl-phase" title="Permalink to this headline">#</a></h3>
+<p>You have a strong SRE voice in your team, someone who advocates for reliability features.
+They establish people focused mantras like “It’s OK to fail”, “Hope is not a strategy” and “Trust by default &amp; extend on it”.
+Communication is important in your team and you hire diverse people based on soft skills &amp; leadership rather than specific technologies.</p>
+<p>You may also have folks from previous “disciplines”. For example, sys admins, or experienced developers. Or, even some folks who have experience in “devops”. They can bring great skills, experience and value.</p>
+<p>You are likely to see resistance to change when making this transition with existing team members, so retraining (or even unlearning) can help. However, there may be inevitable difficult personnel decisions to be made.</p>
+<p>At this phase, having buy-in from executive level leadership is essential.
+Without this it will be very difficult to get their support later, and eventually their engagement.</p>
+<p>The product manager for you service should have a good understanding of SRE.
+They should help you advocate for service features that make the service more reliable.</p>
+</section>
+<section id="people-and-culture-phase-2-the-walk-phase">
+<h3>People and Culture - Phase 2: The ‘Walk’ Phase<a class="headerlink" href="#people-and-culture-phase-2-the-walk-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-75">SIGSRE-75</a></em></p>
+<ul class="simple">
+<li><p>Starting to get Exec support (improvement on ‘buy-in’)</p></li>
+</ul>
+</section>
+<section id="people-and-culture-phase-3-the-run-phase">
+<h3>People and Culture - Phase 3: The ‘Run’ Phase<a class="headerlink" href="#people-and-culture-phase-3-the-run-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-76">SIGSRE-76</a></em></p>
+<ul class="simple">
+<li><p>Exec engagement</p></li>
+</ul>
+</section>
+</section>
+<section id="observability">
+<h2>Observability<a class="headerlink" href="#observability" title="Permalink to this headline">#</a></h2>
+<section id="observability-phase-1-the-crawl-phase">
+<h3>Observability - Phase 1: The ‘Crawl’ Phase<a class="headerlink" href="#observability-phase-1-the-crawl-phase" title="Permalink to this headline">#</a></h3>
+<p>The foundations for monitoring and observing your service are in place.
+Being able to measure something meaningful about your service is important, and supplements any feedback you get from initial users.
+A common way to do this is via metrics exposed by your service.</p>
+<p>In this phase with a well established team that understands common SRE practices, SLOs would start to appear for their service(s) as a way of placing measuring sticks around the effectiveness of scaling efforts. Error budgets wouldn’t be tracked, at least not formally.</p>
+<p>There might only be one SLO around service availability and it may not even be formally tracked at the start of this phase (as one is first learning to walk). Towards the end of the phase, as the team transitions to “running”, they may start to wonder how to enforce this availability SLO and other new ones they want to put into place.</p>
+<p>There’s a graduation process with SLOs from “informing” to “enforcing”. You can use SLOs to inform decisions in this early stage. As they get refined and gain wider awareness &amp; support, you can start thinking about enforcement of an error budget policy.</p>
+</section>
+<section id="observability-phase-2-the-walk-phase">
+<h3>Observability - Phase 2: The ‘Walk’ Phase<a class="headerlink" href="#observability-phase-2-the-walk-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This section needs elaboration. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-77">SIGSRE-77</a></em></p>
+<p>You have established patterns and guidelines for observability signals such as metrics, logs, errors etc.
+You are using these patterns to speed up debugging of issues and to be to able to correlate various signals more easily, thereby reducing your Mean Time To Recovery (MTTR).
+Your alerts have matured and rarely give false positives as a result of having these patterns and refining queries.</p>
+<ul class="simple">
+<li><p>SLOs - SLOs have been iterated on, and you have more than 1 meaningful SLO.</p></li>
+<li><p>You understand and track error budgets</p></li>
+<li><p>Your alerts are actionable</p></li>
+<li><p>Your systems are self healing</p>
+<ul>
+<li><p>Avoid SRE having sub-systems that automagically work around the inefficiencies of upstream - needs a good argument why it can’t be fixed upstream - pushing left</p></li>
+</ul>
+</li>
+<li><p>Combination of internal (whitebox) and external (blackbox) monitoring - tied to SLOs</p></li>
+<li><p>Dashboards, logging (easily accessible)</p></li>
+<li><p>Improving the architecture for lower cost to serve. Prereq here - calculating &amp; knowing the cost to serve</p></li>
+</ul>
+</section>
+<section id="observability-phase-3-the-run-phase">
+<h3>Observability - Phase 3: The ‘Run’ Phase<a class="headerlink" href="#observability-phase-3-the-run-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This section needs elaboration. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-78">SIGSRE-78</a></em></p>
+<ul class="simple">
+<li><p>Observability correlation between logs, metrics, alerts, events etc..</p></li>
+<li><p>build on this foundation looking at AI Ops and improving the debug experience (focused on decreasing MTTR further)</p>
+<ul>
+<li><p>Needs everything underneath it first (all the signals)</p></li>
+</ul>
+</li>
+<li><p>SLOs - Well established SLO Review process</p></li>
+</ul>
+</section>
+</section>
+<section id="on-call-escalations-and-incidents">
+<h2>On Call, Escalations and Incidents<a class="headerlink" href="#on-call-escalations-and-incidents" title="Permalink to this headline">#</a></h2>
+<section id="on-call-escalations-and-incidents-phase-1-the-crawl-phase">
+<h3>On Call, Escalations and Incidents - Phase 1: The ‘Crawl’ Phase<a class="headerlink" href="#on-call-escalations-and-incidents-phase-1-the-crawl-phase" title="Permalink to this headline">#</a></h3>
+<p>You have a team with an on-call schedule.
+It doesn’t have to be 24/7. It doesn’t have to be automated.
+But there must be someone responsible for responding when things go bad.
+Setting expectations at this early stage with a reduced SLO means you can tailor the schedule to more reasonable times for your team.</p>
+<p>Following on from this, you have an escalation process. A way to be notified of problems.
+It should be possible to raise a problem with the SRE team and the people that build the service, like engineers, QE, writers.
+This can be done via a mailing list, a slack channel, an issue system or by other means.
+Formalise it and share it.</p>
+<p>If things go really bad, you have an Incident Management Process and do a Root Cause Analysis (RCA) (sometimes called a Post Mortem or Post Incident Review).
+You should be starting to build up a library of RCAs that can feed into doing more proactive things as you mature e.g. Incident rehearsals.
+Each RCA includes a <em>blameless</em> post mortem session with the people involved while the incident is still fresh in their minds.
+Each post mortem feeds <em>extremely valuable</em> reliability improvements back to the team.
+Your management team should ensure high priority of these actions &amp; follow through on them.</p>
+</section>
+<section id="on-call-escalations-and-incidents-phase-2-the-walk-phase">
+<h3>On Call, Escalations and Incidents - Phase 2: The ‘Walk’ Phase<a class="headerlink" href="#on-call-escalations-and-incidents-phase-2-the-walk-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-79">SIGSRE-79</a></em></p>
+</section>
+<section id="on-call-escalations-and-incidents-phase-3-the-run-phase">
+<h3>On Call, Escalations and Incidents - Phase 3: The ‘Run’ Phase<a class="headerlink" href="#on-call-escalations-and-incidents-phase-3-the-run-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-80">SIGSRE-80</a></em></p>
+</section>
+</section>
+<section id="failures">
+<h2>Failures<a class="headerlink" href="#failures" title="Permalink to this headline">#</a></h2>
+<section id="failures-phase-1-the-crawl-phase">
+<h3>Failures - Phase 1: The ‘Crawl’ Phase<a class="headerlink" href="#failures-phase-1-the-crawl-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-81">SIGSRE-81</a></em></p>
+<p>You understand how the service reacts to failures and feed the output into planning the environment accordingly while working on improving the areas that are weak</p>
+</section>
+<section id="failures-phase-2-the-walk-phase">
+<h3>Failures - Phase 2: The ‘Walk’ Phase<a class="headerlink" href="#failures-phase-2-the-walk-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-82">SIGSRE-82</a></em></p>
+<p>Validate well established and iterated SLOs under turbulent conditions in addition to making sure right alerts are in place given that observability maturity is part of this phase</p>
+<ul class="simple">
+<li><p>Disaster Recovery &amp; Incident Rehearsals</p></li>
+</ul>
+</section>
+<section id="failures-phase-3-the-run-phase">
+<h3>Failures - Phase 3: The ‘Run’ Phase<a class="headerlink" href="#failures-phase-3-the-run-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-83">SIGSRE-83</a></em></p>
+<p>Chaos testing in production during the available time window while still meeting the SLA</p>
+</section>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">#</a></h2>
+<section id="security-phase-1-the-crawl-phase">
+<h3>Security - Phase 1: The ‘Crawl’ Phase<a class="headerlink" href="#security-phase-1-the-crawl-phase" title="Permalink to this headline">#</a></h3>
+<p>Security is a set of controls (administrative, technical, physical) that are put in place to manage the risk of a company to an acceptable level.
+In this phase, access to the service is limited to those that strictly require it.
+Users that have access to the service have the minimum amount of permissions they need to operate the service.
+Additionally, access is revoked as soon as possible when a user no longer needs to, for example when the user leaves the group / company.
+All access to the system is logged.</p>
+<p>A mechanism exists for managing credentials &amp; secrets, and delivering them as configuration into your services.
+Engineers are likely doing ad-hoc security activities such as assessments, vulnerability scans, and pen-testing.
+These ad-hoc tests inform larger release milestones rather than continuous releases.</p>
+</section>
+<section id="security-phase-2-the-walk-phase">
+<h3>Security - Phase 2: The ‘Walk’ Phase<a class="headerlink" href="#security-phase-2-the-walk-phase" title="Permalink to this headline">#</a></h3>
+<p>In this phase you start to look at compliance.
+Compliance relates to all the activities implemented to make sure that security controls meet requirements from compliance certifications/attestations (i.e. ISO 27001:2013, HIPAA, SOC 2 Type 2, PCI DSS, etc.).
+Companies may also have your own internal compliance processes or security standards
+Those compliance certifications/attestations are the tangible items you can give to your customers to provide assurances of your security posture.</p>
+<p>Background checks are implemented for individuals with privileged access to the environment.
+The number of background checks needed grows linearly with the individuals with privileged access</p>
+<p>Security activities that were previously ad-hoc are now running regularly for each release, scanning your source &amp; your production environment.
+Doing ‘security impact assessments’ at the design phase of service features and architecture decisions pushes you security awareness earlier in the process.
+This goes hand in hand with having a Common Vulnerabilities and Exposures (CVE) response process.
+All code dependencies are being scanned for vulnerabilities and you are responsive to vulnerability reports and are able to push out fixes to production quickly in accordance with CVE severity.</p>
+</section>
+<section id="security-phase-3-the-run-phase">
+<h3>Security - Phase 3: The ‘Run’ Phase<a class="headerlink" href="#security-phase-3-the-run-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-85">SIGSRE-85</a></em></p>
+<ul class="simple">
+<li><p>Automated Policy enforcement</p></li>
+</ul>
+</section>
+</section>
+<section id="room-to-improve">
+<h2>Room to improve<a class="headerlink" href="#room-to-improve" title="Permalink to this headline">#</a></h2>
+<section id="room-to-improve-phase-1-the-crawl-phase">
+<h3>Room to improve - Phase 1: The ‘Crawl’ Phase<a class="headerlink" href="#room-to-improve-phase-1-the-crawl-phase" title="Permalink to this headline">#</a></h3>
+<p>Your team has sufficient time in their day to pursue improvement.
+Your team needs room to practice processes, improve them and automate things.
+Without this room, your team will mature more slowly and get bogged down in just keeping the service running day to day.
+This can lead to scaling problems, both for the service and the team.
+It isn’t necessary to formally measure how much time is spent on keeping things running vs. feature development or automation.
+That can come later, however you are familiar with the concept of Toil.</p>
+</section>
+<section id="room-to-improve-phase-2-the-walk-phase">
+<h3>Room to improve - Phase 2: The ‘Walk’ Phase<a class="headerlink" href="#room-to-improve-phase-2-the-walk-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref:<a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-86">SIGSRE-86</a></em></p>
+<ul class="simple">
+<li><p>Start measuring Toil more formally &amp; management track it</p>
+<ul>
+<li><p>Develop relationship with the upstream (eng and sre, or sre &amp; upstream product) for managing toil</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="room-to-improve-phase-3-the-run-phase">
+<h3>Room to improve - Phase 3: The ‘Run’ Phase<a class="headerlink" href="#room-to-improve-phase-3-the-run-phase" title="Permalink to this headline">#</a></h3>
+<p><em>This is a stub. Please help by adding content. Ref:<a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-87">SIGSRE-87</a></em></p>
+</section>
+</section>
+<section id="releasing">
+<h2>Releasing<a class="headerlink" href="#releasing" title="Permalink to this headline">#</a></h2>
+<p><em>This is a stub. Please help by adding content. Ref: <a class="reference external" href="https://issues.redhat.com/browse/SIGSRE-88">SIGSRE-88</a></em></p>
+<section id="releasing-phase-1-the-crawl-phase">
+<h3>Releasing - Phase 1: The ‘Crawl’ Phase<a class="headerlink" href="#releasing-phase-1-the-crawl-phase" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>One-off Release Scripts</p></li>
+</ul>
+</section>
+<section id="releasing-phase-2-the-walk-phase">
+<h3>Releasing - Phase 2: The ‘Walk’ Phase<a class="headerlink" href="#releasing-phase-2-the-walk-phase" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Robust CI/CD Practices</p></li>
+</ul>
+</section>
+<section id="releasing-phase-3-the-run-phase">
+<h3>Releasing - Phase 3: The ‘Run’ Phase<a class="headerlink" href="#releasing-phase-3-the-run-phase" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Canary Releases</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ADR-00007 Error Budget Policy</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By SIG SRE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

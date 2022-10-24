@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Operate First - Site Reliability Engineering &#8212; Operate First - Site Reliability Engineering</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Red Hat SRE coloring book" href="sre-coloring-book/red-hat-sre-coloring-book.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Operate First - Site Reliability Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Operate First - Site Reliability Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="sre-coloring-book/red-hat-sre-coloring-book.html">
+   Red Hat SRE coloring book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slo_bootstrap_guide.html">
+   SLO Bootstrap Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="process/incident_management.html">
+   Incident Management Process
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Metrics and Monitoring
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="picking_good_slis.html">
+   Picking Good SLIs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="picking_good_slos.html">
+   How to pick a good SLO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prometheus_alerting_consistency.html">
+   Prometheus Alerting Consistency
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Decision-Making
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="ADRs/RH/SIG-SRE/README.html">
+   SIG-SRE
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00000%20Template.html">
+     ADR-00000 Template
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00001%20Document%20architecture%20decisions%20using%20the%20Architecture%20Decision%20Records%20approach%20and%20define%20their%20templates.html">
+     ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00002%20Personas%20related%20to%20Managed%20Services.html">
+     ADR-00002 Personas related to Managed Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00004-Chaos-Testing-and-Engineering.html">
+     ADR-00004 - Chaos Testing &amp; Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00005%20SLO%20Lifecycle.html">
+     ADR-00005 SLO Lifecycle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00006%20SLO%20RACI%20Chart.html">
+     ADR-00006 SLO RACI Chart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy.html">
+     ADR-00007 Error Budget Policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other Documents
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="sre_maturity.html">
+   SRE Maturity
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/operate-first/sre"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/operate-first/sre/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/README.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-runs-this-repository">
+   Who runs this repository?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of Contents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-started">
+     Getting Started
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metrics-and-monitoring">
+     Metrics and Monitoring
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-making">
+     Decision-Making
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-documents">
+     Other Documents
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributing">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Operate First - Site Reliability Engineering</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-runs-this-repository">
+   Who runs this repository?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of Contents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-started">
+     Getting Started
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metrics-and-monitoring">
+     Metrics and Monitoring
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-making">
+     Decision-Making
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-documents">
+     Other Documents
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributing">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="operate-first-site-reliability-engineering">
+<h1>Operate First - Site Reliability Engineering<a class="headerlink" href="#operate-first-site-reliability-engineering" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>This the Operate First repository for Site Reliability Engineering (SRE)
+documentation. Here we intend to collect documentation on the nitty-gritty
+aspects of building and operating an effective SRE organisation.</p>
+</section>
+<section id="who-runs-this-repository">
+<h2>Who runs this repository?<a class="headerlink" href="#who-runs-this-repository" title="Permalink to this headline">#</a></h2>
+<p>Hello! We’re the Red Hat SIG-SRE group, a cross-team group of people inside Red
+Hat with an interest in promoting and developing strong SRE culture. As a
+result you can expect some of the material here to be a little slanted toward
+the way we do things here inside Red Hat, but as we’re doing our best to stick
+to what are generally accepted to be good SRE practices you should be able to
+make use of it with, at most, minor modification.</p>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">#</a></h2>
+<section id="getting-started">
+<h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p><a class="reference external" href="https://github.com/operate-first/sre/raw/main/sre-coloring-book/red-hat-sre-coloring-book.pdf">The Reliability Nightmares Colouring Book</a></p>
+<p>A readable, accessible guide to the various ways in which SRE principles
+and managed services can solve many of the problems associated with running
+complex IT services (and restaurants).</p>
+</li>
+<li><p><a class="reference internal" href="slo_bootstrap_guide.html"><span class="doc std std-doc">The SLO Bootstrap Guide</span></a></p>
+<p>A self-contained bootstrapping guide for teams looking to use the
+SRE approach to supporting services.</p>
+</li>
+<li><p><a class="reference internal" href="process/incident_management.html"><span class="doc std std-doc">Incident Management Process Guide</span></a></p>
+<p>A useful starting point for developing your own incident management
+processes and procedures.</p>
+</li>
+</ul>
+</section>
+<section id="metrics-and-monitoring">
+<h3>Metrics and Monitoring<a class="headerlink" href="#metrics-and-monitoring" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p><a class="reference internal" href="picking_good_slis.html"><span class="doc std std-doc">Picking good Service Level Indicators (SLIs)</span></a></p>
+<p>Service Level Indicators are one of the most important sets of metrics
+in SRE, and defining them correctly is key to running an effective
+SRE service.</p>
+</li>
+<li><p><a class="reference internal" href="picking_good_slos.html"><span class="doc std std-doc">Picking good Service Level Objectives (SLOs)</span></a></p>
+<p>Where SLIs are used to answer the question “Is everything working as it
+should?”, Service Level Objectives (SLOs) define the expectations for
+how much and how often a service should perform correctly according
+to its SLIs. They are probably the single most important set of
+statistics used for evaluating the performance of a managed service,
+as they show maintainers and customers alike just how well things are
+working.</p>
+</li>
+<li><p><a class="reference internal" href="prometheus_alerting_consistency.html"><span class="doc std std-doc">Prometheus Alerting Consistency</span></a></p>
+<p>Alerts are only useful if they’re clear, understandable and actionable. This guide
+presents some suggested best practices for designing alerts that are
+consistent and useful.</p>
+</li>
+</ul>
+</section>
+<section id="decision-making">
+<h3>Decision-Making<a class="headerlink" href="#decision-making" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p>Some sample SIG-SRE <span class="xref myst">Architecture Decision Records</span></p>
+<p>When major decisions are made on design or operational aspects of
+system, it can be very worthwhile to keep a clear record of those
+decisions for future reference. An Architecture Decision Record
+(ADR) acts as a document of the discussion and reasoning behind the
+decision it relates to, and in years to come can be extremely valuable
+for answering the eternal question - “Why do we do things this way?”.</p>
+<p>This directory contains some sample ADRs from the SIG-SRE group.</p>
+</li>
+</ul>
+</section>
+<section id="other-documents">
+<h3>Other Documents<a class="headerlink" href="#other-documents" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p>A work in progress - the <a class="reference internal" href="sre_maturity.html"><span class="doc std std-doc">SRE Maturity Model</span></a></p>
+<p>Moving to an SRE model generally happens in a series of steps rather than
+as a single big change. The SRE Maturity Model is intended to describe
+a set of milestones along the route from “no SRE at all” to “a fully
+functioning SRE organisation”.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">#</a></h2>
+<p>Feedback is always welcome, and contributions are too!
+Feel free to file an
+<a class="reference external" href="https://github.com/operate-first/sre/issues/new">issue</a> or
+send us a pull request (PR). If you’d like to know more about what we do or
+find out about ways you can get involved, then you can read about
+<a class="reference external" href="https://www.operate-first.cloud/our-community">becoming part of the Operate First community.</a></p>
+<p>If you’re submitting Markdown, please check for any linting problems.  The
+<a class="reference external" href="https://github.com/DavidAnson/vscode-markdownlint">vscode-markdownlint</a> plugin
+can be used to do this in VSCode.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="sre-coloring-book/red-hat-sre-coloring-book.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Red Hat SRE coloring book</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By SIG SRE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

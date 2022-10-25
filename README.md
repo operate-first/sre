@@ -69,7 +69,7 @@ But where it comes to what is a central focus of this community, it will always 
 
 ### Decision-Making
 
-* Some sample SIG-SRE [Architecture Decision Records](./ADRs/RH/SIG-SRE)
+* Some sample SIG-SRE [Architecture Decision Records](https://github.com/operate-first/sre/tree/main/ADRs/RH/SIG-SRE)
 
     When major decisions are made on design or operational aspects of system, it can be very worthwhile to keep a clear record of those
     decisions for future reference.
@@ -100,7 +100,7 @@ These organizations have a contributing stake in the Operate First project, whic
 
 ## Contributing
 
-_For complete information on contributing to this SIG, refer to the canonical [CONTRIBUTING.md](CONTRIBUTING.md) file._
+_For complete information on contributing to this SIG, refer to the canonical [CONTRIBUTING.md](./CONTRIBUTING.md) file._
 
 Feedback is always welcome, and contributions are too!
 Feel free to file an [issue](https://github.com/operate-first/sre/issues/new) or send us a pull request (PR). If you'd like to know more about what we do or find out about ways you can get involved, then you can read about [becoming part of the Operate First community.](https://www.operate-first.cloud/our-community)

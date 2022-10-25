@@ -15,6 +15,10 @@ This new _Open Cloud_ environment is going to need Open SRE practices to go with
 
 Read the [SIG charter](charter.md) for more details about our purpose and approach.
 
+If you are interested in keeping track of our progress, you can [subscribe to our announcements group](https://lists.operate-first.cloud/archives/list/sig-sre-announce@lists.operate-first.cloud/).
+
+To participate in bootstrapping this community of practice, [join our discussion group](https://lists.operate-first.cloud/archives/list/sig-sre@lists.operate-first.cloud/).
+
 ## What kind of SRE practices belong here?
 
 It's easy to say, "All of the good ones," :) and while that is true, we are realistic about where we are today.

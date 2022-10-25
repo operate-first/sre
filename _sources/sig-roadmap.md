@@ -21,7 +21,7 @@ Discussions and decisions about this roadmap occur on the main group [sig-sre@op
   * [Prometheus Alerting Consistency](./prometheus_alerting_consistency.md)
 
 ### Doing
-* Growing set of sample SIG-SRE [Architecture Decision Records](./ADRs/RH/SIG-SRE)
+* Growing set of sample SIG-SRE [Architecture Decision Records](https://github.com/operate-first/sre/tree/main/ADRs/RH/SIG-SRE)
 
 
 ### Planning

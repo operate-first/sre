@@ -6,6 +6,9 @@ parts:
       - file: sre-coloring-book/red-hat-sre-coloring-book
       - file: slo_bootstrap_guide
       - file: process/incident_management
+      - file: sig-roadmap
+      - file: CONTRIBUTING
+      - file: charter
   - caption: Metrics and Monitoring
     chapters:
       - file: picking_good_slis
@@ -13,7 +16,7 @@ parts:
       - file: prometheus_alerting_consistency
   - caption: Decision-Making
     chapters:
-      - file: ADRs/RH/SIG-SRE/README
+      - file: ADRs/RH/README
         sections:
           - file: ADRs/RH/SIG-SRE/ADR-00000 Template
           - file: ADRs/RH/SIG-SRE/ADR-00001 Document architecture decisions using the Architecture Decision Records approach and define their templates
@@ -22,6 +25,7 @@ parts:
           - file: ADRs/RH/SIG-SRE/ADR-00005 SLO Lifecycle
           - file: ADRs/RH/SIG-SRE/ADR-00006 SLO RACI Chart
           - file: ADRs/RH/SIG-SRE/ADR-00007-Error-Budget-Policy
+          - file: ADRs/RH/SIG-SRE/README
   - caption: Other Documents
     chapters:
       - file: sre_maturity

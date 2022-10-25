@@ -191,19 +191,15 @@ The customer support lead is the person from our first level support organizatio
 When an incident is initially triggered or managed internally to SRE, meaning that it was not initiated by a customer request through Customer support and when this incident has an impact to the customer then the Incident Commander needs to ensure that the right representation from Customer Support is available in the bridge.
 
 ### Problem Investigation Manager
-The Problem Investigation Manager is the SRE Manager supporting the team who is working on resolving the incident from a management perspective.
+* The Problem Investigation Manager is the SRE Manager supporting the team who is working on resolving the incident from a management perspective.
+* The Problem Investigation Manager is accountable for following up on the Post Mortem and all the action items that have been derived from it until they are all completed.
+* The Problem Investigation Manager must ensure that the PMR and all its action items are properly tracked and will be acted upon in a timely fashion by the different teams impacted according to their priorities.
+* This is a coordination and project management type of activity which requires reaching out to different external teams and potentially escalating * issues, that's the main reason why this is under the responsibility of a Manager.
+* Usually, the Problem Investigation Manager will be one of the Regional Managers where the incident first occurs, whoever is available at the time. 
+* The Problem Investigation Manager doesn't need to be handed over as a follow-the-sun role, it can stay within the Region of origin.
+* If the incident ownership is fully transferred to a different region or a different team, the Problem Investigation Manager role can be handed over.
 
-The Problem Investigation Manager is accountable for following-up on the Post Mortem and all the action items that have been derived from it until they are all completed.
-
-The Problem Investigation Manager must ensure that the PMR and all its action items are properly tracked and will be acted upon in a timely fashion by the different teams impacted according to their priorities.
-
-This is a coordination and project management type of activity which requires to reach out to different external teams and potentially escalate issues, that's the main reason why this is under the responsibility of a Manager.
-
-Usually the Problem Investigation Manager will be one of the Regional Manager where the incident first occurs, whoever is available at the time. 
-
-The Problem Investigation Manager doesn't need to be handed over as a follow the sun role, it can stay within the Region of origin.
-
-If the incident ownership is fully transferred to a different region or a different team, the Problem Investigation Manager role can be handed over.
+** Note: If an incident is caused by the SRE that impacts the customer's workloads, the Problem Investigation Manager to immediately inform BU about the same. **
 
 ## After incident recovery
 

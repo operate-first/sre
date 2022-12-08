@@ -205,6 +205,8 @@ Once our services are recovered and we are back in business then the following s
 
 Templates for RCA and PMR documents can be found here.
 
+From the incident announcement RCA should be ready to be shared publicly in the next 7 business days. This includes resolving all the outstanding comments and approval if required.
+
 ### Return to baseline
 
 The recovery of an incident consists of making sure that there is no more impact to the customer using our services.

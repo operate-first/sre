@@ -199,7 +199,7 @@ When an incident is initially triggered or managed internally to SRE, meaning th
 * The Problem Investigation Manager doesn't need to be handed over as a follow-the-sun role, it can stay within the Region of origin.
 * If the incident ownership is fully transferred to a different region or a different team, the Problem Investigation Manager role can be handed over.
 
-** Note: If an incident is caused by the SRE that impacts the customer's workloads, the Problem Investigation Manager to immediately inform BU about the same. **
+** Note: If an incident is caused by the SRE and impacts the customer's workloads, the Problem Investigation Manager must immediately inform the Business Unit about it. **
 
 ## After incident recovery
 

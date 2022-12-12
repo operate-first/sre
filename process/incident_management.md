@@ -203,7 +203,8 @@ Once our services are recovered and we are back in business then the following s
 * The Post Mortem Review (PMR) is scheduled and run by the Incident Owner in the next 5 business days
 * That the above steps are being performed in a timely manner is verified by the Incident Commander.
 
-Templates for RCA and PMR documents can be found here.
+The RCA should be ready to be shared publicly within 7 business days of the incident announcement.
+This includes ensuring all outstanding comments are resolved and any required approvals granted.
 
 ### Return to baseline
 

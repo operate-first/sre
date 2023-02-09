@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -530,6 +532,11 @@ title="Print to PDF"
      Customer support Lead
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem-investigation-manager">
+     Problem Investigation Manager
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -553,6 +560,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#post-mortem-review">
    Post Mortem Review
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pmr-tracking-epic">
+     PMR tracking Epic:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pmr-action-item-tasks">
+     PMR action item tasks:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#follow-up-and-prioritization">
+     Follow-up and prioritization:
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#detailed-process-steps">
@@ -683,6 +707,11 @@ title="Print to PDF"
      Customer support Lead
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem-investigation-manager">
+     Problem Investigation Manager
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -706,6 +735,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#post-mortem-review">
    Post Mortem Review
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pmr-tracking-epic">
+     PMR tracking Epic:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pmr-action-item-tasks">
+     PMR action item tasks:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#follow-up-and-prioritization">
+     Follow-up and prioritization:
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#detailed-process-steps">
@@ -948,6 +994,19 @@ A parallel investigator will get involved either by the Incident Commander or by
 <p>The customer support lead is the person from our first level support organization who is going to handle the customer notification and communication throughout the duration of the incident, based on the information provided by the Incident Commander.</p>
 <p>When an incident is initially triggered or managed internally to SRE, meaning that it was not initiated by a customer request through Customer support and when this incident has an impact to the customer then the Incident Commander needs to ensure that the right representation from Customer Support is available in the bridge.</p>
 </section>
+<section id="problem-investigation-manager">
+<h3>Problem Investigation Manager<a class="headerlink" href="#problem-investigation-manager" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The Problem Investigation Manager is the SRE Manager supporting the team who is working on resolving the incident from a management perspective.</p></li>
+<li><p>The Problem Investigation Manager is accountable for following up on the Post Mortem and all the action items that have been derived from it until they are all completed.</p></li>
+<li><p>The Problem Investigation Manager must ensure that the PMR and all its action items are properly tracked and will be acted upon in a timely fashion by the different teams impacted according to their priorities.</p></li>
+<li><p>This is a coordination and project management type of activity which requires reaching out to different external teams and potentially escalating * issues, that’s the main reason why this is under the responsibility of a Manager.</p></li>
+<li><p>Usually, the Problem Investigation Manager will be one of the Regional Managers where the incident first occurs, whoever is available at the time.</p></li>
+<li><p>The Problem Investigation Manager doesn’t need to be handed over as a follow-the-sun role, it can stay within the Region of origin.</p></li>
+<li><p>If the incident ownership is fully transferred to a different region or a different team, the Problem Investigation Manager role can be handed over.</p></li>
+</ul>
+<p>** Note: If an incident is caused by the SRE and impacts the customer’s workloads, the Problem Investigation Manager must immediately inform the Business Unit about it. **</p>
+</section>
 </section>
 <section id="after-incident-recovery">
 <h2>After incident recovery<a class="headerlink" href="#after-incident-recovery" title="Permalink to this headline">#</a></h2>
@@ -994,6 +1053,7 @@ This is the very next step after recovery of the service.</p>
 </ul>
 </li>
 <li><p>[optional] The Customer Support lead</p></li>
+<li><p>[mandatory] The problem investigation manager</p></li>
 </ul>
 <p>The incident technical lead is the owner of the post mortem review meeting and is making sure that it contains the following:</p>
 <ul class="simple">
@@ -1022,6 +1082,37 @@ This is the very next step after recovery of the service.</p>
 <li><p>Decrease MTTR in case of recurrence (documentation for instance, …)</p></li>
 <li><p><strong>Each action item must be tracked by a corresponding ticket in the SRE’s backlog so that its implementation can be prioritized and tracked by the SRE leads</strong></p></li>
 </ul>
+<section id="pmr-tracking-epic">
+<h3>PMR tracking Epic:<a class="headerlink" href="#pmr-tracking-epic" title="Permalink to this headline">#</a></h3>
+<p>After each major incident we must create an overarching PMR tracking epic which will have a separate lifecycle as the incident but which will centralize all the PMR action items that we derive during the PMR exercise.</p>
+<p>The epic must have the following data:</p>
+<ul class="simple">
+<li><p>The title naming convention: [YYYY-MM-DD] PMR for <span class="math notranslate nohighlight">\({incident id} - \)</span>{incident title}</p></li>
+<li><p>The label “pmr” to be able to be identified as such</p></li>
+<li><p>The date of the incident occurrence</p></li>
+<li><p>The link to the RCA document</p></li>
+<li><p>The epic must reference the incident record.</p></li>
+</ul>
+<p>The accountability for following up the PMR Epic and its completion (meaning the completion of all sub tasks within the Epic) is with the Problem Investigation Manager.</p>
+</section>
+<section id="pmr-action-item-tasks">
+<h3>PMR action item tasks:<a class="headerlink" href="#pmr-action-item-tasks" title="Permalink to this headline">#</a></h3>
+<p>During the PMR we detail all action items that we need to implement to avoid reoccurrence or limit the impact of them in the future. Each of these action items must be tracked as a dedicated task under the PMR Epic.</p>
+<p>Each PMR AI task must have the following data:</p>
+<ul class="simple">
+<li><p>A meaningful title</p></li>
+<li><p>The label “pmr-ai” to be able to be identified as such</p></li>
+<li><p>The right level of priority and urgency according to the impact and urgency this item will have in preventing reoccurrence in the future.</p></li>
+<li><p>The task must be assigned to the targeted team</p></li>
+<li><p>The task must be linked to the PMR Epic</p></li>
+<li><p>When relevant the task must have the label of the impacted operator</p></li>
+</ul>
+</section>
+<section id="follow-up-and-prioritization">
+<h3>Follow-up and prioritization:<a class="headerlink" href="#follow-up-and-prioritization" title="Permalink to this headline">#</a></h3>
+<p>Prioritization of PMR work is the same as the one for toil reduction because in the end incidents are toil and PMR AI are aiming at reducing incident or their impact, thus reducing toil.
+Assignment of PMR AI falls under 2 possibilities, either the PMR AI is operator specific, in that case the work is assigned to the functional team owning the component, or the PMR AI is generic, in that case the work is assigned following the same process as the toil reduction work assignment.
+Accountability and follow-up of PMR and PMR AI must happen during the lead sync, at the same time we review functional Epic statuses and toil reduction Epic ones.</p>
 <p>Questionnaire to be answered during the PMR:</p>
 <ul class="simple">
 <li><p>How can we protect ourselves better from such an incident?</p></li>
@@ -1029,6 +1120,7 @@ This is the very next step after recovery of the service.</p>
 <li><p>How can we recover quicker from such an incident?</p></li>
 <li><p>How can we identify the issue quicker?</p></li>
 </ul>
+</section>
 </section>
 <section id="detailed-process-steps">
 <h2>Detailed process steps<a class="headerlink" href="#detailed-process-steps" title="Permalink to this headline">#</a></h2>
@@ -1077,7 +1169,7 @@ This is the very next step after recovery of the service.</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./process"
         },
         predefinedOutput: true

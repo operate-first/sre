@@ -572,15 +572,15 @@ namespace label.</p></li>
 Failures of individual components MUST NOT trigger critical level alerts unless that failure is likely to affect a related SLO if not attended to.
 Configure critical level alerts so they fire before the situation becomes irrecoverable.</p>
 <p>Example critical alert:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BackendServiceStuck</span><span class="w"></span>
-<span class="w">  </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">max_over_time(backend_state[5m]) != 1</span><span class="w"></span>
-<span class="w">  </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10m</span><span class="w"></span>
-<span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">critical</span><span class="w"></span>
-<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">backend</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stuck</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">non-ready</span><span class="nv"> </span><span class="s">state&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">backend</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.name</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.namespace</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">namespace,</span><span class="nv"> </span><span class="s">managed</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">operator</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.pod</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">been</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">non-ready</span><span class="nv"> </span><span class="s">state</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">minutes&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">runbook_url</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;https://example.com/backend_service_stuck.asciidoc&#39;</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BackendServiceStuck</span>
+<span class="w">  </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">max_over_time(backend_state[5m]) != 1</span>
+<span class="w">  </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10m</span>
+<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">critical</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">backend</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stuck</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">non-ready</span><span class="nv"> </span><span class="s">state&#39;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">backend</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.name</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.namespace</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">namespace,</span><span class="nv"> </span><span class="s">managed</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">operator</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.pod</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">been</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">non-ready</span><span class="nv"> </span><span class="s">state</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">minutes&#39;</span>
+<span class="w">    </span><span class="nt">runbook_url</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;https://example.com/backend_service_stuck.asciidoc&#39;</span>
 </pre></div>
 </div>
 <p>This alert fires if a backend service has <em>not</em> been ready for a pre-configured time. To avoid false alarms the chosen timeout MUST be long enough that it is unlikely to be reached during any routine restart or deployment.
@@ -599,18 +599,18 @@ Most alerts are likely to be warnings.
 Configure warning level alerts so that they do not fire until components have sufficient time to try to recover from the interruption automatically.
 You should have a policy for triaging warning alerts and responding in a timely manner e.g. issues created automatically on a backlog that is being actively worked from.</p>
 <p>Example warning alert:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PrometheusDuplicateTimestamps</span><span class="w"></span>
-<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prometheus {{$labels.namespace}}/{{$labels.pod}} is dropping</span><span class="w"></span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">{{ printf &quot;%.4g&quot; $value  }} samples/s with different values but duplicated</span><span class="w"></span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">timestamp.</span><span class="w"></span>
-<span class="w">    </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prometheus is dropping samples with duplicate timestamps.</span><span class="w"></span>
-<span class="w">    </span><span class="nt">runbook_url</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;https://example.com/prometheus_duplication_timestamps.asciidoc&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">    </span><span class="no">rate(prometheus_target_scrapes_sample_duplicate_timestamp_total{job=~&quot;prometheus-k8s|prometheus-user-workload&quot;}[5m]) &gt; 0</span><span class="w"></span>
-<span class="w">  </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1h</span><span class="w"></span>
-<span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PrometheusDuplicateTimestamps</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prometheus {{$labels.namespace}}/{{$labels.pod}} is dropping</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">{{ printf &quot;%.4g&quot; $value  }} samples/s with different values but duplicated</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">timestamp.</span>
+<span class="w">    </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prometheus is dropping samples with duplicate timestamps.</span>
+<span class="w">    </span><span class="nt">runbook_url</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;https://example.com/prometheus_duplication_timestamps.asciidoc&#39;</span>
+<span class="w">  </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">rate(prometheus_target_scrapes_sample_duplicate_timestamp_total{job=~&quot;prometheus-k8s|prometheus-user-workload&quot;}[5m]) &gt; 0</span>
+<span class="w">  </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1h</span>
+<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span>
 </pre></div>
 </div>
 <p>This alert fires if prometheus is dropping samples that have different values but the same timestamp.
@@ -633,7 +633,7 @@ Like with critical alerts, if there is an SLO related to the warning alert, ment
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true

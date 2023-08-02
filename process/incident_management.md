@@ -146,7 +146,7 @@ The investigators have the responsibility to describe the action they are taking
 
 The key element for this role is for the Incident Commander to be solely focused on "oiling the machinery" of incident recovery instead of participating in the hands-on resolution. In fact the main goal for the Incident Commander is to deal with the overall coordination overhead of the incident recovery, with a cool head, while the investigators are focused 100% on performing the recovery. This will allow faster recovery, better communication flows and fewer errors during the stress of the incident management.
 
-The Incident Commander can elect someone to be the "scribe" during the incident. The duty of the scribe is to report in the RCA document all the important information (technical details, timeline, ...) while the Incident Commander is focused on helping with the coordination.
+The Incident Commander can elect someone to be the "scribe" during the incident. The duty of the scribe is to report in the RCA document all the important information (technical details, timeline, take must-gather ...) while the Incident Commander is focused on helping with the coordination.
 
 #### Incident Commander Responsibilities
 
@@ -179,6 +179,7 @@ The coordination work under the responsibility of the Incident Commander is as f
 9. Trigger on-call for the right groups that are needed for helping out with the recovery
 10. Making sure that regular updates are being given in the IM channel in addition to curated information for the customer.
 11. Provide executive summary of the ongoing state of the incident
+12. Perform a `must-gather` to collect information about a cluster for bugs and support cases. Please follow `ops-sop` [documentation](https://github.com/openshift/ops-sop/blob/master/v4/howto/must-gather.md) on How to perform a `must-gather` which will assist us when performing RCA.
 
 #### Incident Commander Comments / Reasoning
 
@@ -227,7 +228,7 @@ This is the very next step after recovery of the service.
 
 ### Root Cause Analysis
 
-Once the system is recovered and back to its nominal state then we shall ensure that we investigate and understand the root cause of the incident. This will allow us to make sure that we can find the best countermeasures or fixes to avoid re-occurrence. It has been found highly effective for the major roles within the incident to take a break after **Return to baseline** to refresh themselves and then return for a 30 minute scavenger hunt to produce the initial timeline. The point is to immediately explore, scope and shape the timeline using all available data as well as proposing drafts for follow up actions while the incident is still fresh in the minds of engineers.
+Once the system is recovered and back to its nominal state then we shall ensure that we investigate and understand the root cause of the incident. We can use some assistance from the `must-gather` we had performed in the steps earlier to determine the Root Cause. This will allow us to make sure that we can find the best countermeasures or fixes to avoid re-occurrence. It has been found highly effective for the major roles within the incident to take a break after **Return to baseline** to refresh themselves and then return for a 30 minute scavenger hunt to produce the initial timeline. The point is to immediately explore, scope and shape the timeline using all available data as well as proposing drafts for follow up actions while the incident is still fresh in the minds of engineers.
 
 ## Post Mortem Review
 

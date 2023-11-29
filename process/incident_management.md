@@ -52,6 +52,26 @@ As an SRE organization we should aim at:
 
 ## Roles and Responsibilities
 
+## Incident responsibilities based on severity level
+**Sev1:** major incident affecting external customers
+* Full cadre of roles
+* Host incident debrief meeting
+* Formal PMR hosted
+     * PMR noted capture discussion not shared with customer so we can deprecate occasional need for "internal" RCA
+* Formal RCA shared with customers
+
+**Sev2:** major incident affecting internal customers
+* Full cadre of roles
+* Host incident debrief meeting
+* PMR optional, depending on outcome of debrief
+* WebRCA only (internal)
+
+**Sev3:** Minor incident defined in [Usage of WebRCA to record data on ticket other than major incidents](https://source.redhat.com/groups/public/service-delivery/service_delivery_wiki/usage_of_webrca_to_record_data_on_tickets_other_than_major_incidents)
+* Fewer incident roles (minimally 2: Incident commander + Tech Lead OR Incident Commander/Tech Lead + parallel investigator)
+* Incident debrief hosted virtually (via Slack)
+* No PMR hosted
+* WebRCA only (internal)
+
 ### Incident First Responder
 
 Any SRE investigating a cluster issue becomes this, when they notice a **problem with a cluster or a specific application**  which:
@@ -304,6 +324,15 @@ Questionnaire to be answered during the PMR:
 * How can we ensure that the issue does not reoccur?
 * How can we recover quicker from such an incident?
 * How can we identify the issue quicker?
+
+## Incident Debrief
+The incident Debrief is an informal meeting held within 48 hours to encourage learning from incidents in a collaborative setting. This helps the team get started drafting the RCA. The debrief is facilitated by the Incident Commander and is held via Meet or asynchronously via Slack, depending on severity of the Incident. It should be held within 48 hours, but may be done immediately. 
+
+The format is intentionally open-ended to encourage discussion. 
+
+* What strengths did you observe during the incident response?
+* What areas for improvement did you observe?
+* With time permitting, participants can provide additional remarks regarding incident operations. 
 
 ## Detailed process steps
 
